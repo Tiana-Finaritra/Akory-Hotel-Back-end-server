@@ -138,9 +138,27 @@ export const getHotelAndNumberOfRooms = () => {
 // SHOW LIST OF CURENTLY OCCUPIED ROOMS:
 export const getCurrentlyOccupiedRoomsList = () =>{
     const CurrentlyOccupiedRoomsListQ = `
-    SELECT room.id, room.number, room.room_type, room.capacity_room FROM room 
-    INNER JOIN reservation res ON room.id = res.id_room
-    WHERE leaving_date  > current_date;
+    -->
+        SELECT room.id, room.number, room.room_type, room.capacity_room FROM room 
+        INNER JOIN reservation res ON room.id = res.id_room
+        WHERE leaving_date  > current_date;
+                -->
     `
     return db.query(CurrentlyOccupiedRoomsListQ);
+}
+
+// medium-line10-11:
+// DISPLAY LEAST/MOST RESERVED ROOM IN GIVEN HOTEL
+export const getLeastMostReservedRoomByHotel = (hotle_name) => {
+    const LeastMostReservedRoomByHotelQ = `
+    -->
+        SELECT COUNT(re.id) reservation_s_number, ro.number as room_reference, h.name as hotel FROM room ro
+        INNER JOIN reservation re ON ro.id = re.id_room
+        INNER JOIN hotel h ON h.id = ro.id_hotel
+        WHERE h.name = $1 --<-- Param
+        GROUP BY ro.number, h.name
+        ORDER BY reservation_s_number ASC;
+                                -->
+    `
+    return db.query(LeastMostReservedRoomByHotelQ, [hotle_name]);
 }

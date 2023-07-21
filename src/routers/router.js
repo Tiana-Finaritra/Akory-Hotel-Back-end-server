@@ -4,7 +4,7 @@ import {
   getCurrentlyOccupiedRoomsList,
   getHotelAndNumberOfRooms,
   getHotelsListContainsRoomByBeutures
-  , getRoomsDetailsByOccupedGivenGuest
+  , getLeastMostReservedRoomByHotel, getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
   , getRoomsListByFeatures
 }
@@ -61,3 +61,10 @@ router.get("/CurrentyOccupiedRoomsList", (req, res) => {
   handlePromise(getCurrentlyOccupiedRoomsList(),res);
 });
 
+// medium-line10-11:
+// DISPLAY LEAST/MOST RESERVED ROOM IN GIVEN HOTEL
+router.get("/LeastMostReservedRoomByHotel", (req, res) => {
+  // const hotel_name = req.query.keyword;
+  let hotel_name ="Tranquil Bay Resort" ;
+   handlePromise(getLeastMostReservedRoomByHotel(hotel_name),res );
+});
