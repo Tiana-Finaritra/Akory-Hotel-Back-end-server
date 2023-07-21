@@ -1,12 +1,12 @@
 import express from "express";
-import { getHotels, getRooms } from "./DAO/displays.js";
+import Displays from "./DAO/displays.js";
 
 export const router = express.Router();
 
 // rooms:
 
 router.get("/rooms", (req, res) => {
-  getRooms()
+  Displays.getRooms()
     .then((data) => {
       res.send(data);
     })
@@ -16,17 +16,39 @@ router.get("/rooms", (req, res) => {
     });
 });
 
-//hotels:
+// hotels:
 
-router.get("/hotels", (req, res) =>{
-    getHotels()
-    .then((data)=>{
-        res.send(data);
+router.get("/hotels", (req, res) => {
+  Displays.getHotels()
+    .then((data) => {
+      res.send(data);
     })
-    .catch((err)=>{
-        console.log(err);
-        res.status(500).send("Erreur de serveur");
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("Erreur de serveur");
+    });
+});
+
+// customer
+router.get("/customers", (req, res) => {
+  Displays.getCustomers()
+    .then((data) => {
+      res.send(data);
     })
-})
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Erreur de serveur");
+    });
+});
 
-
+// reservation
+router.get("/reservations", (req, res) => {
+  Displays.getReservations()
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Erreur de serveur");
+    });
+});
