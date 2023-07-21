@@ -7,6 +7,7 @@ import {
   , getLeastMostReservedRoomByHotel, getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
   , getRoomsListByFeatures,
+  getTotalConferencePaymentInIntervalDate,
   getTotalPayForRoomsHotel
 }
   from "../DAO/displays.js";
@@ -83,3 +84,12 @@ router.get("/TotalPayForRoomsHotel", (req, res) => {
   handlePromise(getTotalPayForRoomsHotel(start_period, end_period), res);
 });
 
+
+
+// hard-line7:
+// DISPLAY TOTAL  OF PAYMANT ONLY FOR CONFERENCES ROOM'S RESERVATIONS
+// IN A GIVEN DATE INTERVAL
+router.get("/TotalConferencePaymentInIntervalDate/:start_period/:end_period/:room_type", (req, res) => {
+  const { start_period, end_period, room_type } = req.params; // Get parameters from req.params
+  handlePromise(getTotalConferencePaymentInIntervalDate({ start_period, end_period, room_type }), res);
+});
