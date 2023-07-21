@@ -2,10 +2,11 @@ import pgPromise from 'pg-promise';
 import dotenv from 'dotenv';
 
 const pgp = pgPromise();
-dotenv.config();
+
+dotenv.config({ path: '../.env' }); 
 
 // Connection à la base de donnée:
-const db = pgp({
+ export const db = pgp({
     host: 'localhost',
     port: 5432,
     database: 'akory',
@@ -31,6 +32,7 @@ db.connect()
  * cacher sous gitignire
  * donc, avant de tester la connection à la base de
  * donnée: crées d'abord un fichier app .env
+ * dans le même chemin que src - package.js et READEME.md
  * et mettez-y les lignes suivants:
  * 
  * DB_USER=postgres <-- à changer
