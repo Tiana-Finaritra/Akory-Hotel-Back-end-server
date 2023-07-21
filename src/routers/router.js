@@ -2,10 +2,11 @@ import express from "express";
 import { handlePromise } from "./promiseHandler.js";
 import {
   getHotelsListContainsRoomByBeutures
+  , getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
   , getRoomsListByFeatures
 }
-from "../DAO/displays.js";
+  from "../DAO/displays.js";
 
 
 export const router = express.Router();
@@ -34,3 +35,12 @@ router.get("/HotelsListContainsRoomByBeutures", (req, res) => {
   handlePromise(getHotelsListContainsRoomByBeutures(keyword), res);
 });
 
+
+// easy-line15:
+// DISPLAY DETAILS OF THE ROOM CURRENTLY OCCUPID BY A GIVEN GUEST
+router.get("/RoomsDetailsByOccupedGivenGuest", (req, res) => {
+  // const [customer_name, customer_id] = req.query.keyword;
+  let customer_name = "William";
+  let customer_id = 78;
+  handlePromise(getRoomsDetailsByOccupedGivenGuest(customer_name, customer_id), res);
+});
