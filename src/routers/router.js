@@ -1,6 +1,8 @@
 import express from "express";
 import { handlePromise } from "./promiseHandler.js";
 import {
+  getCurrentlyOccupiedRoomsList,
+  getHotelAndNumberOfRooms,
   getHotelsListContainsRoomByBeutures
   , getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
@@ -44,3 +46,18 @@ router.get("/RoomsDetailsByOccupedGivenGuest", (req, res) => {
   let customer_id = 78;
   handlePromise(getRoomsDetailsByOccupedGivenGuest(customer_name, customer_id), res);
 });
+
+
+// medium-line8:
+// DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
+router.get("/HotelAndNumberOfRooms",(req, res) => {
+  handlePromise(getHotelAndNumberOfRooms(), res);
+});
+
+
+// medium-line9:
+// SHOW LIST OF CURENTLY OCCUPIED ROOMS:
+router.get("/CurrentyOccupiedRoomsList", (req, res) => {
+  handlePromise(getCurrentlyOccupiedRoomsList(),res);
+});
+

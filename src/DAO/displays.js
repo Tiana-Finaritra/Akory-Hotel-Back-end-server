@@ -119,3 +119,28 @@ export const getRoomsDetailsByOccupedGivenGuest = (customer_name, customer_id) =
     `
     return db.query(RoomsDetailsByOccupedGivenGuestQ, [customer_name, customer_id]);
 }
+
+// medium-line8:
+// DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
+export const getHotelAndNumberOfRooms = () => {
+    const HotelAndNumberOfRoomsQ = `
+    -->
+    SELECT h.id AS hotel_id, h.name AS hotel_name, COUNT(r.id) AS number_of_rooms
+    FROM hotel h 
+    LEFT JOIN room r ON h.id = r.id_hotel
+    GROUP BY h.id, h.name;
+                        --->
+    ` 
+    return db.query(HotelAndNumberOfRoomsQ);
+}
+
+// medium-line9:
+// SHOW LIST OF CURENTLY OCCUPIED ROOMS:
+export const getCurrentlyOccupiedRoomsList = () =>{
+    const CurrentlyOccupiedRoomsListQ = `
+    SELECT room.id, room.number, room.room_type, room.capacity_room FROM room 
+    INNER JOIN reservation res ON room.id = res.id_room
+    WHERE leaving_date  > current_date;
+    `
+    return db.query(CurrentlyOccupiedRoomsListQ);
+}
