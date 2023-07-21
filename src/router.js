@@ -1,12 +1,12 @@
 import express from "express";
-import { getHotels, getRooms } from "./DAO/displays.js";
+import {getRoomsListByDescPrice, getRoomsListByFeatures } from "./DAO/displays.js";
 
 export const router = express.Router();
 
-// rooms:
-
-router.get("/rooms", (req, res) => {
-  getRooms()
+// easy-line12:
+// DESPLAY ALL ROOM ORDER BY PRICE DESC:
+router.get("/RoomsListByDescPrice", (req, res) => {
+    getRoomsListByDescPrice()
     .then((data) => {
       res.send(data);
     })
@@ -16,10 +16,13 @@ router.get("/rooms", (req, res) => {
     });
 });
 
-//hotels:
 
-router.get("/hotels", (req, res) =>{
-    getHotels()
+// easy-line13:
+// DISPLAY A LIST OF ROOMS WHOSE DESCRIPTIONS MATCH SPECIFUIC KEYWORDS
+router.get("/RoomsListByFeatures", (req, res) =>{
+    // const keyword = req.query.keyword;  // customer request vie interface
+    let keyword = "mini_bar" // Just for test
+    getRoomsListByFeatures(keyword)
     .then((data)=>{
         res.send(data);
     })
@@ -27,6 +30,4 @@ router.get("/hotels", (req, res) =>{
         console.log(err);
         res.status(500).send("Erreur de serveur");
     })
-})
-
-
+});
