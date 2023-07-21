@@ -1,29 +1,3 @@
-import pgPromise from 'pg-promise';
-import dotenv from 'dotenv';
-
-const pgp = pgPromise();
-
-dotenv.config({ path: '../.env' }); 
-
-// Connection à la base de donnée:
- export const db = pgp({
-    host: 'localhost',
-    port: 5432,
-    database: 'akory',
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD
-  });
-
-// Test de connection:
-db.connect()
-  .then(obj => {
-    console.log('Connecté à la base de données avec succès.');
-    obj.done(); // Libère le pool de clients si vous n'avez plus besoin de la connexion.
-  })
-  .catch(error => {
-    console.error('Erreur de connexion à la base de données:', error);
-  });
-
 /**
  * 
  * NOTE:
@@ -39,3 +13,30 @@ db.connect()
  * DB_PASSWORD=password <-- à changer
  * 
  * */
+
+import pgPromise from "pg-promise";
+import dotenv from "dotenv";
+import { envPath } from "./paths.js";
+
+const pgp = pgPromise();
+
+dotenv.config({ path: envPath });
+
+// Connection à la base de données :
+export const db = pgp({
+    host: "localhost",
+    port: 5432,
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+});
+
+// Test de connection:
+db.connect()
+    .then(obj => {
+        console.log('Connecté à la base de données avec succès.');
+        obj.done(); // Libère le pool de clients si vous n'avez plus besoin de la connexion.
+    })
+    .catch(error => {
+        console.error('Erreur de connexion à la base de données:', error);
+});
