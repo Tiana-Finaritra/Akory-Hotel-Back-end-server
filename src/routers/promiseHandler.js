@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 export function handlePromise(promise, res) {
     promise
       .then((data) => {
@@ -5,6 +7,14 @@ export function handlePromise(promise, res) {
       })
       .catch((err) => {
         console.error(err);
-        res.status(500).send("Erreur de serveur");
+
+        // Log the error to a file (e.g., "error.log")
+        fs.appendFile('error.log', `${new Date().toISOString()} - ${err.stack}\n`, (err) => {
+          if (err) {
+            console.error("Error while writing to the log file:", err);
+          }
+        });
+
+        res.status(500).send("Server Error");
       });
-  }
+}

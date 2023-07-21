@@ -89,7 +89,13 @@ router.get("/TotalPayForRoomsHotel", (req, res) => {
 // hard-line7:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR CONFERENCES ROOM'S RESERVATIONS
 // IN A GIVEN DATE INTERVAL
-router.get("/TotalConferencePaymentInIntervalDate/:start_period/:end_period/:room_type", (req, res) => {
-  const { start_period, end_period, room_type } = req.params; // Get parameters from req.params
-  handlePromise(getTotalConferencePaymentInIntervalDate({ start_period, end_period, room_type }), res);
+router.get("/TotalConferencePaymentInIntervalDate/:start_period/:end_period/:room_type", async (req, res) => {
+  const { start_period, end_period, room_type } = req.params; // Récupérer les paramètres à partir de req.params
+  try {
+    const result = await getTotalConferencePaymentInIntervalDate({ start_period, end_period, room_type });
+    res.send(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Erreur de serveur");
+  }
 });
