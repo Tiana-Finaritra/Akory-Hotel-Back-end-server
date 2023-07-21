@@ -6,7 +6,8 @@ import {
   getHotelsListContainsRoomByBeutures
   , getLeastMostReservedRoomByHotel, getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
-  , getRoomsListByFeatures
+  , getRoomsListByFeatures,
+  getTotalPayForRoomsHotel
 }
   from "../DAO/displays.js";
 
@@ -61,6 +62,7 @@ router.get("/CurrentyOccupiedRoomsList", (req, res) => {
   handlePromise(getCurrentlyOccupiedRoomsList(),res);
 });
 
+
 // medium-line10-11:
 // DISPLAY LEAST/MOST RESERVED ROOM IN GIVEN HOTEL
 router.get("/LeastMostReservedRoomByHotel", (req, res) => {
@@ -68,3 +70,16 @@ router.get("/LeastMostReservedRoomByHotel", (req, res) => {
   let hotel_name ="Tranquil Bay Resort" ;
    handlePromise(getLeastMostReservedRoomByHotel(hotel_name),res );
 });
+
+
+// hard-line6:
+// DISPLAY TOTAL  OF PAYMANT ONLY FOR ROOM'S RESERVATIONS
+// IN A GIVEN DATE INTERVAL
+
+router.get("/TotalPayForRoomsHotel", (req, res) => {
+  // const [start_period, end_period] = req.query.keyword;
+  let start_period = '2000-08-01';
+  let end_period = '2025-12-30';
+  handlePromise(getTotalPayForRoomsHotel(start_period, end_period), res);
+});
+
