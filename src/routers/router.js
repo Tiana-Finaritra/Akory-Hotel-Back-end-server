@@ -1,14 +1,15 @@
 import express from "express";
 import { handlePromise } from "./promiseHandler.js";
 import {
-  getCurrentlyOccupiedRoomsList,
-  getHotelAndNumberOfRooms,
-  getHotelsListContainsRoomByBeutures
-  , getLeastMostReservedRoomByHotel, getRoomsDetailsByOccupedGivenGuest
+  getCurrentlyOccupiedRoomsList
+  , getHotelAndNumberOfRooms
+  , getHotelsListContainsRoomByBeutures
+  , getLeastMostReservedRoomByHotel
+  , getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
-  , getRoomsListByFeatures,
-  getTotalConferencePaymentInIntervalDate,
-  getTotalPayForRoomsHotel
+  , getRoomsListByFeatures
+  , getTotalConferencePaymentInIntervalDate
+  , getTotalPayForRoomsHotel
 }
   from "../DAO/displays.js";
 
@@ -18,41 +19,45 @@ export const router = express.Router();
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
 router.get("/RoomsListByDescPrice", (req, res) => {
-  handlePromise(getRoomsListByDescPrice(), res)
+  handlePromise(getRoomsListByDescPrice(), res);
 });
 
 
 // easy-line13:
 // DISPLAY A LIST OF ROOMS WHOSE DESCRIPTIONS MATCH SPECIFUIC KEYWORDS
 router.get("/RoomsListByFeatures", (req, res) => {
-  // const keyword = req.query.keyword;
-  let keyword = "mini_bar"; // Juste pour les tests
-  handlePromise(getRoomsListByFeatures(keyword), res);
+  // FOR TEST: http://localhost:8000/RoomsListByFeatures
+  let keyword = "VIP";
+  // let keyword = req.body;
+  handlePromise(getRoomsListByFeatures({ keyword }), res);
 });
 
 // easy-line14:
 // DISPLAY THE LIST PF HOTELS THAT CONTAIN ROOMS
 // WHOSE DESCRIPTION CORRESPONDS TO GIVEN KEYWORD
 router.get("/HotelsListContainsRoomByBeutures", (req, res) => {
-  // const keyword = req.query.keyword;
+  //FOR TEST: http://localhost:8000/HotelsListContainsRoomByBeutures
   let keyword = "VIP";
-  handlePromise(getHotelsListContainsRoomByBeutures(keyword), res);
+  // let keyword = req.body;
+  handlePromise(getHotelsListContainsRoomByBeutures({ keyword }), res);
 });
 
 
 // easy-line15:
 // DISPLAY DETAILS OF THE ROOM CURRENTLY OCCUPID BY A GIVEN GUEST
 router.get("/RoomsDetailsByOccupedGivenGuest", (req, res) => {
-  // const [customer_name, customer_id] = req.query.keyword;
+  //FOR TEST: http://localhost:8000/RoomsDetailsByOccupedGivenGuest
   let customer_name = "William";
   let customer_id = 78;
-  handlePromise(getRoomsDetailsByOccupedGivenGuest(customer_name, customer_id), res);
+  // let {customer_name, customer_id} = req.body;
+  handlePromise(getRoomsDetailsByOccupedGivenGuest({ customer_name, customer_id }), res);
 });
 
 
 // medium-line8:
 // DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
-router.get("/HotelAndNumberOfRooms",(req, res) => {
+router.get("/HotelAndNumberOfRooms", (req, res) => {
+  // for test: http://localhost:8000/HotelAndNumberOfRooms
   handlePromise(getHotelAndNumberOfRooms(), res);
 });
 
@@ -60,16 +65,18 @@ router.get("/HotelAndNumberOfRooms",(req, res) => {
 // medium-line9:
 // SHOW LIST OF CURENTLY OCCUPIED ROOMS:
 router.get("/CurrentyOccupiedRoomsList", (req, res) => {
-  handlePromise(getCurrentlyOccupiedRoomsList(),res);
+  // FOR TEST: http://localhost:8000/CurrentyOccupiedRoomsList
+  handlePromise(getCurrentlyOccupiedRoomsList(), res);
 });
 
 
 // medium-line10-11:
 // DISPLAY LEAST/MOST RESERVED ROOM IN GIVEN HOTEL
 router.get("/LeastMostReservedRoomByHotel", (req, res) => {
-  // const hotel_name = req.query.keyword;
-  let hotel_name ="Tranquil Bay Resort" ;
-   handlePromise(getLeastMostReservedRoomByHotel(hotel_name),res );
+  // FOR TEST: http://localhost:8000/LeastMostReservedRoomByHotel
+  let hotel_name = "Tranquil Bay Resort";
+  // const hotel_name = req.body;
+  handlePromise(getLeastMostReservedRoomByHotel(hotel_name), res);
 });
 
 
@@ -78,10 +85,11 @@ router.get("/LeastMostReservedRoomByHotel", (req, res) => {
 // IN A GIVEN DATE INTERVAL
 
 router.get("/TotalPayForRoomsHotel", (req, res) => {
-  // const [start_period, end_period] = req.query.keyword;
-  let start_period = '2000-08-01';
-  let end_period = '2025-12-30';
-  handlePromise(getTotalPayForRoomsHotel(start_period, end_period), res);
+  // FOR TEST: http://localhost:8000/TotalPayForRoomsHotel
+  const start_period = "2000-08-01";
+  const end_period = "2025-12-30";
+  // const { start_period, end_period } = req.params;
+  handlePromise(getTotalPayForRoomsHotel({ start_period, end_period }), res);
 });
 
 
@@ -89,13 +97,11 @@ router.get("/TotalPayForRoomsHotel", (req, res) => {
 // hard-line7:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR CONFERENCES ROOM'S RESERVATIONS
 // IN A GIVEN DATE INTERVAL
-router.get("/TotalConferencePaymentInIntervalDate/:start_period/:end_period/:room_type", async (req, res) => {
-  const { start_period, end_period, room_type } = req.params; // Récupérer les paramètres à partir de req.params
-  try {
-    const result = await getTotalConferencePaymentInIntervalDate({ start_period, end_period, room_type });
-    res.send(result);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Erreur de serveur");
-  }
+router.get("/TotalConferencePaymentInIntervalDate", (req, res) => {
+  // FOR TEST: http://localhost:8000/TotalConferencePaymentInIntervalDate
+  const start_period = "2000-08-01";
+  const end_period = "2025-12-30";
+  const room_type = "communicante";
+  // const { start_period, end_period, room_type } = req.body;
+  handlePromise(getTotalConferencePaymentInIntervalDate({ start_period, end_period, room_type }), res);
 });

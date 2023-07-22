@@ -2,8 +2,9 @@ import { db } from "../database.js";
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
-export const getRoomsListByDescPrice = () => {
-    const RoomsListByDescPriceQ = `
+export const getRoomsListByDescPrice = async () => {
+    try {
+        const RoomsListByDescPriceQ = `
     -->
         SELECT r.id, r.number, r.room_type, r.capacity_room, h.name AS hotel, p.cost_per_night,
         CONCAT_WS(', ',
@@ -23,13 +24,18 @@ export const getRoomsListByDescPrice = () => {
                                 -->
     `;
 
-    return db.query(RoomsListByDescPriceQ);
+        return db.query(RoomsListByDescPriceQ);
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
 };
 
 // easy-line13:
 // DISPLAY A LIST OF ROOMS WHOSE DESCRIPTIONS MATCH SPECIFUIC KEYWORDS
-export const getRoomsListByFeatures = (keyword) => {
-    const RoomsListByFeaturesQ = `
+export const getRoomsListByFeatures = async ({ keyword }) => {
+    try {
+        const RoomsListByFeaturesQ = `
     -->
         SELECT r.id, r.number, r.room_type, r.capacity_room, h.name AS hotel, p.cost_per_night,
         CONCAT_WS(', ',
@@ -56,40 +62,51 @@ export const getRoomsListByFeatures = (keyword) => {
         ) ILIKE '%' || $1 || '%'; --<-- Set keyword here
                                 -->
     `;
-    return db.query(RoomsListByFeaturesQ, [keyword]);
+        return db.query(RoomsListByFeaturesQ, [keyword]);
+    } catch (err) {
+        console.log(err);
+        err
+    }
 }
 
 // easy-line14:
 // DISPLAY THE LIST PF HOTELS THAT CONTAIN ROOMS
 // WHOSE DESCRIPTION CORRESPONDS TO GIVEN KEYWORD
-export const getHotelsListContainsRoomByBeutures = (keyword) => {
-    const HotelsListContainsRoomByBeuturesQ = `
-    -->
-    SELECT h.*
-    FROM hotel h
-    WHERE h.id IN (
-        SELECT r.id_hotel
-        FROM room r
-        INNER JOIN room_features rf ON rf.id = r.id_room_features
-        WHERE CONCAT_WS(', ',
-            CASE WHEN rf.sea_view THEN 'sea_view' END,
-            CASE WHEN rf.VIP_category THEN 'VIP_category' END,
-            CASE WHEN rf.hot_water THEN 'hot_water' END,
-            CASE WHEN rf.wifi_available THEN 'wifi_available' END,
-            CASE WHEN rf.room_service THEN 'room_service' END,
-            CASE WHEN rf.mini_bar THEN 'mini_bar' END,
-            CASE WHEN rf.flat_screen THEN 'flat_screen' END
-        ) ILIKE '%'|| $1 || '%'
-    ); 
-                                -->
-    `
-    return db.query(HotelsListContainsRoomByBeuturesQ, [keyword]);
+export const getHotelsListContainsRoomByBeutures = async ({ keyword }) => {
+    try {
+        const HotelsListContainsRoomByBeuturesQ = `
+        -->
+        SELECT h.*
+        FROM hotel h
+        WHERE h.id IN (
+            SELECT r.id_hotel
+            FROM room r
+            INNER JOIN room_features rf ON rf.id = r.id_room_features
+            WHERE CONCAT_WS(', ',
+                CASE WHEN rf.sea_view THEN 'sea_view' END,
+                CASE WHEN rf.VIP_category THEN 'VIP_category' END,
+                CASE WHEN rf.hot_water THEN 'hot_water' END,
+                CASE WHEN rf.wifi_available THEN 'wifi_available' END,
+                CASE WHEN rf.room_service THEN 'room_service' END,
+                CASE WHEN rf.mini_bar THEN 'mini_bar' END,
+                CASE WHEN rf.flat_screen THEN 'flat_screen' END
+            ) ILIKE '%'|| $1 || '%'
+        ); 
+                                    -->
+        `
+        return db.query(HotelsListContainsRoomByBeuturesQ, [keyword]);
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+
 }
 
 // easy-line15:
 // DISPLAY DETAILS OF THE ROOM CURRENTLY OCCUPID BY A GIVEN GUEST
-export const getRoomsDetailsByOccupedGivenGuest = (customer_name, customer_id) => {
-    const RoomsDetailsByOccupedGivenGuestQ = `
+export const getRoomsDetailsByOccupedGivenGuest = async ({ customer_name, customer_id }) => {
+    try {
+        const RoomsDetailsByOccupedGivenGuestQ = `
     -->
     SELECT ro.id, ro.number, ro.room_type, ro.capacity_room, h.name,
     CONCAT(pr.cost_per_night, ' Ar') AS cost_per_night,
@@ -117,40 +134,55 @@ export const getRoomsDetailsByOccupedGivenGuest = (customer_name, customer_id) =
     );    
                     -->
     `
-    return db.query(RoomsDetailsByOccupedGivenGuestQ, [customer_name, customer_id]);
+        return db.query(RoomsDetailsByOccupedGivenGuestQ, [customer_name, customer_id]);
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
 }
 
 // medium-line8:
 // DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
-export const getHotelAndNumberOfRooms = () => {
-    const HotelAndNumberOfRoomsQ = `
+export const getHotelAndNumberOfRooms = async () => {
+    try {
+        const HotelAndNumberOfRoomsQ = `
     -->
     SELECT h.id AS hotel_id, h.name AS hotel_name, COUNT(r.id) AS number_of_rooms
     FROM hotel h 
     LEFT JOIN room r ON h.id = r.id_hotel
     GROUP BY h.id, h.name;
                         --->
-    ` 
-    return db.query(HotelAndNumberOfRoomsQ);
+    `
+        return db.query(HotelAndNumberOfRoomsQ);
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
 }
 
 // medium-line9:
 // SHOW LIST OF CURENTLY OCCUPIED ROOMS:
-export const getCurrentlyOccupiedRoomsList = () =>{
-    const CurrentlyOccupiedRoomsListQ = `
+export const getCurrentlyOccupiedRoomsList = async () => {
+    try {
+        const CurrentlyOccupiedRoomsListQ = `
     -->
         SELECT room.id, room.number, room.room_type, room.capacity_room FROM room 
         INNER JOIN reservation res ON room.id = res.id_room
         WHERE leaving_date  > current_date;
                 -->
     `
-    return db.query(CurrentlyOccupiedRoomsListQ);
+        return db.query(CurrentlyOccupiedRoomsListQ);
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
 }
 
 // medium-line10-11:
 // DISPLAY LEAST/MOST RESERVED ROOM IN GIVEN HOTEL
-export const getLeastMostReservedRoomByHotel = (hotle_name) => {
-    const LeastMostReservedRoomByHotelQ = `
+export const getLeastMostReservedRoomByHotel = async (hotle_name) => {
+    try {
+        const LeastMostReservedRoomByHotelQ = `
     -->
         SELECT COUNT(re.id) reservation_s_number, ro.number as room_reference, h.name as hotel FROM room ro
         INNER JOIN reservation re ON ro.id = re.id_room
@@ -160,14 +192,19 @@ export const getLeastMostReservedRoomByHotel = (hotle_name) => {
         ORDER BY reservation_s_number ASC;
                                 -->
     `
-    return db.query(LeastMostReservedRoomByHotelQ, [hotle_name]);
+        return db.query(LeastMostReservedRoomByHotelQ, [hotle_name]);
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
 }
 
 // hard-line6:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR ROOM'S RESERVATIONS
 // IN A GIVEN DATE INTERVAL
-export const getTotalPayForRoomsHotel = (start_period, end_period) => {
-    const TotalPayForRoomsHotelsQ = `
+export const getTotalPayForRoomsHotel = async ({ start_period, end_period }) => {
+    try {
+        const TotalPayForRoomsHotelsQ = `
     -->
         SELECT SUM(pay.amount_paid) , pay.payment_date, h.name
         FROM payment pay 
@@ -179,14 +216,18 @@ export const getTotalPayForRoomsHotel = (start_period, end_period) => {
                         -->
     `
 
-    return db.query(TotalPayForRoomsHotelsQ, [start_period, end_period]);
+        return db.query(TotalPayForRoomsHotelsQ, [start_period, end_period]);
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
 }
 
 // hard-line7:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR CONFERENCES ROOM'S RESERVATIONS
 // IN A GIVEN DATE INTERVAL
-export const getTotalConferencePaymentInIntervalDate = async ({ start_period, end_period , room_type }) => {
-    try{
+export const getTotalConferencePaymentInIntervalDate = async ({ start_period, end_period, room_type }) => {
+    try {
         const TotalConferencePaymentInIntervalDateQ = `
             SELECT SUM(pay.amount_paid), pay.payment_date, h.name, r.room_type
             FROM payment pay 
@@ -199,8 +240,8 @@ export const getTotalConferencePaymentInIntervalDate = async ({ start_period, en
             GROUP BY h.name, pay.payment_date, r.room_type;
         `
         return db.query(TotalConferencePaymentInIntervalDateQ, [start_period, end_period, room_type]);
-    } catch (err){
+    } catch (err) {
         console.log(err);
-        throw err; // Propager l'erreur pour la capturer dans la fonction handlePromise
+        throw err;
     }
 }
