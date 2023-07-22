@@ -7,7 +7,7 @@ import {
   , getHotelAndNumberOfRooms
   , getHotelsListContainsRoomByBeutures
   , getLeastMostReservedRoomByHotel
-  , getOffersBySeasonAnDHotel, getReceptionistsListInWhichHotel, getReservationListDescByHotel, getRoomsDetailsByOccupedGivenGuest
+  , getOffersBySeasonAnDHotel, getReceptionistsListInWhichHotel, getReservationListDescByHotel, getReservationOfGivenCustomer, getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
   , getRoomsListByFeatures
   , getTotalConferencePaymentInIntervalDate
@@ -40,7 +40,7 @@ router.get("/ReservationListDescByHotel", (req, res) => {
 router.get("/AllRoomsByTypeAndHotelName", (req, res) => {
   // FOR TEST: http://localhost:8000/AllRoomsByTypeAndHotelName
   const room_type = "double";
-  const hotel_id = 80; 
+  const hotel_id = 80;
   // const {room_type, hotel_id} = req.body;
   handlePromise(getAllRoomsByTypeAndHotelName({ room_type, hotel_id }), res);
 });
@@ -52,6 +52,15 @@ router.get("/OffersBySeasonAnDHotel", (req, res) => {
   handlePromise(getOffersBySeasonAnDHotel(), res);
 })
 
+
+// easy-line6:
+// LIST OF RESERVATIONS OF A GIVEN CLIENT
+router.get("/ReservationOfGivenCustomer", (req, res) => {
+  // FOR TEST: http://localhost:8000/ReservationOfGivenCustomer
+  // const customer_id = req.body;
+  const customer_id = 79;
+  handlePromise(getReservationOfGivenCustomer({customer_id}), res);
+});
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:

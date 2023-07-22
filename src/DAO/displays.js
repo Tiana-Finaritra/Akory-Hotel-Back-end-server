@@ -84,6 +84,24 @@ export const getOffersBySeasonAnDHotel = async () => {
     }
 }
 
+// easy-line6:
+// LIST OF RESERVATIONS OF A GIVEN CLIENT
+export const getReservationOfGivenCustomer = async ({ customer_id }) => {
+    try {
+        const ReservationOfGivenCustomerQ = `
+        -->
+            SELECT *
+            FROM "reservation" re
+            WHERE re.id_customer = $1; -- <-- Param
+                                --->
+        `
+        return db.query(ReservationOfGivenCustomerQ, [customer_id]);
+    } catch (err) {
+        console.log();
+        throw new Error(err)
+    }
+}
+
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
