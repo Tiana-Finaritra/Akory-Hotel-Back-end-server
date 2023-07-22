@@ -1,6 +1,7 @@
 import express from "express";
 import { handlePromise } from "./promiseHandler.js";
 import {
+  getAllRoomsByTypeAndHotelName,
   getCurrentPrommotionsList,
   getCurrentlyOccupiedRoomsList
   , getHotelAndNumberOfRooms
@@ -32,7 +33,18 @@ router.get("/ReservationListDescByHotel", (req, res) => {
   const hotel_name = "Mountain View Hotel";
   // const hotel_name = req.body;
   handlePromise(getReservationListDescByHotel({ hotel_name }), res);
-})
+});
+
+// easy-line4:
+// LIST OF ROOM TYPE GIVE AND HOTEL GIVE
+router.get("/AllRoomsByTypeAndHotelName", (req, res) => {
+  // FOR TEST: http://localhost:8000/AllRoomsByTypeAndHotelName
+  const room_type = "double";
+  const hotel_id = 80; 
+  // const {room_type, hotel_id} = req.body;
+  handlePromise(getAllRoomsByTypeAndHotelName({ room_type, hotel_id }), res);
+});
+
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:

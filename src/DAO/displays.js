@@ -39,6 +39,26 @@ export const getReservationListDescByHotel = async ({ hotel_name }) => {
     }
 
 }
+
+// easy-line4:
+// LIST OF ROOM TYPE GIVE AND HOTEL GIVE
+export const getAllRoomsByTypeAndHotelName = async ({ room_type, hotel_id }) => {
+    try {
+        const AllRoomsByTypeAndHotelNameQ = `
+        --> 
+            SELECT * FROM "room" ro
+            WHERE ro.room_type = $1 
+            AND ro.id_hotel = $2; 
+                            -->
+    `
+        return db.query(AllRoomsByTypeAndHotelNameQ, [room_type, hotel_id]);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
 export const getRoomsListByDescPrice = async () => {
