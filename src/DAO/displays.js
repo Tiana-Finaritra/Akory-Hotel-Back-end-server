@@ -102,6 +102,24 @@ export const getReservationOfGivenCustomer = async ({ customer_id }) => {
     }
 }
 
+// easy-line7:
+// VIEW THE LIST OF CUSTOMERS WHO HAVE NOT YET PAID THEIR FEES IN FULL
+export const getCustomersListNotPaidFullFees = async () => {
+    try {
+        const CustomersListNotPaidFullFeesQ = `
+        --->
+        SELECT name, last_name, principal_contact, address, emergency_number, gender, CIN 
+        FROM customer 
+        INNER JOIN payment ON customer.id = payment.id_customer 
+        WHERE payment.total_amount_status = 'f';
+                                            --->
+        `
+        return db.query(CustomersListNotPaidFullFeesQ);
+    } catch (err) {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:

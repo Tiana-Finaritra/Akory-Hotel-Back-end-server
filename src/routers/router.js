@@ -4,7 +4,7 @@ import {
   getAllRoomsByTypeAndHotelName,
   getCurrentPrommotionsList,
   getCurrentlyOccupiedRoomsList
-  , getHotelAndNumberOfRooms
+  , getCustomersListNotPaidFullFees, getHotelAndNumberOfRooms
   , getHotelsListContainsRoomByBeutures
   , getLeastMostReservedRoomByHotel
   , getOffersBySeasonAnDHotel, getReceptionistsListInWhichHotel, getReservationListDescByHotel, getReservationOfGivenCustomer, getRoomsDetailsByOccupedGivenGuest
@@ -61,6 +61,15 @@ router.get("/ReservationOfGivenCustomer", (req, res) => {
   const customer_id = 79;
   handlePromise(getReservationOfGivenCustomer({customer_id}), res);
 });
+
+
+// easy-line7:
+// VIEW THE LIST OF CUSTOMERS WHO HAVE NOT YET PAID THEIR FEES IN FULL
+router.get("/CustomersListNotPaidFullFees", (req, res) => {
+  // FOR TEST: http://localhost:8000/CustomersListNotPaidFullFees
+  handlePromise(getCustomersListNotPaidFullFees(), res);
+});
+
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
