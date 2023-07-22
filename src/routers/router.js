@@ -11,7 +11,8 @@ import {
   , getRoomsListByDescPrice
   , getRoomsListByFeatures
   , getTotalConferencePaymentInIntervalDate
-  , getTotalPayForRoomsHotel
+  , getTotalPayForRoomsHotel,
+  getTotalPayReceidByGivenMethod
 }
   from "../DAO/displays.js";
 
@@ -70,6 +71,14 @@ router.get("/CustomersListNotPaidFullFees", (req, res) => {
   handlePromise(getCustomersListNotPaidFullFees(), res);
 });
 
+
+// easy-line8:
+// TOTAL PAYMENTS RECEIVED BY MOBILE MONEY  
+// GENERALISE::::::::::::::
+router.get("/TotalPayReceidByGivenMethod", (req, res) => {
+  // FOR TEST: http://localhost:8000/TotalPayReceidByGivenMethod
+  handlePromise(getTotalPayReceidByGivenMethod(), res);
+});
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
