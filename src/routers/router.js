@@ -1,11 +1,12 @@
 import express from "express";
 import { handlePromise } from "./promiseHandler.js";
 import {
+  getCurrentPrommotionsList,
   getCurrentlyOccupiedRoomsList
   , getHotelAndNumberOfRooms
   , getHotelsListContainsRoomByBeutures
   , getLeastMostReservedRoomByHotel
-  , getRoomsDetailsByOccupedGivenGuest
+  , getReceptionistsListInWhichHotel, getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
   , getRoomsListByFeatures
   , getTotalConferencePaymentInIntervalDate
@@ -16,9 +17,17 @@ import {
 
 export const router = express.Router();
 
+// easy-line2:
+// DISPLAY THE LIST OF RECEPTIONISTS WITH THE HOTEL TO WHICH THEY ARE ATTACHED 
+router.get("/ReceptionistsListInWhichHotel", (req, res) => {
+  // FOR TEST: http://localhost:8000/ReceptionistsListInWhichHotel
+  handlePromise(getReceptionistsListInWhichHotel(), res);
+})
+
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
 router.get("/RoomsListByDescPrice", (req, res) => {
+  // FOR TEST: http://localhost:8000/RoomsListByDescPrice
   handlePromise(getRoomsListByDescPrice(), res);
 });
 
@@ -79,6 +88,13 @@ router.get("/LeastMostReservedRoomByHotel", (req, res) => {
   handlePromise(getLeastMostReservedRoomByHotel(hotel_name), res);
 });
 
+
+// medium-line12:
+// DISPLAY THE LIST OF CURRENT PROMOTIONS: 
+router.get("/CurrentPrommotionsList",( req, res) => {
+  // FOR TEST: http://localhost:8000/CurrentPrommotionsList
+  handlePromise(getCurrentPrommotionsList(), res);
+})
 
 // hard-line6:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR ROOM'S RESERVATIONS

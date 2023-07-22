@@ -1,5 +1,25 @@
 import { db } from "../database.js";
 
+// easy-line2:
+// DISPLAY THE LIST OF RECEPTIONISTS WITH THE HOTEL TO WHICH THEY ARE ATTACHED 
+export const getReceptionistsListInWhichHotel = async () =>{
+    try {
+        const ReceptionistsListInWhichHotelQ = `
+        -->
+            SELECT first_name, last_name, work_contact, h.name as hotel_name, h.address 
+            FROM receptionist 
+            INNER JOIN hotel h ON id_hotel = h.id;
+                                            -->
+        `
+        return db.query(ReceptionistsListInWhichHotelQ);
+    }catch{
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
+
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
 export const getRoomsListByDescPrice = async () => {
@@ -25,9 +45,9 @@ export const getRoomsListByDescPrice = async () => {
     `;
 
         return db.query(RoomsListByDescPriceQ);
-    } catch (err) {
+    }catch{
         console.log(err);
-        throw err;
+        throw new Error(err.message);
     }
 };
 
@@ -95,9 +115,9 @@ export const getHotelsListContainsRoomByBeutures = async ({ keyword }) => {
                                     -->
         `
         return db.query(HotelsListContainsRoomByBeuturesQ, [keyword]);
-    } catch (err) {
+    }catch{
         console.log(err);
-        throw err;
+        throw new Error(err.message);
     }
 
 }
@@ -135,9 +155,9 @@ export const getRoomsDetailsByOccupedGivenGuest = async ({ customer_name, custom
                     -->
     `
         return db.query(RoomsDetailsByOccupedGivenGuestQ, [customer_name, customer_id]);
-    } catch (err) {
+    }catch{
         console.log(err);
-        throw err;
+        throw new Error(err.message);
     }
 }
 
@@ -154,9 +174,9 @@ export const getHotelAndNumberOfRooms = async () => {
                         --->
     `
         return db.query(HotelAndNumberOfRoomsQ);
-    } catch (err) {
+    }catch{
         console.log(err);
-        throw err;
+        throw new Error(err.message);
     }
 }
 
@@ -172,9 +192,9 @@ export const getCurrentlyOccupiedRoomsList = async () => {
                 -->
     `
         return db.query(CurrentlyOccupiedRoomsListQ);
-    } catch (err) {
+    }catch{
         console.log(err);
-        throw err;
+        throw new Error(err.message);
     }
 }
 
@@ -193,11 +213,28 @@ export const getLeastMostReservedRoomByHotel = async (hotle_name) => {
                                 -->
     `
         return db.query(LeastMostReservedRoomByHotelQ, [hotle_name]);
-    } catch (err) {
+    }catch{
         console.log(err);
-        throw err;
+        throw new Error(err.message);
     }
 }
+
+// medium-line12:
+// DISPLAY THE LIST OF CURRENT PROMOTIONS:   
+export const getCurrentPrommotionsList = async () => {
+    try {
+        const CurrentPrommotionsListQ = `
+        -->                                                
+            SELECT * FROM "promotion" WHERE (begin >= current_date);
+                                -->
+        `
+        return db.query(CurrentPrommotionsListQ);
+    }catch{
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
 
 // hard-line6:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR ROOM'S RESERVATIONS
@@ -217,9 +254,9 @@ export const getTotalPayForRoomsHotel = async ({ start_period, end_period }) => 
     `
 
         return db.query(TotalPayForRoomsHotelsQ, [start_period, end_period]);
-    } catch (err) {
+    }catch{
         console.log(err);
-        throw err;
+        throw new Error(err.message);
     }
 }
 
@@ -240,8 +277,8 @@ export const getTotalConferencePaymentInIntervalDate = async ({ start_period, en
             GROUP BY h.name, pay.payment_date, r.room_type;
         `
         return db.query(TotalConferencePaymentInIntervalDateQ, [start_period, end_period, room_type]);
-    } catch (err) {
+    }catch{
         console.log(err);
-        throw err;
+        throw new Error(err.message);
     }
 }
