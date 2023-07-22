@@ -58,6 +58,32 @@ export const getAllRoomsByTypeAndHotelName = async ({ room_type, hotel_id }) => 
     }
 }
 
+// easy-line5:
+// DISPLAY SPECIAL OFFERS BY SEASON (PERIOD), ALL HOTEL COMBINED
+export const getOffersBySeasonAnDHotel = async () => {
+    try {
+        const OffersBySeasonAnDHotelQ = `
+        -->
+            SELECT
+                p.name,
+                s.items,
+                s.start_date,
+                s.end_date
+            FROM promotion p
+                INNER JOIN affiliate a ON a.id_promotion = p.id
+                INNER JOIN room ON a.id_room = room.id
+                INNER JOIN price ON room.id_price = price.id
+                INNER JOIN season s ON price.id_season = s.id
+            GROUP BY s.start_date , s.items, p.name , s.end_date;
+                             -->
+        `
+        return db.query(OffersBySeasonAnDHotelQ);
+    } catch (err) {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:

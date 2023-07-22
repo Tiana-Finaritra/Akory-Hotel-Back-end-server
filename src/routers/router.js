@@ -7,7 +7,7 @@ import {
   , getHotelAndNumberOfRooms
   , getHotelsListContainsRoomByBeutures
   , getLeastMostReservedRoomByHotel
-  , getReceptionistsListInWhichHotel, getReservationListDescByHotel, getRoomsDetailsByOccupedGivenGuest
+  , getOffersBySeasonAnDHotel, getReceptionistsListInWhichHotel, getReservationListDescByHotel, getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
   , getRoomsListByFeatures
   , getTotalConferencePaymentInIntervalDate
@@ -44,6 +44,13 @@ router.get("/AllRoomsByTypeAndHotelName", (req, res) => {
   // const {room_type, hotel_id} = req.body;
   handlePromise(getAllRoomsByTypeAndHotelName({ room_type, hotel_id }), res);
 });
+
+// easy-line5:
+// DISPLAY SPECIAL OFFERS BY SEASON (PERIOD), ALL HOTEL COMBINED
+router.get("/OffersBySeasonAnDHotel", (req, res) => {
+  //FOR TEST: http://localhost:8000/OffersBySeasonAnDHotel
+  handlePromise(getOffersBySeasonAnDHotel(), res);
+})
 
 
 // easy-line12:
