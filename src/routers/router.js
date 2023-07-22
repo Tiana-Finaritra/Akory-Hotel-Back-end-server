@@ -6,7 +6,7 @@ import {
   , getHotelAndNumberOfRooms
   , getHotelsListContainsRoomByBeutures
   , getLeastMostReservedRoomByHotel
-  , getReceptionistsListInWhichHotel, getRoomsDetailsByOccupedGivenGuest
+  , getReceptionistsListInWhichHotel, getReservationListDescByHotel, getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
   , getRoomsListByFeatures
   , getTotalConferencePaymentInIntervalDate
@@ -22,6 +22,16 @@ export const router = express.Router();
 router.get("/ReceptionistsListInWhichHotel", (req, res) => {
   // FOR TEST: http://localhost:8000/ReceptionistsListInWhichHotel
   handlePromise(getReceptionistsListInWhichHotel(), res);
+})
+
+// easy-line3:
+// DISPLAY THE LIST OF RESERVATIONS STARTING WITH THE MOST RECENT FOR A GIVEN HOTEL
+router.get("/ReservationListDescByHotel", (req, res) => {
+  // FOR TEST: http://localhost:8000/ReservationListDescByHotel
+
+  const hotel_name = "Mountain View Hotel";
+  // const hotel_name = req.body;
+  handlePromise(getReservationListDescByHotel({ hotel_name }), res);
 })
 
 // easy-line12:
@@ -91,7 +101,7 @@ router.get("/LeastMostReservedRoomByHotel", (req, res) => {
 
 // medium-line12:
 // DISPLAY THE LIST OF CURRENT PROMOTIONS: 
-router.get("/CurrentPrommotionsList",( req, res) => {
+router.get("/CurrentPrommotionsList", (req, res) => {
   // FOR TEST: http://localhost:8000/CurrentPrommotionsList
   handlePromise(getCurrentPrommotionsList(), res);
 })
