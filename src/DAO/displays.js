@@ -171,6 +171,23 @@ export const getResNumberByCustomerAndPeriod = async ({customer_name, period}) =
     }
 }
 
+// easy-line10:
+// DISPLAY THE LIST OF HOTELS IN A GIVEN LOCATION (PROVINCE)
+export const getHotelsListByProvince = async ({province}) => {
+    try {
+        const HotelsListByProvinceQ = `
+        --->
+            SELECT * FROM "hotel" INNER JOIN province_available p ON id_province = p.id 
+            WHERE p.province_name = $1;
+                                            --->
+        `
+        return db.query(HotelsListByProvinceQ, [province]);
+    } catch (err) {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:

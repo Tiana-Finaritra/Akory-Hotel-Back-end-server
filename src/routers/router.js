@@ -5,7 +5,7 @@ import {
   , getCurrentPrommotionsList
   , getCurrentlyOccupiedRoomsList
   , getCustomersListNotPaidFullFees, getHotelAndNumberOfRooms
-  , getHotelsListContainsRoomByBeutures
+  , getHotelsListByProvince, getHotelsListContainsRoomByBeutures
   , getLeastMostReservedRoomByHotel
   , getOffersBySeasonAnDHotel
   , getReceptionistsListInWhichHotel
@@ -65,7 +65,7 @@ router.get("/ReservationOfGivenCustomer", (req, res) => {
   // FOR TEST: http://localhost:8000/ReservationOfGivenCustomer
   // const customer_id = req.body;
   const customer_id = 79;
-  handlePromise(getReservationOfGivenCustomer({customer_id}), res);
+  handlePromise(getReservationOfGivenCustomer({ customer_id }), res);
 });
 
 
@@ -93,10 +93,18 @@ router.get("/ResNumberByCustomerAndPeriod", (req, res) => {
   const customer_name = "Mason";
   const period = "2023-07-15 10:00:00";
   // const {customer_name, period} = req.body;
-  handlePromise(getResNumberByCustomerAndPeriod({customer_name, period}), res);
+  handlePromise(getResNumberByCustomerAndPeriod({ customer_name, period }), res);
 });
 
 
+// easy-line10:
+// DISPLAY THE LIST OF HOTELS IN A GIVEN LOCATION (PROVINCE)
+router.get("/HotelsListByProvince", (req, res) => {
+  // FOR TEST: http://localhost:8000/HotelsListByProvince
+  // const {provice} = req.body;
+  const province = "Antananarivo";
+  handlePromise(getHotelsListByProvince({ province }), res);
+});
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
