@@ -398,6 +398,30 @@ export const getCustomersNegCommentForHotel = async () => {
 
 
 
+
+// MEDIUM-LINES:
+// -------------------------------------------------------------------------------------------------------------------------
+// Medium-line2:
+// DISPLAY THE LIST OF ROOMS AVAILABLE TOMORROW
+export const getRoomsListAvailableTommorow = async () => {
+    try {
+        const RoomsListAvailableTommorowQ = `
+        -->
+            SELECT r.number, r.room_type, r.capacity_room FROM room r
+            LEFT JOIN reservation res ON res.id_room = r.id 
+            AND res.leaving_date = CURRENT_DATE + INTERVAL '1 day'
+            WHERE res.id_room IS NULL; 
+                            -->
+        `
+        return db.query(RoomsListAvailableTommorowQ);
+    }  catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
+
 // medium-line8:
 // DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
 export const getHotelAndNumberOfRooms = async () => {

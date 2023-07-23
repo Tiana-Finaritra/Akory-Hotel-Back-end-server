@@ -15,7 +15,7 @@ import {
   , getReservationListDescByHotel
   , getReservationOfGivenCustomer
   , getRoomsDetailsByOccupedGivenGuest
-  , getRoomsListByDescPrice
+  , getRoomsListAvailableTommorow, getRoomsListByDescPrice
   , getRoomsListByFeatures
   , getRoomsListByPriceInterval, getTotalConferencePaymentInIntervalDate
   , getTotalPayForRoomsHotel
@@ -26,6 +26,9 @@ import {
 
 export const router = express.Router();
 
+
+// EASY-LINES:
+// ------------------------------------------------------------------------------------------------------------------------
 // easy-line2:
 // DISPLAY THE LIST OF RECEPTIONISTS WITH THE HOTEL TO WHICH THEY ARE ATTACHED 
 router.get("/ReceptionistsListInWhichHotel", (req, res) => {
@@ -174,6 +177,15 @@ router.get("/CustomersNegCommentForHotel", (req, res) => {
     handlePromise(getCustomersNegCommentForHotel(), res);
 });
 
+
+// MEDIUM-LINES:
+// --------------------------------------------------------------------------------------------------------------------
+// Medium-line2:
+// DISPLAY THE LIST OF ROOMS AVAILABLE TOMORROW
+router.get("/RoomsListAvailableTommorow", (req, res) => {
+  // FOR TEST: http://localhost:8000/RoomsListAvailableTommorow
+  handlePromise(getRoomsListAvailableTommorow(), res);
+});
 
 
 // medium-line8:
