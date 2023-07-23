@@ -2,7 +2,7 @@ import express from "express";
 import { handlePromise } from "./promiseHandler.js";
 import {
   getAllRoomsByTypeAndHotelName
-  , getCurrentPrommotionsList
+  , getBookingNumberByCustomer, getCurrentPrommotionsList
   , getCurrentlyOccupiedRoomsList
   , getCustomerListWithResCancelNumber, getCustomersListNotPaidFullFees
   , getCustomersNegCommentForHotel
@@ -187,7 +187,19 @@ router.get("/CustomersNegCommentForHotel", (req, res) => {
 
 // MEDIUM-LINES:
 // --------------------------------------------------------------------------------------------------------------------
-// Medium-line2:
+// medium-line2:
+// SHOW HOW MANY TIMES A CUSTOMER HAS BOOKED IN OUR HOTEL
+router.get("/BookingNumberByCustomer", (req, res) => {
+  // FOR TEST: http://localhost:8000/BookingNumberByCustomer
+  const customer_id = 45;
+  // const customer_id = req.body;
+  handlePromise(getBookingNumberByCustomer({customer_id}), res);
+
+});
+
+
+
+// Medium-line3:
 // DISPLAY THE LIST OF ROOMS AVAILABLE TOMORROW
 router.get("/RoomsListAvailableTommorow", (req, res) => {
   // FOR TEST: http://localhost:8000/RoomsListAvailableTommorow

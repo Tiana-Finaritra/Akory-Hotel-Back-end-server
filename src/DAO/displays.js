@@ -401,7 +401,28 @@ export const getCustomersNegCommentForHotel = async () => {
 
 // MEDIUM-LINES:
 // -------------------------------------------------------------------------------------------------------------------------
-// Medium-line2:
+// medium-line2:
+// SHOW HOW MANY TIMES A CUSTOMER HAS BOOKED IN OUR HOTEL
+export const getBookingNumberByCustomer = async ({customer_id}) => {
+    try {
+        const BookingNumberByCustomerQ = `
+        --->
+            SELECT
+                count(*)
+            FROM "reservation" re
+            WHERE re.id_customer = $1; 
+                            --->
+        `
+        return db.query(BookingNumberByCustomerQ, [customer_id]);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
+
+// Medium-line3:
 // DISPLAY THE LIST OF ROOMS AVAILABLE TOMORROW
 export const getRoomsListAvailableTommorow = async () => {
     try {
