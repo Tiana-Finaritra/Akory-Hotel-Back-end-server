@@ -641,6 +641,9 @@ export const getPayementListAllInfo = async () => {
     }
 }
 
+
+// HARD-LINES:
+// -----------------------------------------------------------------------------------------------------------------------
 // hard-line6:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR ROOM'S RESERVATIONS
 // IN A GIVEN DATE INTERVAL
@@ -682,6 +685,30 @@ export const getTotalConferencePaymentInIntervalDate = async ({ start_period, en
             GROUP BY h.name, pay.payment_date, r.room_type;
         `
         return db.query(TotalConferencePaymentInIntervalDateQ, [start_period, end_period, room_type]);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+// hard-line13:
+// DISPLAY AVERAGE NUMBER OF RESERVATIONS PER HOTEL, PER DAY, ALL PERIODS COMBINED
+export const getAverageResNumberDaysByHotel =   async () => {
+    try {
+        const AverageResNumberDaysByHotelQ = `
+            --->
+                SELECT name, round(AVG(nombre_reservations)) AS moyenne_reservations_par_jour
+                FROM (
+                    SELECT h.name, res.date_arrived, COUNT(*) AS nombre_reservations
+                    FROM hotel h
+                    INNER JOIN room r ON h.id = r.id_hotel
+                    INNER JOIN reservation res ON r.id = res.id_room
+                    GROUP BY h.name, res.date_arrived
+                ) AS sous_requete
+                GROUP BY name;
+                        --->
+        `
+        return db.query(AverageResNumberDaysByHotelQ);
     } catch {
         console.log(err);
         throw new Error(err.message);

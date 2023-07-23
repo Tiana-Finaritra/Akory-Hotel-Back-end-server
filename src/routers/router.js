@@ -2,7 +2,7 @@ import express from "express";
 import { handlePromise } from "./promiseHandler.js";
 import {
   getAllRoomsByTypeAndHotelName
-  , getBookingNumberByCustomer, getCurrentPrommotionsList
+  , getAverageResNumberDaysByHotel, getBookingNumberByCustomer, getCurrentPrommotionsList
   , getCurrentlyOccupiedRoomsList
   , getCustomerListWithResCancelNumber, getCustomersListNotPaidFullFees
   , getCustomersNegCommentForHotel
@@ -313,4 +313,12 @@ router.get("/TotalConferencePaymentInIntervalDate", (req, res) => {
   const room_type = "communicante";
   // const { start_period, end_period, room_type } = req.body;
   handlePromise(getTotalConferencePaymentInIntervalDate({ start_period, end_period, room_type }), res);
+});
+
+
+// hard-line13:
+// DISPLAY AVERAGE NUMBER OF RESERVATIONS PER HOTEL, PER DAY, ALL PERIODS COMBINED
+router.get("/AverageResNumberDaysByHotel", (req, res) => {
+  // FOR TEST: http://localhost:8000/AverageResNumberDaysByHotel
+  handlePromise(getAverageResNumberDaysByHotel(), res);
 });
