@@ -1,5 +1,8 @@
 import { db } from "../database.js";
 
+
+// EASY-LINES:
+// -------------------------------------------------------------------------------------------------------------------
 // easy-line2:
 // DISPLAY THE LIST OF RECEPTIONISTS WITH THE HOTEL TO WHICH THEY ARE ATTACHED 
 export const getReceptionistsListInWhichHotel = async () => {
@@ -58,6 +61,156 @@ export const getAllRoomsByTypeAndHotelName = async ({ room_type, hotel_id }) => 
     }
 }
 
+// easy-line5:
+// DISPLAY SPECIAL OFFERS BY SEASON (PERIOD), ALL HOTEL COMBINED
+export const getOffersBySeasonAnDHotel = async () => {
+    try {
+        const OffersBySeasonAnDHotelQ = `
+        -->
+            SELECT
+                p.name,
+                s.items,
+                s.start_date,
+                s.end_date
+            FROM promotion p
+                INNER JOIN affiliate a ON a.id_promotion = p.id
+                INNER JOIN room ON a.id_room = room.id
+                INNER JOIN price ON room.id_price = price.id
+                INNER JOIN season s ON price.id_season = s.id
+            GROUP BY s.start_date , s.items, p.name , s.end_date;
+                             -->
+        `
+        return db.query(OffersBySeasonAnDHotelQ);
+    } catch (err) {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+// easy-line6:
+// LIST OF RESERVATIONS OF A GIVEN CLIENT
+export const getReservationOfGivenCustomer = async ({ customer_id }) => {
+    try {
+        const ReservationOfGivenCustomerQ = `
+        -->
+            SELECT *
+            FROM "reservation" re
+            WHERE re.id_customer = $1; -- <-- Param
+                                --->
+        `
+        return db.query(ReservationOfGivenCustomerQ, [customer_id]);
+    } catch (err) {
+        console.log();
+        throw new Error(err)
+    }
+}
+
+// easy-line7:
+// VIEW THE LIST OF CUSTOMERS WHO HAVE NOT YET PAID THEIR FEES IN FULL
+export const getCustomersListNotPaidFullFees = async () => {
+    try {
+        const CustomersListNotPaidFullFeesQ = `
+        --->
+        SELECT name, last_name, principal_contact, address, emergency_number, gender, CIN 
+        FROM customer 
+        INNER JOIN payment ON customer.id = payment.id_customer 
+        WHERE payment.total_amount_status = 'f';
+                                            --->
+        `
+        return db.query(CustomersListNotPaidFullFeesQ);
+    } catch (err) {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
+
+// easy-line8:
+// TOTAL PAYMENTS RECEIVED BY MOBILE MONEY  
+export const getTotalPayReceidByGivenMethod = async () => {
+    try {
+        const TotalPayReceidByGivenMethodQ = `
+        -->
+            -- GENERALISE:
+            SELECT p.id, p.payment_date, p.amount_paid, p.number_night, p.room_occuped,
+                p.deadline_payment, p.lending_status, p.total_amount_status, c.name, c.last_name,
+                CONCAT_WS(',',
+                    CASE WHEN pm.mobile_money = true THEN 'mobile_money' ELSE NULL END,
+                    CASE WHEN pm.credit_card = true THEN 'credit_card' ELSE NULL END,
+                    CASE WHEN pm.cash = true THEN 'cash' ELSE NULL END
+                ) AS paid_by
+            FROM payment p 
+            INNER JOIN customer c ON c.id = p.id_customer
+            INNER JOIN payment_method pm ON pm.id = p.id_payment_method;
+                                -->
+        `
+
+        return db.query(TotalPayReceidByGivenMethodQ);
+    } catch (err) {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+// easy-line9:
+// DISPLAY THE NUMBER OF RESERVATIONS MADE BY A GIVEN CUSTOMER DURING A GINVEN PERIOD
+export const getResNumberByCustomerAndPeriod = async ({ customer_name, period }) => {
+    try {
+        const ResNumberByCustomerAndPeriodQ = `
+        -->
+            SELECT c.name, c.principal_contact, c.gender, c.cin, 
+            COUNT(*) AS total_reservation FROM customer c 
+            INNER JOIN reservation r ON r.id_customer = c.id 
+            WHERE c.name = $1 
+            AND r.date_arrived = $2 
+            GROUP BY c.name, c.principal_contact, c.gender, c.cin;
+                                            -->
+        `
+        return db.query(ResNumberByCustomerAndPeriodQ, [customer_name, period]);
+    } catch (err) {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+// easy-line10:
+// DISPLAY THE LIST OF HOTELS IN A GIVEN LOCATION (PROVINCE)
+export const getHotelsListByProvince = async ({ province }) => {
+    try {
+        const HotelsListByProvinceQ = `
+        --->
+            SELECT * FROM "hotel" INNER JOIN province_available p ON id_province = p.id 
+            WHERE p.province_name = $1;
+                                            --->
+        `
+        return db.query(HotelsListByProvinceQ, [province]);
+    } catch (err) {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
+// easy-line11:
+// DISPLAY THE LIST OF ROOMS THAT CORRESPOND TO A PRICE RANGE GIVEN BY THE CUSTOMER 
+export const getRoomsListByPriceInterval = async ({ min_price, max_price }) => {
+    try {
+        const RoomsListByPriceIntervalQ = `
+        --->
+            SELECT ro.number, room_type, capacity_room, p.cost_per_night FROM room ro 
+            INNER JOIN price p on ro.id_price = p.id 
+            WHERE p.cost_per_night 
+            BETWEEN $1
+            AND $2;
+                           --->
+        `
+        return db.query(RoomsListByPriceIntervalQ, [min_price, max_price]);
+    } catch (err) {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
@@ -89,6 +242,7 @@ export const getRoomsListByDescPrice = async () => {
         throw new Error(err.message);
     }
 };
+
 
 // easy-line13:
 // DISPLAY A LIST OF ROOMS WHOSE DESCRIPTIONS MATCH SPECIFUIC KEYWORDS
@@ -128,6 +282,7 @@ export const getRoomsListByFeatures = async ({ keyword }) => {
     }
 }
 
+
 // easy-line14:
 // DISPLAY THE LIST PF HOTELS THAT CONTAIN ROOMS
 // WHOSE DESCRIPTION CORRESPONDS TO GIVEN KEYWORD
@@ -160,6 +315,7 @@ export const getHotelsListContainsRoomByBeutures = async ({ keyword }) => {
     }
 
 }
+
 
 // easy-line15:
 // DISPLAY DETAILS OF THE ROOM CURRENTLY OCCUPID BY A GIVEN GUEST
@@ -200,17 +356,208 @@ export const getRoomsDetailsByOccupedGivenGuest = async ({ customer_name, custom
     }
 }
 
+
+// easy-line16/17:
+// GENERALISE::::::::
+// SHOW THE HOTEL WITH THE MOST RESERVATIONS
+export const getHotelWithTheNumberRes = async () => {
+    try {
+        const HotelWithTheNumberResQ = `
+        -->
+            SELECT h.name, COUNT(*) AS total_reservations
+            FROM hotel h
+            INNER JOIN room r ON h.id = r.id_hotel
+            INNER JOIN reservation res ON r.id = res.id_room
+            GROUP BY h.name ORDER BY total_reservations DESC LIMIT 1;
+                                            -->
+        `
+        return db.query(HotelWithTheNumberResQ);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
+// easy-line18:
+// SHOW THE CUSTOMERS WITH THE MOST NEGATIVE REVIEWS WRITTEN FOR HOTELS
+export const getCustomersNegCommentForHotel = async () => {
+    try {
+        const CustomersNegCommentForHotelQ = `
+        --->
+            SELECT * FROM "customer" INNER JOIN feed_back f 
+            ON id_customer = f.id WHERE f.rating <= 5;
+                                                --->
+        `
+        return db.query(CustomersNegCommentForHotelQ);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
+
+
+// MEDIUM-LINES:
+// -------------------------------------------------------------------------------------------------------------------------
+// medium-line2:
+// SHOW HOW MANY TIMES A CUSTOMER HAS BOOKED IN OUR HOTEL
+export const getBookingNumberByCustomer = async ({customer_id}) => {
+    try {
+        const BookingNumberByCustomerQ = `
+        --->
+            SELECT
+                count(*)
+            FROM "reservation" re
+            WHERE re.id_customer = $1; 
+                            --->
+        `
+        return db.query(BookingNumberByCustomerQ, [customer_id]);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
+
+// Medium-line3:
+// DISPLAY THE LIST OF ROOMS AVAILABLE TOMORROW
+export const getRoomsListAvailableTommorow = async () => {
+    try {
+        const RoomsListAvailableTommorowQ = `
+        -->
+            SELECT r.number, r.room_type, r.capacity_room FROM room r
+            LEFT JOIN reservation res ON res.id_room = r.id 
+            AND res.leaving_date = CURRENT_DATE + INTERVAL '1 day'
+            WHERE res.id_room IS NULL; 
+                            -->
+        `
+        return db.query(RoomsListAvailableTommorowQ);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+// medium-line4:
+// DISPLAY THE TOTAL NUMBER OF RESERVATIONS BY ROOM TYPE
+export const getTotalResNumberByRoomType = async () => {
+    try {
+        const TotalResNumberByRoomTypeQ = `
+        --->
+            SELECT r.room_type,
+                COUNT(*) AS total_reservations_per_type 
+            FROM room r INNER JOIN reservation res ON r.id = res.id_room 
+            GROUP BY r.room_type;
+                        --->
+        `
+        return db.query(TotalResNumberByRoomTypeQ);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+// medium-line5:
+// LIST OF ROOMS THAT MEET MULTIPLE CRITERIA
+export const getRoomsByMultipleCriteria = async ({
+    sea_view,
+    vip_category,
+    hot_water,
+    wifi_available,
+    room_service,
+    mini_bar,
+    flat_screen,
+}) => {
+    try {
+        const RoomsByMultipleCriteriaQ = `
+        -->
+            SELECT *
+            FROM "room" ro
+            INNER JOIN "room_features" ro_f ON ro.id_room_features = ro_f.id
+            WHERE ro_f.sea_view = $1
+            AND ro_f.vip_category = $2
+            AND ro_f.hot_water = $3
+            AND ro_f.wifi_available = $4
+            AND ro_f.room_service = $5
+            AND ro_f.mini_bar = $6
+            AND ro_f.flat_screen = $7;
+                            -->
+      `;
+
+        return db.query(RoomsByMultipleCriteriaQ, [
+            sea_view,
+            vip_category,
+            hot_water,
+            wifi_available,
+            room_service,
+            mini_bar,
+            flat_screen,
+        ]);
+    } catch (err) {
+        console.error(err);
+        throw new Error(err.message);
+    }
+};
+
+
+// medium-line6:
+// SHOW THE TOTAL NUMBER OF RESERVATIONS PER HOTEL
+export const getTotalResForHotel = async () => {
+    try {
+        const TotalResForHotelQ = `
+        --->
+            SELECT h.name, 
+                COUNT(*) AS total_reservations
+            FROM hotel h
+            INNER JOIN room r ON h.id = r.id_hotel
+            INNER JOIN reservation res ON r.id = res.id_room
+            GROUP BY h.name;
+                        --->
+        `
+        return db.query(TotalResForHotelQ);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
+// medium-line7:
+// CUSTOMER LIST WITH RESERVATION CANCELLATION NUMBER
+export const getCustomerListWithResCancelNumber = async() => {
+    try {
+        const CustomerListWithResCancelNumberQ = `
+        --->
+            SELECT cu.name,
+                count(*) as cancel
+            FROM "reservation" re
+            INNER JOIN "customer" cu ON re.id_customer = cu.id
+            WHERE re.is_cancelled = true
+            GROUP BY cu.name;
+                        --->
+        `
+        return db.query(CustomerListWithResCancelNumberQ);
+    }catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
 // medium-line8:
 // DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
 export const getHotelAndNumberOfRooms = async () => {
     try {
         const HotelAndNumberOfRoomsQ = `
-    -->
-    SELECT h.id AS hotel_id, h.name AS hotel_name, COUNT(r.id) AS number_of_rooms
-    FROM hotel h 
-    LEFT JOIN room r ON h.id = r.id_hotel
-    GROUP BY h.id, h.name;
-                        --->
+        -->
+            SELECT h.id AS hotel_id, h.name AS hotel_name, COUNT(r.id) AS number_of_rooms
+            FROM hotel h 
+            LEFT JOIN room r ON h.id = r.id_hotel
+            GROUP BY h.id, h.name;
+                            --->
     `
         return db.query(HotelAndNumberOfRoomsQ);
     } catch {
@@ -274,6 +621,52 @@ export const getCurrentPrommotionsList = async () => {
     }
 }
 
+// medium-line14:
+// DISPLAY LIST OF PAYMENT WITH NAME AND FIRST-NAME WHO WAS RECEIVE IT:
+export const getPayementListAllInfo = async () => {
+    try {
+        const PayementListAllInfoQ = `
+        -->
+            SELECT p.payment_date, p.amount_paid, p.number_night, 
+            p.room_occuped, p.deadline_payment,
+            p.lending_status, p.total_amount_status, p.id_customer, 
+            rec.first_name, rec.last_name FROM payment p 
+            INNER JOIN receptionist rec ON p.id_receptionist = rec.id;              
+                                                         -->
+        `
+        return db.query(PayementListAllInfoQ);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
+// HARD-LINES:
+// -----------------------------------------------------------------------------------------------------------------------
+// hard-line5:
+// TOTAL PAYMENTS COLLECTED IN A YE:AR FOR EACH HOTEL
+export const getCollectedPayForAllHotelsByYear = async ({year}) =>{
+    try {
+        const CollectedPayForAllHotelsByYearQ = `
+        -->
+            SELECT
+                sum(pay.amount_paid) as total_in_year,
+                ho.name
+            FROM "payment" pay
+                INNER JOIN receptionist re ON pay.id_receptionist = re.id
+                INNER JOIN hotel ho ON ho.id = re.id_hotel
+            WHERE date_part('year', pay.payment_date) = $1
+            GROUP BY ho.id, re.id;
+                            -->
+        `
+        return db.query(CollectedPayForAllHotelsByYearQ, [year]);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
 
 // hard-line6:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR ROOM'S RESERVATIONS
@@ -316,6 +709,84 @@ export const getTotalConferencePaymentInIntervalDate = async ({ start_period, en
             GROUP BY h.name, pay.payment_date, r.room_type;
         `
         return db.query(TotalConferencePaymentInIntervalDateQ, [start_period, end_period, room_type]);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+// hard-line9:
+// FOR EACH PROMOTION, DISPLAY THE TOTAL NUMBER OF RESERVATIONS THAT BENEFITED FROM THE PROMOTION, BY HOTEL
+// (TO KNOW IF IT WORKED OR NOT)
+export const getAnaliseBeneficPromotion = async () => {
+    try {
+        const AnaliseBeneficPromotionQ = `
+        --->
+            SELECT
+                pr.name as promotion,
+                ho.name as hotel,
+                count(re.id) as reservation
+            FROM "affiliate" aff
+                INNER JOIN "room" ro ON aff.id_room = ro.id
+                INNER JOIN "reservation" re ON re.id_room = ro.id
+                INNER JOIN "promotion" pr ON aff.id_promotion = pr.id
+                INNER JOIN "hotel" ho ON ro.id_hotel = ho.id
+            GROUP BY pr.id, ho.id;
+                            --->
+        `
+        return db.query(AnaliseBeneficPromotionQ);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+// hard-line12:
+// DISPLAY THE AVERAGE NUMBER OF RESERVATIONS PER HOTEL FOR EACH MONTH OF A GIVEN YEAR 
+export const getAverageResNumberMonthsByHotelAndYear = async ({year}) => {
+    try {
+        const AverageResNumberMonthsByHotelAndYearQ = `
+            --->
+                SELECT
+                    round(avg(re.id)) as reservation,
+                    ho.name as hotel
+                FROM "reservation" re
+                    INNER JOIN "room" ro ON re.id_room = ro.id
+                    INNER JOIN "hotel" ho ON ro.id_hotel = ho.id
+                WHERE date_part('month', re.date_arrived) IN (
+                        SELECT 
+                            date_part('month', date_arrived) as month
+                        FROM "reservation"
+                        WHERE date_part('year', date_arrived) = $1
+                    )
+                GROUP BY ho.id;
+                            --->
+        `
+        return db.query(AverageResNumberMonthsByHotelAndYearQ, [year]);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+// hard-line13:
+// DISPLAY AVERAGE NUMBER OF RESERVATIONS PER HOTEL, PER DAY, ALL PERIODS COMBINED
+export const getAverageResNumberDaysByHotel =   async () => {
+    try {
+        const AverageResNumberDaysByHotelQ = `
+            --->
+                SELECT name, round(AVG(nombre_reservations)) AS moyenne_reservations_par_jour
+                FROM (
+                    SELECT h.name, res.date_arrived, COUNT(*) AS nombre_reservations
+                    FROM hotel h
+                    INNER JOIN room r ON h.id = r.id_hotel
+                    INNER JOIN reservation res ON r.id = res.id_room
+                    GROUP BY h.name, res.date_arrived
+                ) AS sous_requete
+                GROUP BY name;
+                        --->
+        `
+        return db.query(AverageResNumberDaysByHotelQ);
     } catch {
         console.log(err);
         throw new Error(err.message);
