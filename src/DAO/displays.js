@@ -482,17 +482,61 @@ export const getRoomsByMultipleCriteria = async ({
 };
 
 
+// medium-line6:
+// SHOW THE TOTAL NUMBER OF RESERVATIONS PER HOTEL
+export const getTotalResForHotel = async () => {
+    try {
+        const TotalResForHotelQ = `
+        --->
+            SELECT h.name, 
+                COUNT(*) AS total_reservations
+            FROM hotel h
+            INNER JOIN room r ON h.id = r.id_hotel
+            INNER JOIN reservation res ON r.id = res.id_room
+            GROUP BY h.name;
+                        --->
+        `
+        return db.query(TotalResForHotelQ);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
+// medium-line7:
+// CUSTOMER LIST WITH RESERVATION CANCELLATION NUMBER
+export const getCustomerListWithResCancelNumber = async() => {
+    try {
+        const CustomerListWithResCancelNumberQ = `
+        --->
+            SELECT cu.name,
+                count(*) as cancel
+            FROM "reservation" re
+            INNER JOIN "customer" cu ON re.id_customer = cu.id
+            WHERE re.is_cancelled = true
+            GROUP BY cu.name;
+                        --->
+        `
+        return db.query(CustomerListWithResCancelNumberQ);
+    }catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
 // medium-line8:
 // DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
 export const getHotelAndNumberOfRooms = async () => {
     try {
         const HotelAndNumberOfRoomsQ = `
-    -->
-        SELECT h.id AS hotel_id, h.name AS hotel_name, COUNT(r.id) AS number_of_rooms
-        FROM hotel h 
-        LEFT JOIN room r ON h.id = r.id_hotel
-        GROUP BY h.id, h.name;
-                        --->
+        -->
+            SELECT h.id AS hotel_id, h.name AS hotel_name, COUNT(r.id) AS number_of_rooms
+            FROM hotel h 
+            LEFT JOIN room r ON h.id = r.id_hotel
+            GROUP BY h.id, h.name;
+                            --->
     `
         return db.query(HotelAndNumberOfRoomsQ);
     } catch {

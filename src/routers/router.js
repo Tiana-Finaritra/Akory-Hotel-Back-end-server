@@ -4,7 +4,9 @@ import {
   getAllRoomsByTypeAndHotelName
   , getCurrentPrommotionsList
   , getCurrentlyOccupiedRoomsList
-  , getCustomersListNotPaidFullFees, getCustomersNegCommentForHotel, getHotelAndNumberOfRooms
+  , getCustomerListWithResCancelNumber, getCustomersListNotPaidFullFees
+  , getCustomersNegCommentForHotel
+  , getHotelAndNumberOfRooms
   , getHotelWithTheNumberRes
   , getHotelsListByProvince
   , getHotelsListContainsRoomByBeutures
@@ -14,13 +16,17 @@ import {
   , getResNumberByCustomerAndPeriod
   , getReservationListDescByHotel
   , getReservationOfGivenCustomer
-  , getRoomsByMultipleCriteria, getRoomsDetailsByOccupedGivenGuest
-  , getRoomsListAvailableTommorow, getRoomsListByDescPrice
+  , getRoomsByMultipleCriteria
+  , getRoomsDetailsByOccupedGivenGuest
+  , getRoomsListAvailableTommorow
+  , getRoomsListByDescPrice
   , getRoomsListByFeatures
-  , getRoomsListByPriceInterval, getTotalConferencePaymentInIntervalDate
+  , getRoomsListByPriceInterval
+  , getTotalConferencePaymentInIntervalDate
   , getTotalPayForRoomsHotel
-  , getTotalPayReceidByGivenMethod,
-  getTotalResNumberByRoomType
+  , getTotalPayReceidByGivenMethod
+  , getTotalResForHotel
+  , getTotalResNumberByRoomType
 }
   from "../DAO/displays.js";
 
@@ -213,12 +219,28 @@ router.get("/RoomsByMultipleCriteria", (req, res) => {
 });
 
 
+// medium-line6:
+// SHOW THE TOTAL NUMBER OF RESERVATIONS PER HOTEL
+router.get("/TotalResForHotel", (req, res) => {
+  // FOR TEST: http://localhost:8000/TotalResForHotel
+  handlePromise(getTotalResForHotel(), res);
+});
+
+
+// medium-line7:
+// CUSTOMER LIST WITH RESERVATION CANCELLATION NUMBER
+router.get("/CustomerListWithResCancelNumber", (req, res) => {
+    // FOR TEST: http://localhost:8000/CustomerListWithResCancelNumber
+  handlePromise(getCustomerListWithResCancelNumber(), res);
+});
+
 // medium-line8:
 // DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
 router.get("/HotelAndNumberOfRooms", (req, res) => {
   // for test: http://localhost:8000/HotelAndNumberOfRooms
   handlePromise(getHotelAndNumberOfRooms(), res);
 });
+
 
 
 // medium-line9:
