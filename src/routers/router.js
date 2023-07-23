@@ -1,18 +1,23 @@
 import express from "express";
 import { handlePromise } from "./promiseHandler.js";
 import {
-  getAllRoomsByTypeAndHotelName,
-  getCurrentPrommotionsList,
-  getCurrentlyOccupiedRoomsList
+  getAllRoomsByTypeAndHotelName
+  , getCurrentPrommotionsList
+  , getCurrentlyOccupiedRoomsList
   , getCustomersListNotPaidFullFees, getHotelAndNumberOfRooms
   , getHotelsListContainsRoomByBeutures
   , getLeastMostReservedRoomByHotel
-  , getOffersBySeasonAnDHotel, getReceptionistsListInWhichHotel, getReservationListDescByHotel, getReservationOfGivenCustomer, getRoomsDetailsByOccupedGivenGuest
+  , getOffersBySeasonAnDHotel
+  , getReceptionistsListInWhichHotel
+  , getResNumberByCustomerAndPeriod
+  , getReservationListDescByHotel
+  , getReservationOfGivenCustomer
+  , getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
   , getRoomsListByFeatures
   , getTotalConferencePaymentInIntervalDate
-  , getTotalPayForRoomsHotel,
-  getTotalPayReceidByGivenMethod
+  , getTotalPayForRoomsHotel
+  , getTotalPayReceidByGivenMethod
 }
   from "../DAO/displays.js";
 
@@ -79,6 +84,19 @@ router.get("/TotalPayReceidByGivenMethod", (req, res) => {
   // FOR TEST: http://localhost:8000/TotalPayReceidByGivenMethod
   handlePromise(getTotalPayReceidByGivenMethod(), res);
 });
+
+
+// easy-line9:
+// DISPLAY THE NUMBER OF RESERVATIONS MADE BY A GIVEN CUSTOMER DURING A GINVEN PERIOD
+router.get("/ResNumberByCustomerAndPeriod", (req, res) => {
+  // FOR TEST: http://localhost:8000/ResNumberByCustomerAndPeriod
+  const customer_name = "Mason";
+  const period = "2023-07-15 10:00:00";
+  // const {customer_name, period} = req.body;
+  handlePromise(getResNumberByCustomerAndPeriod({customer_name, period}), res);
+});
+
+
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
