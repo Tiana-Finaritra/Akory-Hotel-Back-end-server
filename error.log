@@ -48,3 +48,91 @@
     at readableAddChunk (node:internal/streams/readable:305:9)
     at Readable.push (node:internal/streams/readable:242:10)
     at TCP.onStreamRead (node:internal/stream_base_commons:190:23)
+2023-07-23T07:41:41.876Z - ReferenceError: err is not defined
+    at getCollectedPayForAllHotelsByYear (file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/DAO/displays.js:665:21)
+    at file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/routers/router.js:299:17
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:175:3)
+2023-07-23T07:42:38.664Z - ReferenceError: err is not defined
+    at getCollectedPayForAllHotelsByYear (file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/DAO/displays.js:665:21)
+    at file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/routers/router.js:299:17
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:175:3)
+2023-07-23T07:42:39.783Z - ReferenceError: err is not defined
+    at getCollectedPayForAllHotelsByYear (file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/DAO/displays.js:665:21)
+    at file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/routers/router.js:299:17
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:175:3)
+2023-07-23T07:42:46.692Z - ReferenceError: err is not defined
+    at getCollectedPayForAllHotelsByYear (file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/DAO/displays.js:665:21)
+    at file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/routers/router.js:299:17
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:175:3)
+2023-07-23T07:43:30.315Z - ReferenceError: err is not defined
+    at getCollectedPayForAllHotelsByYear (file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/DAO/displays.js:665:21)
+    at file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/routers/router.js:299:17
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:175:3)
+2023-07-23T07:43:31.336Z - ReferenceError: err is not defined
+    at getCollectedPayForAllHotelsByYear (file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/DAO/displays.js:665:21)
+    at file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/routers/router.js:299:17
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:175:3)
+2023-07-23T07:43:34.162Z - ReferenceError: err is not defined
+    at getCollectedPayForAllHotelsByYear (file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/DAO/displays.js:665:21)
+    at file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/routers/router.js:299:17
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:175:3)
+2023-07-23T07:43:35.183Z - ReferenceError: err is not defined
+    at getCollectedPayForAllHotelsByYear (file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/DAO/displays.js:665:21)
+    at file:///home/finaritra/Public/HEI/2-%20Donn%C3%A9e--1/Expos%C3%A9-Za-Geeck/Akory-Hotel-Back-end-server/src/routers/router.js:299:17
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/layer.js:95:5)
+    at /home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:346:12)
+    at next (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/home/finaritra/Public/HEI/2- Donnée--1/Exposé-Za-Geeck/Akory-Hotel-Back-end-server/node_modules/express/lib/router/index.js:175:3)

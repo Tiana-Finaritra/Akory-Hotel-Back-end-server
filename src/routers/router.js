@@ -1,8 +1,8 @@
-import express from "express";
+import express, { Router } from "express";
 import { handlePromise } from "./promiseHandler.js";
 import {
   getAllRoomsByTypeAndHotelName
-  , getAverageResNumberDaysByHotel, getBookingNumberByCustomer, getCurrentPrommotionsList
+  , getAverageResNumberDaysByHotel, getBookingNumberByCustomer, getCollectedPayForAllHotelsByYear, getCurrentPrommotionsList
   , getCurrentlyOccupiedRoomsList
   , getCustomerListWithResCancelNumber, getCustomersListNotPaidFullFees
   , getCustomersNegCommentForHotel
@@ -126,7 +126,7 @@ router.get("/RoomsListByPriceInterval", (req, res) => {
   // const {min_price, max_price} = req.body;
   const min_price = 12100;
   const max_price = 12200;
-  handlePromise(getRoomsListByPriceInterval({min_price, max_price}), res);
+  handlePromise(getRoomsListByPriceInterval({ min_price, max_price }), res);
 });
 
 // easy-line12:
@@ -180,8 +180,8 @@ router.get("/HotelWithTheNumberRes", (req, res) => {
 // easy-line18:
 // SHOW THE CUSTOMERS WITH THE MOST NEGATIVE REVIEWS WRITTEN FOR HOTELS
 router.get("/CustomersNegCommentForHotel", (req, res) => {
-    // FOR TEST: http://localhost:8000/CustomersNegCommentForHotel
-    handlePromise(getCustomersNegCommentForHotel(), res);
+  // FOR TEST: http://localhost:8000/CustomersNegCommentForHotel
+  handlePromise(getCustomersNegCommentForHotel(), res);
 });
 
 
@@ -193,7 +193,7 @@ router.get("/BookingNumberByCustomer", (req, res) => {
   // FOR TEST: http://localhost:8000/BookingNumberByCustomer
   const customer_id = 45;
   // const customer_id = req.body;
-  handlePromise(getBookingNumberByCustomer({customer_id}), res);
+  handlePromise(getBookingNumberByCustomer({ customer_id }), res);
 
 });
 
@@ -209,7 +209,7 @@ router.get("/RoomsListAvailableTommorow", (req, res) => {
 // medium-line4:
 // DISPLAY THE TOTAL NUMBER OF RESERVATIONS BY ROOM TYPE
 router.get("/TotalResNumberByRoomType", (req, res) => {
-    // FOR TEST: http://localhost:8000/TotalResNumberByRoomType
+  // FOR TEST: http://localhost:8000/TotalResNumberByRoomType
   handlePromise(getTotalResNumberByRoomType(), res);
 });
 
@@ -242,7 +242,7 @@ router.get("/TotalResForHotel", (req, res) => {
 // medium-line7:
 // CUSTOMER LIST WITH RESERVATION CANCELLATION NUMBER
 router.get("/CustomerListWithResCancelNumber", (req, res) => {
-    // FOR TEST: http://localhost:8000/CustomerListWithResCancelNumber
+  // FOR TEST: http://localhost:8000/CustomerListWithResCancelNumber
   handlePromise(getCustomerListWithResCancelNumber(), res);
 });
 
@@ -285,8 +285,18 @@ router.get("/CurrentPrommotionsList", (req, res) => {
 // DISPLAY LIST OF PAYMENT WITH NAME AND FIRST-NAME WHO WAS RECEIVE IT:
 router.get("/PayementListAllInfo", (req, res) => {
   // FOR TEST: http://localhost:8000/PayementListAllInfo
-
   handlePromise(getPayementListAllInfo(), res);
+});
+
+// HARD-LINES:
+// ------------------------------------------------------------------------------------------------------------------------------
+// hard-line5:
+// TOTAL PAYMENTS COLLECTED IN A YE:AR FOR EACH HOTEL
+router.get("/CollectedPayForAllHotelsByYear", (req, res) => {
+  // FOR TEST: http://localhost:8000/CollectedPayForAllHotelsByYear
+  const year = '2023';
+  // const year = '2023';
+  handlePromise(getCollectedPayForAllHotelsByYear({ year }), res);
 });
 
 // hard-line6:

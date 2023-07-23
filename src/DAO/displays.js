@@ -644,6 +644,30 @@ export const getPayementListAllInfo = async () => {
 
 // HARD-LINES:
 // -----------------------------------------------------------------------------------------------------------------------
+// hard-line5:
+// TOTAL PAYMENTS COLLECTED IN A YE:AR FOR EACH HOTEL
+export const getCollectedPayForAllHotelsByYear = async ({year}) =>{
+    try {
+        const CollectedPayForAllHotelsByYearQ = `
+        -->
+            SELECT
+                sum(pay.amount_paid) as total_in_year,
+                ho.name
+            FROM "payment" pay
+                INNER JOIN receptionist re ON pay.id_receptionist = re.id
+                INNER JOIN hotel ho ON ho.id = re.id_hotel
+            WHERE date_part('year', pay.payment_date) = $1
+            GROUP BY ho.id, re.id;
+                            -->
+        `
+        return db.query(CollectedPayForAllHotelsByYearQ, [year]);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
 // hard-line6:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR ROOM'S RESERVATIONS
 // IN A GIVEN DATE INTERVAL
