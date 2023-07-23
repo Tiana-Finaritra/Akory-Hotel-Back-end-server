@@ -14,7 +14,7 @@ import {
   , getResNumberByCustomerAndPeriod
   , getReservationListDescByHotel
   , getReservationOfGivenCustomer
-  , getRoomsDetailsByOccupedGivenGuest
+  , getRoomsByMultipleCriteria, getRoomsDetailsByOccupedGivenGuest
   , getRoomsListAvailableTommorow, getRoomsListByDescPrice
   , getRoomsListByFeatures
   , getRoomsListByPriceInterval, getTotalConferencePaymentInIntervalDate
@@ -195,6 +195,22 @@ router.get("/TotalResNumberByRoomType", (req, res) => {
   handlePromise(getTotalResNumberByRoomType(), res);
 });
 
+// medium-line5:
+// LIST OF ROOMS THAT MEET MULTIPLE CRITERIA
+router.get("/RoomsByMultipleCriteria", (req, res) => {
+  // FOR TEST: http://localhost:8000/RoomsByMultipleCriteria
+  const criteria = {
+    sea_view: true,
+    vip_category: true,
+    hot_water: true,
+    wifi_available: false,
+    room_service: true,
+    mini_bar: true,
+    flat_screen: false,
+  };
+  // const criteria = req.body;
+  handlePromise(getRoomsByMultipleCriteria(criteria), res);
+});
 
 
 // medium-line8:

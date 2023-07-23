@@ -390,7 +390,7 @@ export const getCustomersNegCommentForHotel = async () => {
                                                 --->
         `
         return db.query(CustomersNegCommentForHotelQ);
-    }  catch {
+    } catch {
         console.log(err);
         throw new Error(err.message);
     }
@@ -414,7 +414,7 @@ export const getRoomsListAvailableTommorow = async () => {
                             -->
         `
         return db.query(RoomsListAvailableTommorowQ);
-    }  catch {
+    } catch {
         console.log(err);
         throw new Error(err.message);
     }
@@ -422,7 +422,7 @@ export const getRoomsListAvailableTommorow = async () => {
 
 // medium-line4:
 // DISPLAY THE TOTAL NUMBER OF RESERVATIONS BY ROOM TYPE
-export const getTotalResNumberByRoomType = async() => {
+export const getTotalResNumberByRoomType = async () => {
     try {
         const TotalResNumberByRoomTypeQ = `
         --->
@@ -433,12 +433,53 @@ export const getTotalResNumberByRoomType = async() => {
                         --->
         `
         return db.query(TotalResNumberByRoomTypeQ);
-    }   catch {
+    } catch {
         console.log(err);
         throw new Error(err.message);
     }
 }
 
+// medium-line5:
+// LIST OF ROOMS THAT MEET MULTIPLE CRITERIA
+export const getRoomsByMultipleCriteria = async ({
+    sea_view,
+    vip_category,
+    hot_water,
+    wifi_available,
+    room_service,
+    mini_bar,
+    flat_screen,
+}) => {
+    try {
+        const RoomsByMultipleCriteriaQ = `
+        -->
+            SELECT *
+            FROM "room" ro
+            INNER JOIN "room_features" ro_f ON ro.id_room_features = ro_f.id
+            WHERE ro_f.sea_view = $1
+            AND ro_f.vip_category = $2
+            AND ro_f.hot_water = $3
+            AND ro_f.wifi_available = $4
+            AND ro_f.room_service = $5
+            AND ro_f.mini_bar = $6
+            AND ro_f.flat_screen = $7;
+                            -->
+      `;
+
+        return db.query(RoomsByMultipleCriteriaQ, [
+            sea_view,
+            vip_category,
+            hot_water,
+            wifi_available,
+            room_service,
+            mini_bar,
+            flat_screen,
+        ]);
+    } catch (err) {
+        console.error(err);
+        throw new Error(err.message);
+    }
+};
 
 
 // medium-line8:
@@ -447,10 +488,10 @@ export const getHotelAndNumberOfRooms = async () => {
     try {
         const HotelAndNumberOfRoomsQ = `
     -->
-    SELECT h.id AS hotel_id, h.name AS hotel_name, COUNT(r.id) AS number_of_rooms
-    FROM hotel h 
-    LEFT JOIN room r ON h.id = r.id_hotel
-    GROUP BY h.id, h.name;
+        SELECT h.id AS hotel_id, h.name AS hotel_name, COUNT(r.id) AS number_of_rooms
+        FROM hotel h 
+        LEFT JOIN room r ON h.id = r.id_hotel
+        GROUP BY h.id, h.name;
                         --->
     `
         return db.query(HotelAndNumberOfRoomsQ);
