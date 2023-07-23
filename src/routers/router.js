@@ -12,7 +12,7 @@ import {
   , getHotelsListContainsRoomByBeutures
   , getLeastMostReservedRoomByHotel
   , getOffersBySeasonAnDHotel
-  , getReceptionistsListInWhichHotel
+  , getPayementListAllInfo, getReceptionistsListInWhichHotel
   , getResNumberByCustomerAndPeriod
   , getReservationListDescByHotel
   , getReservationOfGivenCustomer
@@ -234,6 +234,7 @@ router.get("/CustomerListWithResCancelNumber", (req, res) => {
   handlePromise(getCustomerListWithResCancelNumber(), res);
 });
 
+
 // medium-line8:
 // DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
 router.get("/HotelAndNumberOfRooms", (req, res) => {
@@ -266,7 +267,15 @@ router.get("/LeastMostReservedRoomByHotel", (req, res) => {
 router.get("/CurrentPrommotionsList", (req, res) => {
   // FOR TEST: http://localhost:8000/CurrentPrommotionsList
   handlePromise(getCurrentPrommotionsList(), res);
-})
+});
+
+// medium-line14:
+// DISPLAY LIST OF PAYMENT WITH NAME AND FIRST-NAME WHO WAS RECEIVE IT:
+router.get("/PayementListAllInfo", (req, res) => {
+  // FOR TEST: http://localhost:8000/PayementListAllInfo
+
+  handlePromise(getPayementListAllInfo(), res);
+});
 
 // hard-line6:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR ROOM'S RESERVATIONS
