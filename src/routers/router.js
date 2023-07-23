@@ -4,7 +4,7 @@ import {
   getAllRoomsByTypeAndHotelName
   , getCurrentPrommotionsList
   , getCurrentlyOccupiedRoomsList
-  , getCustomersListNotPaidFullFees, getHotelAndNumberOfRooms
+  , getCustomersListNotPaidFullFees, getCustomersNegCommentForHotel, getHotelAndNumberOfRooms
   , getHotelWithTheNumberRes
   , getHotelsListByProvince
   , getHotelsListContainsRoomByBeutures
@@ -164,6 +164,14 @@ router.get("/RoomsDetailsByOccupedGivenGuest", (req, res) => {
 router.get("/HotelWithTheNumberRes", (req, res) => {
   // FOR TEST: http://localhost:8000/HotelWithTheNumberRes
   handlePromise(getHotelWithTheNumberRes(), res);
+});
+
+
+// easy-line18:
+// SHOW THE CUSTOMERS WITH THE MOST NEGATIVE REVIEWS WRITTEN FOR HOTELS
+router.get("/CustomersNegCommentForHotel", (req, res) => {
+    // FOR TEST: http://localhost:8000/CustomersNegCommentForHotel
+    handlePromise(getCustomersNegCommentForHotel(), res);
 });
 
 

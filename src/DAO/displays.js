@@ -1,5 +1,8 @@
 import { db } from "../database.js";
 
+
+// EASY-LINES:
+// -------------------------------------------------------------------------------------------------------------------
 // easy-line2:
 // DISPLAY THE LIST OF RECEPTIONISTS WITH THE HOTEL TO WHICH THEY ARE ATTACHED 
 export const getReceptionistsListInWhichHotel = async () => {
@@ -374,6 +377,25 @@ export const getHotelWithTheNumberRes = async () => {
         throw new Error(err.message);
     }
 }
+
+
+// easy-line18:
+// SHOW THE CUSTOMERS WITH THE MOST NEGATIVE REVIEWS WRITTEN FOR HOTELS
+export const getCustomersNegCommentForHotel = async () => {
+    try {
+        const CustomersNegCommentForHotelQ = `
+        --->
+            SELECT * FROM "customer" INNER JOIN feed_back f 
+            ON id_customer = f.id WHERE f.rating <= 5;
+                                                --->
+        `
+        return db.query(CustomersNegCommentForHotelQ);
+    }  catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
 
 
 // medium-line8:
