@@ -15,7 +15,7 @@ import {
   , getRoomsDetailsByOccupedGivenGuest
   , getRoomsListByDescPrice
   , getRoomsListByFeatures
-  , getTotalConferencePaymentInIntervalDate
+  , getRoomsListByPriceInterval, getTotalConferencePaymentInIntervalDate
   , getTotalPayForRoomsHotel
   , getTotalPayReceidByGivenMethod
 }
@@ -104,6 +104,17 @@ router.get("/HotelsListByProvince", (req, res) => {
   // const {provice} = req.body;
   const province = "Antananarivo";
   handlePromise(getHotelsListByProvince({ province }), res);
+});
+
+
+// easy-line11:
+// DISPLAY THE LIST OF ROOMS THAT CORRESPOND TO A PRICE RANGE GIVEN BY THE CUSTOMER 
+router.get("/RoomsListByPriceInterval", (req, res) => {
+  // FOR TEST: http://localhost:8000/RoomsListByPriceInterval
+  // const {min_price, max_price} = req.body;
+  const min_price = 12100;
+  const max_price = 12200;
+  handlePromise(getRoomsListByPriceInterval({min_price, max_price}), res);
 });
 
 // easy-line12:
