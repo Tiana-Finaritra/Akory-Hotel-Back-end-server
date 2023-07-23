@@ -2,7 +2,7 @@ import express, { Router } from "express";
 import { handlePromise } from "./promiseHandler.js";
 import {
   getAllRoomsByTypeAndHotelName
-  , getAverageResNumberDaysByHotel, getBookingNumberByCustomer, getCollectedPayForAllHotelsByYear, getCurrentPrommotionsList
+  , getAnaliseBeneficPromotion, getAverageResNumberDaysByHotel, getBookingNumberByCustomer, getCollectedPayForAllHotelsByYear, getCurrentPrommotionsList
   , getCurrentlyOccupiedRoomsList
   , getCustomerListWithResCancelNumber, getCustomersListNotPaidFullFees
   , getCustomersNegCommentForHotel
@@ -299,6 +299,7 @@ router.get("/CollectedPayForAllHotelsByYear", (req, res) => {
   handlePromise(getCollectedPayForAllHotelsByYear({ year }), res);
 });
 
+
 // hard-line6:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR ROOM'S RESERVATIONS
 // IN A GIVEN DATE INTERVAL
@@ -325,6 +326,14 @@ router.get("/TotalConferencePaymentInIntervalDate", (req, res) => {
   handlePromise(getTotalConferencePaymentInIntervalDate({ start_period, end_period, room_type }), res);
 });
 
+
+// hard-line9:
+// FOR EACH PROMOTION, DISPLAY THE TOTAL NUMBER OF RESERVATIONS THAT BENEFITED FROM THE PROMOTION, BY HOTEL
+// (TO KNOW IF IT WORKED OR NOT)
+router.get("/AnaliseBeneficPromotion", (req, res) => {
+  // FOR TEST: http://localhost:8000/AnaliseBeneficPromotion
+  handlePromise(getAnaliseBeneficPromotion(), res);
+});
 
 // hard-line13:
 // DISPLAY AVERAGE NUMBER OF RESERVATIONS PER HOTEL, PER DAY, ALL PERIODS COMBINED

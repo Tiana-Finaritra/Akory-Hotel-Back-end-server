@@ -715,6 +715,33 @@ export const getTotalConferencePaymentInIntervalDate = async ({ start_period, en
     }
 }
 
+// hard-line9:
+// FOR EACH PROMOTION, DISPLAY THE TOTAL NUMBER OF RESERVATIONS THAT BENEFITED FROM THE PROMOTION, BY HOTEL
+// (TO KNOW IF IT WORKED OR NOT)
+export const getAnaliseBeneficPromotion = async () => {
+    try {
+        const AnaliseBeneficPromotionQ = `
+        --->
+            SELECT
+                pr.name as promotion,
+                ho.name as hotel,
+                count(re.id) as reservation
+            FROM "affiliate" aff
+                INNER JOIN "room" ro ON aff.id_room = ro.id
+                INNER JOIN "reservation" re ON re.id_room = ro.id
+                INNER JOIN "promotion" pr ON aff.id_promotion = pr.id
+                INNER JOIN "hotel" ho ON ro.id_hotel = ho.id
+            GROUP BY pr.id, ho.id;
+                            --->
+        `
+        return db.query(AnaliseBeneficPromotionQ);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
+
 // hard-line13:
 // DISPLAY AVERAGE NUMBER OF RESERVATIONS PER HOTEL, PER DAY, ALL PERIODS COMBINED
 export const getAverageResNumberDaysByHotel =   async () => {
