@@ -19,7 +19,8 @@ import {
   , getRoomsListByFeatures
   , getRoomsListByPriceInterval, getTotalConferencePaymentInIntervalDate
   , getTotalPayForRoomsHotel
-  , getTotalPayReceidByGivenMethod
+  , getTotalPayReceidByGivenMethod,
+  getTotalResNumberByRoomType
 }
   from "../DAO/displays.js";
 
@@ -186,6 +187,14 @@ router.get("/RoomsListAvailableTommorow", (req, res) => {
   // FOR TEST: http://localhost:8000/RoomsListAvailableTommorow
   handlePromise(getRoomsListAvailableTommorow(), res);
 });
+
+// medium-line4:
+// DISPLAY THE TOTAL NUMBER OF RESERVATIONS BY ROOM TYPE
+router.get("/TotalResNumberByRoomType", (req, res) => {
+    // FOR TEST: http://localhost:8000/TotalResNumberByRoomType
+  handlePromise(getTotalResNumberByRoomType(), res);
+});
+
 
 
 // medium-line8:
