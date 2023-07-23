@@ -152,7 +152,7 @@ export const getTotalPayReceidByGivenMethod = async () => {
 
 // easy-line9:
 // DISPLAY THE NUMBER OF RESERVATIONS MADE BY A GIVEN CUSTOMER DURING A GINVEN PERIOD
-export const getResNumberByCustomerAndPeriod = async ({customer_name, period}) => {
+export const getResNumberByCustomerAndPeriod = async ({ customer_name, period }) => {
     try {
         const ResNumberByCustomerAndPeriodQ = `
         -->
@@ -173,7 +173,7 @@ export const getResNumberByCustomerAndPeriod = async ({customer_name, period}) =
 
 // easy-line10:
 // DISPLAY THE LIST OF HOTELS IN A GIVEN LOCATION (PROVINCE)
-export const getHotelsListByProvince = async ({province}) => {
+export const getHotelsListByProvince = async ({ province }) => {
     try {
         const HotelsListByProvinceQ = `
         --->
@@ -191,7 +191,7 @@ export const getHotelsListByProvince = async ({province}) => {
 
 // easy-line11:
 // DISPLAY THE LIST OF ROOMS THAT CORRESPOND TO A PRICE RANGE GIVEN BY THE CUSTOMER 
-export const getRoomsListByPriceInterval = async ({min_price, max_price}) => {
+export const getRoomsListByPriceInterval = async ({ min_price, max_price }) => {
     try {
         const RoomsListByPriceIntervalQ = `
         --->
@@ -240,6 +240,7 @@ export const getRoomsListByDescPrice = async () => {
     }
 };
 
+
 // easy-line13:
 // DISPLAY A LIST OF ROOMS WHOSE DESCRIPTIONS MATCH SPECIFUIC KEYWORDS
 export const getRoomsListByFeatures = async ({ keyword }) => {
@@ -278,6 +279,7 @@ export const getRoomsListByFeatures = async ({ keyword }) => {
     }
 }
 
+
 // easy-line14:
 // DISPLAY THE LIST PF HOTELS THAT CONTAIN ROOMS
 // WHOSE DESCRIPTION CORRESPONDS TO GIVEN KEYWORD
@@ -310,6 +312,7 @@ export const getHotelsListContainsRoomByBeutures = async ({ keyword }) => {
     }
 
 }
+
 
 // easy-line15:
 // DISPLAY DETAILS OF THE ROOM CURRENTLY OCCUPID BY A GIVEN GUEST
@@ -349,6 +352,28 @@ export const getRoomsDetailsByOccupedGivenGuest = async ({ customer_name, custom
         throw new Error(err.message);
     }
 }
+
+
+// easy-line16:
+// SHOW THE HOTEL WITH THE MOST RESERVATIONS
+export const getHotelWithTheMostRes = async () => {
+    try {
+        const HotelWithTheMostResQ = `
+        -->
+            SELECT h.name, COUNT(*) AS total_reservations
+            FROM hotel h
+            INNER JOIN room r ON h.id = r.id_hotel
+            INNER JOIN reservation res ON r.id = res.id_room
+            GROUP BY h.name ORDER BY total_reservations DESC LIMIT 1;
+                                            -->
+        `
+        return db.query(HotelWithTheMostResQ);
+    } catch {
+        console.log(err);
+        throw new Error(err.message);
+    }
+}
+
 
 // medium-line8:
 // DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
