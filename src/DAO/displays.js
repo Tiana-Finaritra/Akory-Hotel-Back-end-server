@@ -354,11 +354,12 @@ export const getRoomsDetailsByOccupedGivenGuest = async ({ customer_name, custom
 }
 
 
-// easy-line16:
+// easy-line16/17:
+// GENERALISE::::::::
 // SHOW THE HOTEL WITH THE MOST RESERVATIONS
-export const getHotelWithTheMostRes = async () => {
+export const getHotelWithTheNumberRes = async () => {
     try {
-        const HotelWithTheMostResQ = `
+        const HotelWithTheNumberResQ = `
         -->
             SELECT h.name, COUNT(*) AS total_reservations
             FROM hotel h
@@ -367,7 +368,7 @@ export const getHotelWithTheMostRes = async () => {
             GROUP BY h.name ORDER BY total_reservations DESC LIMIT 1;
                                             -->
         `
-        return db.query(HotelWithTheMostResQ);
+        return db.query(HotelWithTheNumberResQ);
     } catch {
         console.log(err);
         throw new Error(err.message);

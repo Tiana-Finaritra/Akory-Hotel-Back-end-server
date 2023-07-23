@@ -5,7 +5,9 @@ import {
   , getCurrentPrommotionsList
   , getCurrentlyOccupiedRoomsList
   , getCustomersListNotPaidFullFees, getHotelAndNumberOfRooms
-  , getHotelWithTheMostRes, getHotelsListByProvince, getHotelsListContainsRoomByBeutures
+  , getHotelWithTheNumberRes
+  , getHotelsListByProvince
+  , getHotelsListContainsRoomByBeutures
   , getLeastMostReservedRoomByHotel
   , getOffersBySeasonAnDHotel
   , getReceptionistsListInWhichHotel
@@ -156,11 +158,12 @@ router.get("/RoomsDetailsByOccupedGivenGuest", (req, res) => {
 });
 
 
-// easy-line16:
+// easy-line16/17:
+// GENERALISE::::::::
 // SHOW THE HOTEL WITH THE MOST RESERVATIONS
-router.get("/HotelWithTheMostRes", (req, res) => {
-  // FOR TEST: http://localhost:8000/HotelWithTheMostRes
-  handlePromise(getHotelWithTheMostRes(), res);
+router.get("/HotelWithTheNumberRes", (req, res) => {
+  // FOR TEST: http://localhost:8000/HotelWithTheNumberRes
+  handlePromise(getHotelWithTheNumberRes(), res);
 });
 
 
