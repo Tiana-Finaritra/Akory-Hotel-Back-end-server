@@ -2,9 +2,14 @@ import express, { Router } from "express";
 import { handlePromise } from "./promiseHandler.js";
 import {
   getAllRoomsByTypeAndHotelName
-  , getAnaliseBeneficPromotion, getAverageResNumberDaysByHotel, getBookingNumberByCustomer, getCollectedPayForAllHotelsByYear, getCurrentPrommotionsList
+  , getAnaliseBeneficPromotion
+  , getAverageResNumberDaysByHotel
+  , getAverageResNumberMonthsByHotelAndYear, getBookingNumberByCustomer
+  , getCollectedPayForAllHotelsByYear
+  , getCurrentPrommotionsList
   , getCurrentlyOccupiedRoomsList
-  , getCustomerListWithResCancelNumber, getCustomersListNotPaidFullFees
+  , getCustomerListWithResCancelNumber
+  , getCustomersListNotPaidFullFees
   , getCustomersNegCommentForHotel
   , getHotelAndNumberOfRooms
   , getHotelWithTheNumberRes
@@ -12,7 +17,8 @@ import {
   , getHotelsListContainsRoomByBeutures
   , getLeastMostReservedRoomByHotel
   , getOffersBySeasonAnDHotel
-  , getPayementListAllInfo, getReceptionistsListInWhichHotel
+  , getPayementListAllInfo
+  , getReceptionistsListInWhichHotel
   , getResNumberByCustomerAndPeriod
   , getReservationListDescByHotel
   , getReservationOfGivenCustomer
@@ -334,6 +340,17 @@ router.get("/AnaliseBeneficPromotion", (req, res) => {
   // FOR TEST: http://localhost:8000/AnaliseBeneficPromotion
   handlePromise(getAnaliseBeneficPromotion(), res);
 });
+
+
+// hard-line12:
+// DISPLAY THE AVERAGE NUMBER OF RESERVATIONS PER HOTEL FOR EACH MONTH OF A GIVEN YEAR 
+router.get("/AverageResNumberMonthsByHotelAndYear", (req, res) => {
+  // FOR TEST: http://localhost:8000/AverageResNumberMonthsByHotelAndYear
+  const year = "2023";
+  // const year = req.body;
+  handlePromise(getAverageResNumberMonthsByHotelAndYear({year}), res);
+});
+
 
 // hard-line13:
 // DISPLAY AVERAGE NUMBER OF RESERVATIONS PER HOTEL, PER DAY, ALL PERIODS COMBINED
