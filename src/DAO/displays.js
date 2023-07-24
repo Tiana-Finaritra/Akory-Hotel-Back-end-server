@@ -12,37 +12,10 @@ export const generalDisplay = (query, params) => {
     }
 }
 
-// easy-line9:
-// DISPLAY THE NUMBER OF RESERVATIONS MADE BY A GIVEN CUSTOMER DURING A GINVEN PERIOD
-const getResNumberByCustomerAndPeriod = async ({ customer_name, period }) => {
-    try {
-        const ResNumberByCustomerAndPeriodQ = `
-        -->
-            SELECT c.name, c.principal_contact, c.gender, c.cin, 
-            COUNT(*) AS total_reservation FROM customer c 
-            INNER JOIN reservation r ON r.id_customer = c.id 
-            WHERE c.name = $1 
-            AND r.date_arrived = $2 
-            GROUP BY c.name, c.principal_contact, c.gender, c.cin;
-                                            -->
-        `
-        return db.query(ResNumberByCustomerAndPeriodQ, [customer_name, period]);
-    } catch (err) {
-        console.log(err);
-        throw new Error(err.message);
-    }
-}
-
 // easy-line10:
-// DISPLAY THE LIST OF HOTELS IN A GIVEN LOCATION (PROVINCE)
 const getHotelsListByProvince = async ({ province }) => {
     try {
-        const HotelsListByProvinceQ = `
-        --->
-            SELECT * FROM "hotel" INNER JOIN province_available p ON id_province = p.id 
-            WHERE p.province_name = $1;
-                                            --->
-        `
+
         return db.query(HotelsListByProvinceQ, [province]);
     } catch (err) {
         console.log(err);
