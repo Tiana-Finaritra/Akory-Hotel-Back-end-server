@@ -43,7 +43,7 @@ import AverageResNumberDaysByHotelQ from "./3-hard/hard-line13.js";
 import provinceQ from "../allInsert/1-province.js";
 import hotelQ from "../allInsert/2-hotel.js";
 
-
+ 
 let queries;
 
 export default queries = {
