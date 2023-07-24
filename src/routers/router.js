@@ -1,9 +1,14 @@
-import express from "express";
+import express, { Router } from "express";
+import getHotelFunction from "./get/get.hotel.js";
+import getElemtFunction from "./get/getById.js";
+import updateFunction from "./update/putbyId.js";
 import getHotelFunction from "./get/get.hotel.js";
 import insertFunction from "./post/post.js";
+
 export const router = express.Router();
 // EASY-LINES:
 // -------------------------------------------------------------------------------------------------
+
 router.get("/ReceptionistsListInWhichHotel", getHotelFunction.getReceptionistsListInWhichHotel);
 
 // easy-line3:
@@ -151,7 +156,50 @@ router.get("/AverageResNumberDaysByHotel", getHotelFunction.getAverageResNumberD
 
 // POSTS===============================================================
 // Insertion for new province
+router.post("/province", (req, res) => {
+  // FOR TEST: http://localhost:8000/province
+  const data =  req.body;
+  handlePromiseInsertion(allInsert.addProvinceAvailable(data), res)
+});
+
+// ----------------------------------------------------------------------------------------------------------
+// GET ELEMENT BY ID
+router.get("/province/:id", getElemtFunction.getProvinceAvailableById);
+
+router.get("/hotel/:id", getElemtFunction.getHotelById);
+
+router.get("/receptionist/:id", getElemtFunction.getReceptionistById);
+
+router.get("/customer/:id", getElemtFunction.getCustomerById);
+
+router.get("/customerstatus/:id", getElemtFunction.getCustomerStatusById);
+
+router.get("/service/:id", getElemtFunction.getServiceById);
+
+router.get("/season/:id", getElemtFunction.getSeasonById);
+
+router.get("/price/:id", getElemtFunction.getPriceById);
+
+router.get("/roomfeatures/:id", getElemtFunction.getRoomFeaturesById);
+
+router.get("/room/:id", getElemtFunction.getRoomById);
+
+router.get("/paymentmethod/:id", getElemtFunction.getPaymentMethodById);
+
+router.get("/payment/:id", getElemtFunction.getPaymentById);
+
+router.get("/affilate/:id", getElemtFunction.getAffilateById);
+
+router.get("/buy/:id", getElemtFunction.getBuyById);
+
+router.get("/feedback/:id", getElemtFunction.getFeedbackById);
+
+// ----------------------------------------------------------------------------------------------------------
+// UPDATE
+router.put("/province/:id", updateFunction.updateProvinceAvailable);
+
 router.post("/province", insertFunction.newProvince);
 
 // Insertion for new hotel
 router.post("/hotel", insertFunction.newHotel);
+

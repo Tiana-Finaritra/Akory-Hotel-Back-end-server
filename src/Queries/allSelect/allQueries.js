@@ -39,10 +39,10 @@ import TotalConferencePaymentInIntervalDateQ from "./3-hard/hard-line7.js";
 import AnaliseBeneficPromotionQ from "./3-hard/hard-line9.js";
 import AverageResNumberMonthsByHotelAndYearQ from "./3-hard/hard-line12.js";
 import AverageResNumberDaysByHotelQ from "./3-hard/hard-line13.js";
+
 // INSERTS:
 import provinceQ from "../allInsert/1-province.js";
 import hotelQ from "../allInsert/2-hotel.js";
-
  
 let queries;
 

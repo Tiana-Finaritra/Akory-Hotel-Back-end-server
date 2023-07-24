@@ -1,6 +1,6 @@
 import { handlePromise } from "../promiseHandler.js";
 import queries from "../../Queries/allSelect/allQueries.js";
-import {generalDisplay} from "../../DAO/displays.js";
+import { generalDisplay } from "../../DAO/displays.js";
 
 let getHotelFunction;
  

@@ -17,3 +17,12 @@ export const handlePromiseInsertion = async (promise, res) => {
     res.status(500).json({error: error.message});
   }
 }
+
+export const handlePromiseUpdate = async (promise, res) => {
+  try {
+    const result = await promise;
+    res.status(202).json(result);
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
+}
