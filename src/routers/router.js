@@ -1,6 +1,7 @@
 import express, { Router } from "express";
 import { handlePromise, handlePromiseInsertion } from "./promiseHandler.js";
 import allInsert from "../DAO/insertions.js";
+import { getHotel } from "./get/get.hotel.js";
 import {
   getAllRoomsByTypeAndHotelName
   , getAnaliseBeneficPromotion
@@ -43,7 +44,9 @@ export const router = express.Router();
 
 
 // EASY-LINES:
-// ------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
+router.get("/ReceptionistsListInWhichHotel", getHotel);
+
 
 // easy-line3:
 // DISPLAY THE LIST OF RESERVATIONS STARTING WITH THE MOST RECENT FOR A GIVEN HOTEL
