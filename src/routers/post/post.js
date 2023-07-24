@@ -16,7 +16,15 @@ const newHotel = (req, res) => {
     handlePromiseInsertion(generalPost(queries.hotelQ, [name, address, id_province ]), res);
 }
 
+// New season:
+const newSeason = (req, res) => {
+    const { items, start_date, end_date } = req.body;
+    handlePromiseInsertion(generalPost(queries.seasonQ, [ items, start_date, end_date ]), res);
+}
+
+
 export default insertFunction = {
     newProvince,
     newHotel,
+    newSeason
 }
