@@ -1,23 +1,19 @@
 import { handlePromise } from "../promiseHandler.js";
-import allDisplay from "../../DAO/displays.js";
+import queries from "../../Queries/allSelect/allQueries.js";
+import {generalDisplay} from "../../DAO/displays.js";
 
 let getHotelFunction;
-
-// EASY-LINES:
-// ------------------------------------------------------------------------------------------------------------------------
-// easy-line2:
-// DISPLAY THE LIST OF RECEPTIONISTS WITH THE HOTEL TO WHICH THEY ARE ATTACHED 
+ 
 const getReceptionistsListInWhichHotel = (req, res) => {
     // FOR TEST: http://localhost:8000/ReceptionistsListInWhichHotel
-    handlePromise(allDisplay.getReceptionistsListInWhichHotel(), res);
+    handlePromise(generalDisplay(queries.ReceptionistsListInWhichHotelQ), res);
 }
 
 const getReservationListDescByHotel = (req, res) => {
     // FOR TEST: http://localhost:8000/ReservationListDescByHotel
     const hotel_name = "Grand Hotel";
     // const hotel_name = req.body;
-    handlePromise(allDisplay.getReservationListDescByHotel({ hotel_name }), res);
-
+    handlePromise(generalDisplay(queries.ReservationListDescByHotelQ, hotel_name), res);
 }
 
 const getAllRoomsByTypeAndHotelName = (req, res) => {
@@ -25,29 +21,29 @@ const getAllRoomsByTypeAndHotelName = (req, res) => {
     const room_type = "double";
     const hotel_id = 80;
     // const {room_type, hotel_id} = req.body;
-    handlePromise(allDisplay.getAllRoomsByTypeAndHotelName({ room_type, hotel_id }), res);
+    handlePromise(generalDisplay(queries.AllRoomsByTypeAndHotelNameQ, [room_type, hotel_id]), res);
 }
 
 const getOffersBySeasonAnDHotel = (req, res) => {
     //FOR TEST: http://localhost:8000/OffersBySeasonAnDHotel
-    handlePromise(allDisplay.getOffersBySeasonAnDHotel(), res);
+    handlePromise(generalDisplay(queries.OffersBySeasonAnDHotelQ), res);
 }
 
 const getReservationOfGivenCustomer = (req, res) => {
     // FOR TEST: http://localhost:8000/ReservationOfGivenCustomer
     // const customer_id = req.body;
     const customer_id = 79;
-    handlePromise(allDisplay.getReservationOfGivenCustomer({ customer_id }), res);
+    handlePromise(generalDisplay(queries.ReservationOfGivenCustomerQ, [customer_id]), res);
 }
 
 const getCustomersListNotPaidFullFees = (req, res) => {
     // FOR TEST: http://localhost:8000/CustomersListNotPaidFullFees
-    handlePromise(allDisplay.getCustomersListNotPaidFullFees(), res);
+    handlePromise(generalDisplay(queries.CustomersNegCommentForHotelQ), res);
 }
 
 const getTotalPayReceidByGivenMethod = (req, res) => {
     // FOR TEST: http://localhost:8000/TotalPayReceidByGivenMethod
-    handlePromise(allDisplay.getTotalPayReceidByGivenMethod(), res);
+    handlePromise(generalDisplay(queries.TotalPayReceidByGivenMethodQ), res);
 }
 
 const getResNumberByCustomerAndPeriod = (req, res) => {
@@ -55,14 +51,14 @@ const getResNumberByCustomerAndPeriod = (req, res) => {
     const customer_name = "Mason";
     const period = "2023-07-15 10:00:00";
     // const {customer_name, period} = req.body;
-    handlePromise(allDisplay.getResNumberByCustomerAndPeriod({ customer_name, period }), res);
+    handlePromise(generalDisplay(queries.ResNumberByCustomerAndPeriodQ, [customer_name, period]), res);
 }
 
 const getHotelsListByProvince = (req, res) => {
     // FOR TEST: http://localhost:8000/HotelsListByProvince
     // const {provice} = req.body;
     const province = "Antananarivo";
-    handlePromise(allDisplay.getHotelsListByProvince({ province }), res);
+    handlePromise(generalDisplay(queries.HotelsListByProvinceQ, [province]), res);
 }
 
 const getRoomsListByPriceInterval = (req, res) => {
@@ -70,26 +66,26 @@ const getRoomsListByPriceInterval = (req, res) => {
     // const {min_price, max_price} = req.body;
     const min_price = 12100;
     const max_price = 12200;
-    handlePromise(allDisplay.getRoomsListByPriceInterval({ min_price, max_price }), res);
+    handlePromise(generalDisplay(queries.RoomsListByPriceIntervalQ, [min_price, max_price]), res);
 }
 
 const getRoomsListByDescPrice = (req, res) => {
     // FOR TEST: http://localhost:8000/RoomsListByDescPrice
-    handlePromise(allDisplay.getRoomsListByDescPrice(), res);
+    handlePromise(generalDisplay(queries.RoomsListByDescPriceQ), res);
 }
 
 const getRoomsListByFeatures = (req, res) => {
     // FOR TEST: http://localhost:8000/RoomsListByFeatures
     let keyword = "VIP";
     // let keyword = req.body;
-    handlePromise(allDisplay.getRoomsListByFeatures({ keyword }), res);
+    handlePromise(generalDisplay(queries.RoomsListByFeaturesQ, [keyword]), res);
 }
 
 const getHotelsListContainsRoomByBeutures = (req, res) => {
     //FOR TEST: http://localhost:8000/HotelsListContainsRoomByBeutures
     let keyword = "VIP";
     // let keyword = req.body;
-    handlePromise(allDisplay.getHotelsListContainsRoomByBeutures({ keyword }), res);
+    handlePromise(generalDisplay(queries.HotelsListContainsRoomByBeuturesQ, [keyword]), res);
 }
 
 const getRoomsDetailsByOccupedGivenGuest = (req, res) => {
@@ -97,93 +93,91 @@ const getRoomsDetailsByOccupedGivenGuest = (req, res) => {
     let customer_name = "William";
     let customer_id = 78;
     // let {customer_name, customer_id} = req.body;
-    handlePromise(allDisplay.getRoomsDetailsByOccupedGivenGuest({ customer_name, customer_id }), res);
+    handlePromise(generalDisplay(queries.RoomsDetailsByOccupedGivenGuestQ, [customer_name, customer_id]), res);
 }
 
 const getHotelWithTheNumberRes = (req, res) => {
     // FOR TEST: http://localhost:8000/HotelWithTheNumberRes
-    handlePromise(allDisplay.getHotelWithTheNumberRes(), res);
+    handlePromise(generalDisplay(queries.HotelWithTheNumberResQ), res);
 }
 
 const getCustomersNegCommentForHotel = (req, res) => {
     // FOR TEST: http://localhost:8000/CustomersNegCommentForHotel
-    handlePromise(allDisplay.getCustomersNegCommentForHotel(), res);
+    handlePromise(generalDisplay(queries.CustomersNegCommentForHotelQ), res);
 }
 
 const getBookingNumberByCustomer = (req, res) => {
     // FOR TEST: http://localhost:8000/BookingNumberByCustomer
     const customer_id = 45;
     // const customer_id = req.body;
-    handlePromise(allDisplay.getBookingNumberByCustomer({ customer_id }), res);
+    handlePromise(generalDisplay(queries.BookingNumberByCustomerQ, [customer_id]), res);
 }
 
 const getRoomsListAvailableTommorow = (req, res) => {
     // FOR TEST: http://localhost:8000/RoomsListAvailableTommorow
-    handlePromise(allDisplay.getRoomsListAvailableTommorow(), res);
+    handlePromise(generalDisplay(queries.RoomsListAvailableTommorowQ), res);
 }
 
 const getTotalResNumberByRoomType = (req, res) => {
     // FOR TEST: http://localhost:8000/TotalResNumberByRoomType
-    handlePromise(allDisplay.getTotalResNumberByRoomType(), res);
+    handlePromise(generalDisplay(queries.TotalResNumberByRoomTypeQ), res);
 }
 
 const getRoomsByMultipleCriteria = (req, res) => {
     // FOR TEST: http://localhost:8000/RoomsByMultipleCriteria
-    const criteria = {
-      sea_view: true,
-      vip_category: true,
-      hot_water: true,
-      wifi_available: false,
-      room_service: true,
-      mini_bar: true,
-      flat_screen: false,
-    };
+      const sea_view = true;
+      const vip_category = true;
+      const hot_water = true;
+      const wifi_available = false;
+      const room_service = true;
+      const mini_bar = true;
+      const flat_screen = false;
     // const criteria = req.body;
-    handlePromise(allDisplay.getRoomsByMultipleCriteria(criteria), res);
+    handlePromise(generalDisplay(queries.RoomsByMultipleCriteriaQ, [sea_view, vip_category, hot_water, wifi_available, room_service, mini_bar, flat_screen]), res);
 }
 
 const getTotalResForHotel = (req, res) => {
     // FOR TEST: http://localhost:8000/TotalResForHotel
-    handlePromise(allDisplay.getTotalResForHotel(), res);
+    handlePromise(generalDisplay(queries.TotalResForHotelQ), res);
 }
 
 const getCustomerListWithResCancelNumber = (req, res) => {
     // FOR TEST: http://localhost:8000/CustomerListWithResCancelNumber
-    handlePromise(allDisplay.getCustomerListWithResCancelNumber(), res);
+    handlePromise(generalDisplay(queries.CustomerListWithResCancelNumberQ), res);
 }
 
 const getHotelAndNumberOfRooms = (req, res) => {
     // for test: http://localhost:8000/HotelAndNumberOfRooms
-    handlePromise(allDisplay.getHotelAndNumberOfRooms(), res);
+    handlePromise(generalDisplay(queries.HotelAndNumberOfRoomsQ), res);
 }
 
 const getCurrentlyOccupiedRoomsList = (req, res) => {
     // FOR TEST: http://localhost:8000/CurrentyOccupiedRoomsList
-    handlePromise(allDisplay.getCurrentlyOccupiedRoomsList(), res);
+    handlePromise(generalDisplay(queries.CurrentlyOccupiedRoomsListQ), res);
 }
 
 const getLeastMostReservedRoomByHotel = (req, res) => {
     // FOR TEST: http://localhost:8000/LeastMostReservedRoomByHotel
     let hotel_name = "Tranquil Bay Resort";
     // const hotel_name = req.body;
-    handlePromise(allDisplay.getLeastMostReservedRoomByHotel(hotel_name), res);
+    handlePromise(generalDisplay(queries.LeastMostReservedRoomByHotelQ, [hotel_name]), res);
 }
 
 const getCurrentPrommotionsList = (req, res) => {
     // FOR TEST: http://localhost:8000/CurrentPrommotionsList
-    handlePromise(allDisplay.getCurrentPrommotionsList(), res);
+    handlePromise(generalDisplay(queries.CurrentPrommotionsListQ), res);
 }
 
 const getPayementListAllInfo = (req, res) => {
     // FOR TEST: http://localhost:8000/PayementListAllInfo
-    handlePromise(allDisplay.getPayementListAllInfo(), res);
+    handlePromise(generalDisplay(queries.PayementListAllInfoQ), res);
 }
 
 const getCollectedPayForAllHotelsByYear = (req, res) => {
     // FOR TEST: http://localhost:8000/CollectedPayForAllHotelsByYear
     const year = '2023';
     // const year = '2023';
-    handlePromise(allDisplay.getCollectedPayForAllHotelsByYear({ year }), res);
+    handlePromise(generalDisplay(queries.CollectedPayForAllHotelsByYearQ, [year]), res);
 }
 
 const getTotalPayForRoomsHotel = (req, res) => {
@@ -191,7 +185,7 @@ const getTotalPayForRoomsHotel = (req, res) => {
     const start_period = "2000-08-01";
     const end_period = "2025-12-30";
     // const { start_period, end_period } = req.params;
-    handlePromise(allDisplay.getTotalPayForRoomsHotel({ start_period, end_period }), res);
+    handlePromise(generalDisplay(queries.TotalPayForRoomsHotelsQ, [start_period, end_period]), res);
 }
 
 const getTotalConferencePaymentInIntervalDate = (req, res) => {
@@ -200,24 +194,24 @@ const getTotalConferencePaymentInIntervalDate = (req, res) => {
     const end_period = "2025-12-30";
     const room_type = "communicante";
     // const { start_period, end_period, room_type } = req.body;
-    handlePromise(allDisplay.getTotalConferencePaymentInIntervalDate({ start_period, end_period, room_type }), res);
+    handlePromise(generalDisplay(queries.TotalConferencePaymentInIntervalDateQ, [start_period, end_period, room_type]), res);
 }
 
 const getAnaliseBeneficPromotion = (req, res) => {
     // FOR TEST: http://localhost:8000/AnaliseBeneficPromotion
-    handlePromise(allDisplay.getAnaliseBeneficPromotion(), res);
+    handlePromise(generalDisplay(queries.AnaliseBeneficPromotionQ), res);
 }
 
 const getAverageResNumberMonthsByHotelAndYear = (req, res) => {
     // FOR TEST: http://localhost:8000/AverageResNumberMonthsByHotelAndYear
     const year = "2023";
     // const year = req.body;
-    handlePromise(allDisplay.getAverageResNumberMonthsByHotelAndYear({year}), res);
+    handlePromise(generalDisplay(queries.AverageResNumberMonthsByHotelAndYearQ, [year]), res);
 }
 
 const getAverageResNumberDaysByHotel = (req, res) => {
     // FOR TEST: http://localhost:8000/AverageResNumberDaysByHotel
-    handlePromise(allDisplay.getAverageResNumberDaysByHotel(), res);
+    handlePromise(generalDisplay(queries.AverageResNumberDaysByHotelQ), res);
 }
 
 export default getHotelFunction = {
@@ -253,4 +247,5 @@ export default getHotelFunction = {
     getRoomsDetailsByOccupedGivenGuest,
     getHotelWithTheNumberRes,
     getCustomersNegCommentForHotel,
+    getAnaliseBeneficPromotion,
   }

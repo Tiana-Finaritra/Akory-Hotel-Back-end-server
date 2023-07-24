@@ -1,10 +1,6 @@
 
 import express, { Router } from "express";
-import { handlePromise, handlePromiseInsertion } from "./promiseHandler.js";
-import allInsert from "../DAO/insertions.js";
 import getHotelFunction from "./get/get.hotel.js";
-import allDisplay from "../DAO/displays.js";
-
 
 export const router = express.Router();
 
@@ -168,7 +164,7 @@ router.get("/TotalConferencePaymentInIntervalDate", getHotelFunction.getTotalCon
 // hard-line9:
 // FOR EACH PROMOTION, DISPLAY THE TOTAL NUMBER OF RESERVATIONS THAT BENEFITED FROM THE PROMOTION, BY HOTEL
 // (TO KNOW IF IT WORKED OR NOT)
-// router.get("/AnaliseBeneficPromotion", getHotelFunction.getAnaliseBeneficPromotion);
+router.get("/AnaliseBeneficPromotion", getHotelFunction.getAnaliseBeneficPromotion);
 
 
 // hard-line12:
@@ -179,7 +175,6 @@ router.get("/AverageResNumberMonthsByHotelAndYear", getHotelFunction.getAverageR
 // hard-line13:
 // DISPLAY AVERAGE NUMBER OF RESERVATIONS PER HOTEL, PER DAY, ALL PERIODS COMBINED
 router.get("/AverageResNumberDaysByHotel", getHotelFunction.getAverageResNumberDaysByHotel);
-
 
 // Insertion for new province
 router.post("/province", (req, res) => {
