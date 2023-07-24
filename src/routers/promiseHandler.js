@@ -17,3 +17,14 @@ export const handlePromiseInsertion = async (promise, res) => {
     res.status(500).json({error: error.message});
   }
 }
+
+export const handlePromiseUpdate = async (promise, res) => {
+  promise
+    .then((data) => {
+      res.status(202).json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("Server Error");
+    });
+}
