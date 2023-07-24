@@ -2,7 +2,6 @@ import express, { Router } from "express";
 import getHotelFunction from "./get/get.hotel.js";
 import getElemtFunction from "./get/getById.js";
 import updateFunction from "./update/putbyId.js";
-import getHotelFunction from "./get/get.hotel.js";
 import insertFunction from "./post/post.js";
 
 export const router = express.Router();
@@ -198,8 +197,9 @@ router.get("/feedback/:id", getElemtFunction.getFeedbackById);
 // UPDATE
 router.put("/province/:id", updateFunction.updateProvinceAvailable);
 
-router.post("/province", insertFunction.newProvince);
+router.put("/hotel/:id", updateFunction.updateHotel);
 
 // Insertion for new hotel
 router.post("/hotel", insertFunction.newHotel);
 
+router.post("/province", insertFunction.newProvince);
