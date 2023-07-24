@@ -19,12 +19,10 @@ export const handlePromiseInsertion = async (promise, res) => {
 }
 
 export const handlePromiseUpdate = async (promise, res) => {
-  promise
-    .then((data) => {
-      res.status(202).json(data);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send("Server Error");
-    });
+  try {
+    const result = await promise;
+    res.status(202).json(result);
+  } catch (error) {
+    res.status(500).json({error: error.message});
+  }
 }
