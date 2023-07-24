@@ -28,17 +28,16 @@ const updateProvinceAvailable = (req, res) => {
             if (new_code){
                 final_code = new_code;
             }
-
-            console.log(
-                id,
-                final_name,
-                final_code
-            );
             handlePromiseUpdate(generalUpdate(queriesUp.updateProvinceAvailable, [id, final_name, final_code]), res);
         }
     });
 }
 
+const updateHotel = (req, res) => {
+    
+}
+
 export default updateFunction = {
     updateProvinceAvailable,
+    updateHotel,
 }
