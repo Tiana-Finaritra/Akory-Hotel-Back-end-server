@@ -43,10 +43,7 @@ import AverageResNumberDaysByHotelQ from "./3-hard/hard-line13.js";
 // INSERTS:
 import provinceQ from "../allInsert/1-province.js";
 import hotelQ from "../allInsert/2-hotel.js";
-<<<<<<< HEAD
-=======
 import seasonQ from "../allInsert/3-season.js";
->>>>>>> d1e68cd (feat: "season")
  
 
 let queries;
@@ -88,11 +85,6 @@ export default queries = {
   AverageResNumberDaysByHotelQ,
   // INSERTS:
   provinceQ,
-<<<<<<< HEAD
-  hotelQ
-};
-=======
   hotelQ,
   seasonQ
 };
->>>>>>> d1e68cd (feat: "season")
