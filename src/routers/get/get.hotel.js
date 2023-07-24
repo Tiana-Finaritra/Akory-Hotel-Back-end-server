@@ -17,6 +17,7 @@ const getReservationListDescByHotel = (req, res) => {
     const hotel_name = "Grand Hotel";
     // const hotel_name = req.body;
     handlePromise(allDisplay.getReservationListDescByHotel({ hotel_name }), res);
+
 }
 
 const getAllRoomsByTypeAndHotelName = (req, res) => {
@@ -252,4 +253,4 @@ export default getHotelFunction = {
     getRoomsDetailsByOccupedGivenGuest,
     getHotelWithTheNumberRes,
     getCustomersNegCommentForHotel,
-}
+  }
