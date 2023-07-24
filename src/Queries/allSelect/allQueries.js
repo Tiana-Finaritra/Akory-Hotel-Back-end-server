@@ -1,3 +1,11 @@
+/**
+ * Importation of All queries in each file
+ * and putting it in one object (here: queries)
+ * to facilitate impotation in other file (
+ * such: get.hotel.js; post.js,...).
+ */
+
+// SELECTS:
 import ReceptionistsListInWhichHotelQ from "./1-easy/easy-line2.js";
 import ReservationListDescByHotelQ from "./1-easy/easy-line3.js";
 import AllRoomsByTypeAndHotelNameQ from "./1-easy/easy-line4.js";
@@ -32,9 +40,14 @@ import AnaliseBeneficPromotionQ from "./3-hard/hard-line9.js";
 import AverageResNumberMonthsByHotelAndYearQ from "./3-hard/hard-line12.js";
 import AverageResNumberDaysByHotelQ from "./3-hard/hard-line13.js";
 
+// INSERTS:
+import provinceQ from "../allInsert/1-province.js";
+import hotelQ from "../allInsert/2-hotel.js";
+ 
 let queries;
 
 export default queries = {
+  // SELECTS:
   ReceptionistsListInWhichHotelQ,
   ReservationListDescByHotelQ,
   AllRoomsByTypeAndHotelNameQ,
@@ -68,4 +81,7 @@ export default queries = {
   AnaliseBeneficPromotionQ,
   AverageResNumberMonthsByHotelAndYearQ,
   AverageResNumberDaysByHotelQ,
+  // INSERTS:
+  provinceQ,
+  hotelQ
 };
