@@ -5,7 +5,8 @@ import {
   getAllRoomsByTypeAndHotelName
   , getAnaliseBeneficPromotion
   , getAverageResNumberDaysByHotel
-  , getAverageResNumberMonthsByHotelAndYear, getBookingNumberByCustomer
+  , getAverageResNumberMonthsByHotelAndYear
+  , getBookingNumberByCustomer
   , getCollectedPayForAllHotelsByYear
   , getCurrentPrommotionsList
   , getCurrentlyOccupiedRoomsList
@@ -43,12 +44,6 @@ export const router = express.Router();
 
 // EASY-LINES:
 // ------------------------------------------------------------------------------------------------------------------------
-// easy-line2:
-// DISPLAY THE LIST OF RECEPTIONISTS WITH THE HOTEL TO WHICH THEY ARE ATTACHED 
-router.get("/ReceptionistsListInWhichHotel", (req, res) => {
-  // FOR TEST: http://localhost:8000/ReceptionistsListInWhichHotel
-  handlePromise(getReceptionistsListInWhichHotel(), res);
-})
 
 // easy-line3:
 // DISPLAY THE LIST OF RESERVATIONS STARTING WITH THE MOST RECENT FOR A GIVEN HOTEL
