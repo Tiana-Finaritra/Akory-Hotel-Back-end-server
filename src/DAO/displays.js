@@ -1,5 +1,6 @@
 import { db } from "../database.js";
 
+let allDisplay;
 
 // EASY-LINES:
 // -------------------------------------------------------------------------------------------------------------------
@@ -792,3 +793,39 @@ export const getAverageResNumberDaysByHotel =   async () => {
         throw new Error(err.message);
     }
 }
+
+export default allDisplay = {
+    getAllRoomsByTypeAndHotelName
+    , getAnaliseBeneficPromotion
+    , getAverageResNumberDaysByHotel
+    , getAverageResNumberMonthsByHotelAndYear
+    , getBookingNumberByCustomer
+    , getCollectedPayForAllHotelsByYear
+    , getCurrentPrommotionsList
+    , getCurrentlyOccupiedRoomsList
+    , getCustomerListWithResCancelNumber
+    , getCustomersListNotPaidFullFees
+    , getCustomersNegCommentForHotel
+    , getHotelAndNumberOfRooms
+    , getHotelWithTheNumberRes
+    , getHotelsListByProvince
+    , getHotelsListContainsRoomByBeutures
+    , getLeastMostReservedRoomByHotel
+    , getOffersBySeasonAnDHotel
+    , getPayementListAllInfo
+    , getReceptionistsListInWhichHotel
+    , getResNumberByCustomerAndPeriod
+    , getReservationListDescByHotel
+    , getReservationOfGivenCustomer
+    , getRoomsByMultipleCriteria
+    , getRoomsDetailsByOccupedGivenGuest
+    , getRoomsListAvailableTommorow
+    , getRoomsListByDescPrice
+    , getRoomsListByFeatures
+    , getRoomsListByPriceInterval
+    , getTotalConferencePaymentInIntervalDate
+    , getTotalPayForRoomsHotel
+    , getTotalPayReceidByGivenMethod
+    , getTotalResForHotel
+    , getTotalResNumberByRoomType
+  }

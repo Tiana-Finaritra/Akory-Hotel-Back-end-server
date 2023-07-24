@@ -1,43 +1,8 @@
 import express, { Router } from "express";
 import { handlePromise, handlePromiseInsertion } from "./promiseHandler.js";
 import allInsert from "../DAO/insertions.js";
-import { getHotel } from "./get/get.hotel.js";
-import {
-  getAllRoomsByTypeAndHotelName
-  , getAnaliseBeneficPromotion
-  , getAverageResNumberDaysByHotel
-  , getAverageResNumberMonthsByHotelAndYear
-  , getBookingNumberByCustomer
-  , getCollectedPayForAllHotelsByYear
-  , getCurrentPrommotionsList
-  , getCurrentlyOccupiedRoomsList
-  , getCustomerListWithResCancelNumber
-  , getCustomersListNotPaidFullFees
-  , getCustomersNegCommentForHotel
-  , getHotelAndNumberOfRooms
-  , getHotelWithTheNumberRes
-  , getHotelsListByProvince
-  , getHotelsListContainsRoomByBeutures
-  , getLeastMostReservedRoomByHotel
-  , getOffersBySeasonAnDHotel
-  , getPayementListAllInfo
-  , getReceptionistsListInWhichHotel
-  , getResNumberByCustomerAndPeriod
-  , getReservationListDescByHotel
-  , getReservationOfGivenCustomer
-  , getRoomsByMultipleCriteria
-  , getRoomsDetailsByOccupedGivenGuest
-  , getRoomsListAvailableTommorow
-  , getRoomsListByDescPrice
-  , getRoomsListByFeatures
-  , getRoomsListByPriceInterval
-  , getTotalConferencePaymentInIntervalDate
-  , getTotalPayForRoomsHotel
-  , getTotalPayReceidByGivenMethod
-  , getTotalResForHotel
-  , getTotalResNumberByRoomType
-}
-  from "../DAO/displays.js";
+import getHotelFunction from "./get/get.hotel.js";
+import allDisplay from "../DAO/displays.js";
 
 
 export const router = express.Router();
@@ -45,18 +10,12 @@ export const router = express.Router();
 
 // EASY-LINES:
 // --------------------------------------------------------------------------------
-router.get("/ReceptionistsListInWhichHotel", getHotel);
+router.get("/ReceptionistsListInWhichHotel", getHotelFunction.getReceptionistsListInWhichHotel);
 
 
 // easy-line3:
 // DISPLAY THE LIST OF RESERVATIONS STARTING WITH THE MOST RECENT FOR A GIVEN HOTEL
-router.get("/ReservationListDescByHotel", (req, res) => {
-  // FOR TEST: http://localhost:8000/ReservationListDescByHotel
-
-  const hotel_name = "Mountain View Hotel";
-  // const hotel_name = req.body;
-  handlePromise(getReservationListDescByHotel({ hotel_name }), res);
-});
+router.get("/ReservationListDescByHotel", getHotelFunction.getReservationListDescByHotel);
 
 // easy-line4:
 // LIST OF ROOM TYPE GIVE AND HOTEL GIVE
