@@ -1,11 +1,12 @@
 import { db } from "../database.js";
 
+let allDisplay;
 
 // EASY-LINES:
 // -------------------------------------------------------------------------------------------------------------------
 // easy-line2:
 // DISPLAY THE LIST OF RECEPTIONISTS WITH THE HOTEL TO WHICH THEY ARE ATTACHED 
-export const getReceptionistsListInWhichHotel = async () => {
+const getReceptionistsListInWhichHotel = async () => {
     try {
         const ReceptionistsListInWhichHotelQ = `
         -->
@@ -24,7 +25,7 @@ export const getReceptionistsListInWhichHotel = async () => {
 
 // easy-line3:
 // DISPLAY THE LIST OF RESERVATIONS STARTING WITH THE MOST RECENT FOR A GIVEN HOTEL
-export const getReservationListDescByHotel = async ({ hotel_name }) => {
+const getReservationListDescByHotel = async ({ hotel_name }) => {
     try {
         const ReservationListDescByHotelQ = `
         -->
@@ -45,7 +46,7 @@ export const getReservationListDescByHotel = async ({ hotel_name }) => {
 
 // easy-line4:
 // LIST OF ROOM TYPE GIVE AND HOTEL GIVE
-export const getAllRoomsByTypeAndHotelName = async ({ room_type, hotel_id }) => {
+const getAllRoomsByTypeAndHotelName = async ({ room_type, hotel_id }) => {
     try {
         const AllRoomsByTypeAndHotelNameQ = `
         --> 
@@ -63,7 +64,7 @@ export const getAllRoomsByTypeAndHotelName = async ({ room_type, hotel_id }) => 
 
 // easy-line5:
 // DISPLAY SPECIAL OFFERS BY SEASON (PERIOD), ALL HOTEL COMBINED
-export const getOffersBySeasonAnDHotel = async () => {
+const getOffersBySeasonAnDHotel = async () => {
     try {
         const OffersBySeasonAnDHotelQ = `
         -->
@@ -89,7 +90,7 @@ export const getOffersBySeasonAnDHotel = async () => {
 
 // easy-line6:
 // LIST OF RESERVATIONS OF A GIVEN CLIENT
-export const getReservationOfGivenCustomer = async ({ customer_id }) => {
+const getReservationOfGivenCustomer = async ({ customer_id }) => {
     try {
         const ReservationOfGivenCustomerQ = `
         -->
@@ -107,7 +108,7 @@ export const getReservationOfGivenCustomer = async ({ customer_id }) => {
 
 // easy-line7:
 // VIEW THE LIST OF CUSTOMERS WHO HAVE NOT YET PAID THEIR FEES IN FULL
-export const getCustomersListNotPaidFullFees = async () => {
+const getCustomersListNotPaidFullFees = async () => {
     try {
         const CustomersListNotPaidFullFeesQ = `
         --->
@@ -128,7 +129,7 @@ export const getCustomersListNotPaidFullFees = async () => {
 
 // easy-line8:
 // TOTAL PAYMENTS RECEIVED BY MOBILE MONEY  
-export const getTotalPayReceidByGivenMethod = async () => {
+const getTotalPayReceidByGivenMethod = async () => {
     try {
         const TotalPayReceidByGivenMethodQ = `
         -->
@@ -155,7 +156,7 @@ export const getTotalPayReceidByGivenMethod = async () => {
 
 // easy-line9:
 // DISPLAY THE NUMBER OF RESERVATIONS MADE BY A GIVEN CUSTOMER DURING A GINVEN PERIOD
-export const getResNumberByCustomerAndPeriod = async ({ customer_name, period }) => {
+const getResNumberByCustomerAndPeriod = async ({ customer_name, period }) => {
     try {
         const ResNumberByCustomerAndPeriodQ = `
         -->
@@ -176,7 +177,7 @@ export const getResNumberByCustomerAndPeriod = async ({ customer_name, period })
 
 // easy-line10:
 // DISPLAY THE LIST OF HOTELS IN A GIVEN LOCATION (PROVINCE)
-export const getHotelsListByProvince = async ({ province }) => {
+const getHotelsListByProvince = async ({ province }) => {
     try {
         const HotelsListByProvinceQ = `
         --->
@@ -194,7 +195,7 @@ export const getHotelsListByProvince = async ({ province }) => {
 
 // easy-line11:
 // DISPLAY THE LIST OF ROOMS THAT CORRESPOND TO A PRICE RANGE GIVEN BY THE CUSTOMER 
-export const getRoomsListByPriceInterval = async ({ min_price, max_price }) => {
+const getRoomsListByPriceInterval = async ({ min_price, max_price }) => {
     try {
         const RoomsListByPriceIntervalQ = `
         --->
@@ -214,7 +215,7 @@ export const getRoomsListByPriceInterval = async ({ min_price, max_price }) => {
 
 // easy-line12:
 // DESPLAY ALL ROOM ORDER BY PRICE DESC:
-export const getRoomsListByDescPrice = async () => {
+const getRoomsListByDescPrice = async () => {
     try {
         const RoomsListByDescPriceQ = `
     -->
@@ -246,7 +247,7 @@ export const getRoomsListByDescPrice = async () => {
 
 // easy-line13:
 // DISPLAY A LIST OF ROOMS WHOSE DESCRIPTIONS MATCH SPECIFUIC KEYWORDS
-export const getRoomsListByFeatures = async ({ keyword }) => {
+const getRoomsListByFeatures = async ({ keyword }) => {
     try {
         const RoomsListByFeaturesQ = `
     -->
@@ -286,7 +287,7 @@ export const getRoomsListByFeatures = async ({ keyword }) => {
 // easy-line14:
 // DISPLAY THE LIST PF HOTELS THAT CONTAIN ROOMS
 // WHOSE DESCRIPTION CORRESPONDS TO GIVEN KEYWORD
-export const getHotelsListContainsRoomByBeutures = async ({ keyword }) => {
+const getHotelsListContainsRoomByBeutures = async ({ keyword }) => {
     try {
         const HotelsListContainsRoomByBeuturesQ = `
         -->
@@ -319,7 +320,7 @@ export const getHotelsListContainsRoomByBeutures = async ({ keyword }) => {
 
 // easy-line15:
 // DISPLAY DETAILS OF THE ROOM CURRENTLY OCCUPID BY A GIVEN GUEST
-export const getRoomsDetailsByOccupedGivenGuest = async ({ customer_name, customer_id }) => {
+const getRoomsDetailsByOccupedGivenGuest = async ({ customer_name, customer_id }) => {
     try {
         const RoomsDetailsByOccupedGivenGuestQ = `
     -->
@@ -360,7 +361,7 @@ export const getRoomsDetailsByOccupedGivenGuest = async ({ customer_name, custom
 // easy-line16/17:
 // GENERALISE::::::::
 // SHOW THE HOTEL WITH THE MOST RESERVATIONS
-export const getHotelWithTheNumberRes = async () => {
+const getHotelWithTheNumberRes = async () => {
     try {
         const HotelWithTheNumberResQ = `
         -->
@@ -381,7 +382,7 @@ export const getHotelWithTheNumberRes = async () => {
 
 // easy-line18:
 // SHOW THE CUSTOMERS WITH THE MOST NEGATIVE REVIEWS WRITTEN FOR HOTELS
-export const getCustomersNegCommentForHotel = async () => {
+const getCustomersNegCommentForHotel = async () => {
     try {
         const CustomersNegCommentForHotelQ = `
         --->
@@ -403,7 +404,7 @@ export const getCustomersNegCommentForHotel = async () => {
 // -------------------------------------------------------------------------------------------------------------------------
 // medium-line2:
 // SHOW HOW MANY TIMES A CUSTOMER HAS BOOKED IN OUR HOTEL
-export const getBookingNumberByCustomer = async ({customer_id}) => {
+const getBookingNumberByCustomer = async ({customer_id}) => {
     try {
         const BookingNumberByCustomerQ = `
         --->
@@ -424,7 +425,7 @@ export const getBookingNumberByCustomer = async ({customer_id}) => {
 
 // Medium-line3:
 // DISPLAY THE LIST OF ROOMS AVAILABLE TOMORROW
-export const getRoomsListAvailableTommorow = async () => {
+const getRoomsListAvailableTommorow = async () => {
     try {
         const RoomsListAvailableTommorowQ = `
         -->
@@ -443,7 +444,7 @@ export const getRoomsListAvailableTommorow = async () => {
 
 // medium-line4:
 // DISPLAY THE TOTAL NUMBER OF RESERVATIONS BY ROOM TYPE
-export const getTotalResNumberByRoomType = async () => {
+const getTotalResNumberByRoomType = async () => {
     try {
         const TotalResNumberByRoomTypeQ = `
         --->
@@ -462,7 +463,7 @@ export const getTotalResNumberByRoomType = async () => {
 
 // medium-line5:
 // LIST OF ROOMS THAT MEET MULTIPLE CRITERIA
-export const getRoomsByMultipleCriteria = async ({
+const getRoomsByMultipleCriteria = async ({
     sea_view,
     vip_category,
     hot_water,
@@ -505,7 +506,7 @@ export const getRoomsByMultipleCriteria = async ({
 
 // medium-line6:
 // SHOW THE TOTAL NUMBER OF RESERVATIONS PER HOTEL
-export const getTotalResForHotel = async () => {
+const getTotalResForHotel = async () => {
     try {
         const TotalResForHotelQ = `
         --->
@@ -527,7 +528,7 @@ export const getTotalResForHotel = async () => {
 
 // medium-line7:
 // CUSTOMER LIST WITH RESERVATION CANCELLATION NUMBER
-export const getCustomerListWithResCancelNumber = async() => {
+const getCustomerListWithResCancelNumber = async() => {
     try {
         const CustomerListWithResCancelNumberQ = `
         --->
@@ -549,7 +550,7 @@ export const getCustomerListWithResCancelNumber = async() => {
 
 // medium-line8:
 // DISPLAY HOTEL WITH ROOMS NUMBRER BY HOTEL
-export const getHotelAndNumberOfRooms = async () => {
+const getHotelAndNumberOfRooms = async () => {
     try {
         const HotelAndNumberOfRoomsQ = `
         -->
@@ -568,7 +569,7 @@ export const getHotelAndNumberOfRooms = async () => {
 
 // medium-line9:
 // SHOW LIST OF CURENTLY OCCUPIED ROOMS:
-export const getCurrentlyOccupiedRoomsList = async () => {
+const getCurrentlyOccupiedRoomsList = async () => {
     try {
         const CurrentlyOccupiedRoomsListQ = `
     -->
@@ -586,7 +587,7 @@ export const getCurrentlyOccupiedRoomsList = async () => {
 
 // medium-line10-11:
 // DISPLAY LEAST/MOST RESERVED ROOM IN GIVEN HOTEL
-export const getLeastMostReservedRoomByHotel = async (hotel_name) => {
+const getLeastMostReservedRoomByHotel = async (hotel_name) => {
     try {
         const LeastMostReservedRoomByHotelQ = `
     -->
@@ -607,7 +608,7 @@ export const getLeastMostReservedRoomByHotel = async (hotel_name) => {
 
 // medium-line12:
 // DISPLAY THE LIST OF CURRENT PROMOTIONS:   
-export const getCurrentPrommotionsList = async () => {
+const getCurrentPrommotionsList = async () => {
     try {
         const CurrentPrommotionsListQ = `
         -->                                                
@@ -623,7 +624,7 @@ export const getCurrentPrommotionsList = async () => {
 
 // medium-line14:
 // DISPLAY LIST OF PAYMENT WITH NAME AND FIRST-NAME WHO WAS RECEIVE IT:
-export const getPayementListAllInfo = async () => {
+const getPayementListAllInfo = async () => {
     try {
         const PayementListAllInfoQ = `
         -->
@@ -646,7 +647,7 @@ export const getPayementListAllInfo = async () => {
 // -----------------------------------------------------------------------------------------------------------------------
 // hard-line5:
 // TOTAL PAYMENTS COLLECTED IN A YE:AR FOR EACH HOTEL
-export const getCollectedPayForAllHotelsByYear = async ({year}) =>{
+const getCollectedPayForAllHotelsByYear = async ({year}) =>{
     try {
         const CollectedPayForAllHotelsByYearQ = `
         -->
@@ -671,7 +672,7 @@ export const getCollectedPayForAllHotelsByYear = async ({year}) =>{
 // hard-line6:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR ROOM'S RESERVATIONS
 // IN A GIVEN DATE INTERVAL
-export const getTotalPayForRoomsHotel = async ({ start_period, end_period }) => {
+const getTotalPayForRoomsHotel = async ({ start_period, end_period }) => {
     try {
         const TotalPayForRoomsHotelsQ = `
     -->
@@ -695,7 +696,7 @@ export const getTotalPayForRoomsHotel = async ({ start_period, end_period }) => 
 // hard-line7:
 // DISPLAY TOTAL  OF PAYMANT ONLY FOR CONFERENCES ROOM'S RESERVATIONS
 // IN A GIVEN DATE INTERVAL
-export const getTotalConferencePaymentInIntervalDate = async ({ start_period, end_period, room_type }) => {
+const getTotalConferencePaymentInIntervalDate = async ({ start_period, end_period, room_type }) => {
     try {
         const TotalConferencePaymentInIntervalDateQ = `
             SELECT SUM(pay.amount_paid), pay.payment_date, h.name, r.room_type
@@ -718,7 +719,7 @@ export const getTotalConferencePaymentInIntervalDate = async ({ start_period, en
 // hard-line9:
 // FOR EACH PROMOTION, DISPLAY THE TOTAL NUMBER OF RESERVATIONS THAT BENEFITED FROM THE PROMOTION, BY HOTEL
 // (TO KNOW IF IT WORKED OR NOT)
-export const getAnaliseBeneficPromotion = async () => {
+const getAnaliseBeneficPromotion = async () => {
     try {
         const AnaliseBeneficPromotionQ = `
         --->
@@ -743,7 +744,7 @@ export const getAnaliseBeneficPromotion = async () => {
 
 // hard-line12:
 // DISPLAY THE AVERAGE NUMBER OF RESERVATIONS PER HOTEL FOR EACH MONTH OF A GIVEN YEAR 
-export const getAverageResNumberMonthsByHotelAndYear = async ({year}) => {
+const getAverageResNumberMonthsByHotelAndYear = async ({year}) => {
     try {
         const AverageResNumberMonthsByHotelAndYearQ = `
             --->
@@ -771,7 +772,7 @@ export const getAverageResNumberMonthsByHotelAndYear = async ({year}) => {
 
 // hard-line13:
 // DISPLAY AVERAGE NUMBER OF RESERVATIONS PER HOTEL, PER DAY, ALL PERIODS COMBINED
-export const getAverageResNumberDaysByHotel =   async () => {
+const getAverageResNumberDaysByHotel =   async () => {
     try {
         const AverageResNumberDaysByHotelQ = `
             --->
@@ -792,3 +793,39 @@ export const getAverageResNumberDaysByHotel =   async () => {
         throw new Error(err.message);
     }
 }
+
+export default allDisplay = {
+    getAllRoomsByTypeAndHotelName
+    , getAnaliseBeneficPromotion
+    , getAverageResNumberDaysByHotel
+    , getAverageResNumberMonthsByHotelAndYear
+    , getBookingNumberByCustomer
+    , getCollectedPayForAllHotelsByYear
+    , getCurrentPrommotionsList
+    , getCurrentlyOccupiedRoomsList
+    , getCustomerListWithResCancelNumber
+    , getCustomersListNotPaidFullFees
+    , getCustomersNegCommentForHotel
+    , getHotelAndNumberOfRooms
+    , getHotelWithTheNumberRes
+    , getHotelsListByProvince
+    , getHotelsListContainsRoomByBeutures
+    , getLeastMostReservedRoomByHotel
+    , getOffersBySeasonAnDHotel
+    , getPayementListAllInfo
+    , getReceptionistsListInWhichHotel
+    , getResNumberByCustomerAndPeriod
+    , getReservationListDescByHotel
+    , getReservationOfGivenCustomer
+    , getRoomsByMultipleCriteria
+    , getRoomsDetailsByOccupedGivenGuest
+    , getRoomsListAvailableTommorow
+    , getRoomsListByDescPrice
+    , getRoomsListByFeatures
+    , getRoomsListByPriceInterval
+    , getTotalConferencePaymentInIntervalDate
+    , getTotalPayForRoomsHotel
+    , getTotalPayReceidByGivenMethod
+    , getTotalResForHotel
+    , getTotalResNumberByRoomType
+  }
