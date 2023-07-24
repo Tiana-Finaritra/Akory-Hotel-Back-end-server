@@ -197,7 +197,34 @@ router.get("/feedback/:id", getElemtFunction.getFeedbackById);
 // UPDATE
 router.put("/province/:id", updateFunction.updateProvinceAvailable);
 
-router.post("/province", insertFunction.newProvince);
+router.put("/hotel/:id", updateFunction.updateHotel);
+
+router.put("/receptionist/:id", updateFunction.updateReceptionist);
+
+router.put("/customer/:id", updateFunction.updateCustomer);
+
+router.put("/customer/:id", updateFunction.updateCustomerStatus);
+
+router.put("/service/:id", updateFunction.updateService);
+
+router.put("/season/:id", updateFunction.updateSeason);
+
+router.put("/price/:id", updateFunction.updatePrice);
+
+router.put("/roomfeatures/:id", updateFunction.updateRoomFeatures);
+
+router.put("/room/:id", updateFunction.updateRoom);
+
+router.put("/paymentmethod/:id", updateFunction.updatePaymentMethod);
+
+router.put("/payment/:id", updateFunction.updatePayment);
+
+router.put("/affilate/:id", updateFunction.updateAffilate);
+
+router.put("/buy/:id", updateFunction.updateBuy);
+
+router.put("/feedback/:id", updateFunction.updateFeedBack);
+
 
 // Insertion for new hotel
 router.post("/hotel", insertFunction.newHotel);

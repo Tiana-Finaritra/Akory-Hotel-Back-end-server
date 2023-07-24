@@ -46,7 +46,6 @@ import hotelQ from "../allInsert/2-hotel.js";
 import seasonQ from "../allInsert/3-season.js";
 import promotionQ from "../allInsert/2-promotion.js";
 
-
 let queries;
 
 export default queries = {
