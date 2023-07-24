@@ -162,7 +162,7 @@ router.get("/TotalConferencePaymentInIntervalDate", getHotelFunction.getTotalCon
 // hard-line9:
 // FOR EACH PROMOTION, DISPLAY THE TOTAL NUMBER OF RESERVATIONS THAT BENEFITED FROM THE PROMOTION, BY HOTEL
 // (TO KNOW IF IT WORKED OR NOT)
-// router.get("/AnaliseBeneficPromotion", getHotelFunction.getAnaliseBeneficPromotion);
+router.get("/AnaliseBeneficPromotion", getHotelFunction.getAnaliseBeneficPromotion);
 
 
 // hard-line12:
