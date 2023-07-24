@@ -151,4 +151,7 @@ router.get("/AverageResNumberDaysByHotel", getHotelFunction.getAverageResNumberD
 
 // POSTS===============================================================
 // Insertion for new province
-router.post('/province', insertFunction.newProvince);
+router.post("/province", insertFunction.newProvince);
+
+// Insertion for new hotel
+router.post("/hotel", insertFunction.newHotel);
