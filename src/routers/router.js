@@ -1,17 +1,11 @@
-
 import express, { Router } from "express";
-import { handlePromise, handlePromiseInsertion } from "./promiseHandler.js";
-import allInsert from "../DAO/insertions.js";
 import getHotelFunction from "./get/get.hotel.js";
-import allDisplay from "../DAO/displays.js";
-
 
 export const router = express.Router();
 
 
 // EASY-LINES:
-// -------------------------------------------------------------------------------------------------
-
+// --------------------------------------------------------------------------------
 router.get("/ReceptionistsListInWhichHotel", getHotelFunction.getReceptionistsListInWhichHotel);
 
 
@@ -145,7 +139,7 @@ router.get("/CurrentPrommotionsList", getHotelFunction.getCurrentPrommotionsList
 router.get("/PayementListAllInfo", getHotelFunction.getPayementListAllInfo);
 
 // HARD-LINES:
-// --------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------------
 // hard-line5:
 // TOTAL PAYMENTS COLLECTED IN A YE:AR FOR EACH HOTEL
 router.get("/CollectedPayForAllHotelsByYear", getHotelFunction.getCollectedPayForAllHotelsByYear);
@@ -179,7 +173,6 @@ router.get("/AverageResNumberMonthsByHotelAndYear", getHotelFunction.getAverageR
 // hard-line13:
 // DISPLAY AVERAGE NUMBER OF RESERVATIONS PER HOTEL, PER DAY, ALL PERIODS COMBINED
 router.get("/AverageResNumberDaysByHotel", getHotelFunction.getAverageResNumberDaysByHotel);
-
 
 // Insertion for new province
 router.post("/province", (req, res) => {
