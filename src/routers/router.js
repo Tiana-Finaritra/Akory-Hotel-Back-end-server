@@ -1,3 +1,4 @@
+
 import express, { Router } from "express";
 import getHotelFunction from "./get/get.hotel.js";
 import getElemtFunction from "./get/getById.js";
@@ -7,7 +8,8 @@ export const router = express.Router();
 
 
 // EASY-LINES:
-// --------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
+
 router.get("/ReceptionistsListInWhichHotel", getHotelFunction.getReceptionistsListInWhichHotel);
 
 
@@ -141,7 +143,7 @@ router.get("/CurrentPrommotionsList", getHotelFunction.getCurrentPrommotionsList
 router.get("/PayementListAllInfo", getHotelFunction.getPayementListAllInfo);
 
 // HARD-LINES:
-// ------------------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------
 // hard-line5:
 // TOTAL PAYMENTS COLLECTED IN A YE:AR FOR EACH HOTEL
 router.get("/CollectedPayForAllHotelsByYear", getHotelFunction.getCollectedPayForAllHotelsByYear);

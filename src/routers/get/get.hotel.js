@@ -3,7 +3,7 @@ import queries from "../../Queries/allSelect/allQueries.js";
 import { generalDisplay } from "../../DAO/displays.js";
 
 let getHotelFunction;
-
+ 
 const getReceptionistsListInWhichHotel = (req, res) => {
     // FOR TEST: http://localhost:8000/ReceptionistsListInWhichHotel
     handlePromise(generalDisplay(queries.ReceptionistsListInWhichHotelQ), res);
