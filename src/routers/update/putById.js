@@ -37,7 +37,72 @@ const updateHotel = (req, res) => {
     
 }
 
+const updateReceptionist = (req, res) => {
+
+}
+
+const updateCustomer = (req, res) => {
+
+}
+
+const updateCustomerStatus = (req, res) => {
+    
+}
+
+const updateService = (req, res) => {
+
+}
+
+const updateSeason = (req, res) => {
+
+}
+
+const updatePrice = (req, res) => {
+
+}
+
+const updateRoomFeatures = (req, res) => {
+
+}
+
+const updateRoom = (req, res) => {
+
+}
+
+const updatePaymentMethod = (req, res) => {
+
+}
+
+const updatePayment = (req, res) => {
+
+}
+
+const updateAffilate = (req, res) => {
+
+}
+
+const updateBuy = (req, res) => {
+
+}
+
+const updateFeedBack = (req, res) => {
+
+}
+
 export default updateFunction = {
     updateProvinceAvailable,
     updateHotel,
+    updateReceptionist,
+    updateCustomer,
+    updateCustomerStatus,
+    updateService,
+    updateSeason,
+    updatePrice,
+    updateRoomFeatures,
+    updateRoom,
+    updatePaymentMethod,
+    updatePayment,
+    updateAffilate,
+    updateBuy,
+    updateFeedBack,
 }
