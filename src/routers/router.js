@@ -1,8 +1,5 @@
 import express, { Router } from "express";
-import { handlePromise, handlePromiseInsertion } from "./promiseHandler.js";
-import allInsert from "../DAO/insertions.js";
 import getHotelFunction from "./get/get.hotel.js";
-import allDisplay from "../DAO/displays.js";
 
 
 export const router = express.Router();
