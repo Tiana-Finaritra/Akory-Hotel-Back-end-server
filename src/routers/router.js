@@ -1,12 +1,11 @@
+import express, { Router } from "express";
 import getHotelFunction from "./get/get.hotel.js";
-import { handlePromise, handlePromiseInsertion } from "./promiseHandler.js";
-import allInsert from "../DAO/insertions.js";
 
 export const router = express.Router();
 
 
 // EASY-LINES:
-// -------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------
 router.get("/ReceptionistsListInWhichHotel", getHotelFunction.getReceptionistsListInWhichHotel);
 
 
@@ -140,7 +139,7 @@ router.get("/CurrentPrommotionsList", getHotelFunction.getCurrentPrommotionsList
 router.get("/PayementListAllInfo", getHotelFunction.getPayementListAllInfo);
 
 // HARD-LINES:
-// --------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------------
 // hard-line5:
 // TOTAL PAYMENTS COLLECTED IN A YE:AR FOR EACH HOTEL
 router.get("/CollectedPayForAllHotelsByYear", getHotelFunction.getCollectedPayForAllHotelsByYear);
