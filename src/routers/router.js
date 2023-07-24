@@ -229,6 +229,8 @@ router.put("/feedback/:id", updateFunction.updateFeedBack);
 // Insertion for new hotel
 router.post("/hotel", insertFunction.newHotel);
 
-
-// Insertion for new hotel
+// Insertion for new season
 router.post("/season", insertFunction.newSeason);
+
+//Insertion for new promotion
+router.post("/promotion", insertFunction.newPromotion);
