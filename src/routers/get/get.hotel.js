@@ -3,11 +3,7 @@ import queries from "../../Queries/allSelect/allQueries.js";
 import {generalDisplay} from "../../DAO/displays.js";
 
 let getHotelFunction;
-
-// EASY-LINES:
-// ------------------------------------------------------------------------------------------------------------------------
-// easy-line2:
-// DISPLAY THE LIST OF RECEPTIONISTS WITH THE HOTEL TO WHICH THEY ARE ATTACHED 
+ 
 const getReceptionistsListInWhichHotel = (req, res) => {
     // FOR TEST: http://localhost:8000/ReceptionistsListInWhichHotel
     handlePromise(generalDisplay(queries.ReceptionistsListInWhichHotelQ), res);
