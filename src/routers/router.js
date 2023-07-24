@@ -2,7 +2,6 @@ import express, { Router } from "express";
 import getHotelFunction from "./get/get.hotel.js";
 import getElemtFunction from "./get/getById.js";
 import updateFunction from "./update/putbyId.js";
-import getHotelFunction from "./get/get.hotel.js";
 import insertFunction from "./post/post.js";
 
 export const router = express.Router();
@@ -203,8 +202,8 @@ router.post("/province", insertFunction.newProvince);
 // Insertion for new hotel
 router.post("/hotel", insertFunction.newHotel);
 
-<<<<<<< HEAD
-=======
-// Insertion for new hotel
+// Insertion for new season
 router.post("/season", insertFunction.newSeason);
->>>>>>> d1e68cd (feat: "season")
+
+//Insertion for new promotion
+router.post("/promotion", insertFunction.newPromotion);
