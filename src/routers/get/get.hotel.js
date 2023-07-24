@@ -253,4 +253,5 @@ export default getHotelFunction = {
     getRoomsDetailsByOccupedGivenGuest,
     getHotelWithTheNumberRes,
     getCustomersNegCommentForHotel,
-}
+    getAnaliseBeneficPromotion,
+  }
