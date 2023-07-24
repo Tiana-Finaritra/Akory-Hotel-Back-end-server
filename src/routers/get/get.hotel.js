@@ -1,4 +1,3 @@
-import { router } from "../router.js";
 import { handlePromise } from "../promiseHandler.js";
 import allDisplay from "../../DAO/displays.js";
 
