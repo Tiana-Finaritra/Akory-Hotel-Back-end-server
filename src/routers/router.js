@@ -203,3 +203,8 @@ router.post("/province", insertFunction.newProvince);
 // Insertion for new hotel
 router.post("/hotel", insertFunction.newHotel);
 
+<<<<<<< HEAD
+=======
+// Insertion for new hotel
+router.post("/season", insertFunction.newSeason);
+>>>>>>> d1e68cd (feat: "season")
