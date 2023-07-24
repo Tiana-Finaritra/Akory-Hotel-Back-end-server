@@ -1,5 +1,6 @@
 import express, { Router } from "express";
-import { handlePromise } from "./promiseHandler.js";
+import { handlePromise, handlePromiseInsertion } from "./promiseHandler.js";
+import allInsert from "../DAO/insertions.js";
 import {
   getAllRoomsByTypeAndHotelName
   , getAnaliseBeneficPromotion
@@ -357,4 +358,11 @@ router.get("/AverageResNumberMonthsByHotelAndYear", (req, res) => {
 router.get("/AverageResNumberDaysByHotel", (req, res) => {
   // FOR TEST: http://localhost:8000/AverageResNumberDaysByHotel
   handlePromise(getAverageResNumberDaysByHotel(), res);
+});
+
+// Insertion for new province
+router.post("/province", (req, res) => {
+  // FOR TEST: http://localhost:8000/province
+  const data =  req.body;
+  handlePromiseInsertion(allInsert.addProvinceAvailable(data), res)
 });
