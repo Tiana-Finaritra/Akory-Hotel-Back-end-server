@@ -41,11 +41,3 @@ db.connect()
     .catch(error => {
         console.error('Erreur de connexion à la base de données:', error);
 });
-
-export const pool = new pg.Pool({
-    host: "localhost",
-    port: 5432,
-    database: process.env.DB_DATABASE,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD
-});
