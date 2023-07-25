@@ -1,4 +1,4 @@
-let queries;
+let queriesOne;
 
 const getProvinceAvailableById = `
     SELECT * FROM "province_available"
@@ -75,7 +75,17 @@ const getFeedbackById = `
     WHERE id = $1;
 `;
 
-export default queries = {
+const getPromotionById = `
+    SELECT * FROM "promotion"
+    WHERE id = $1;
+`;
+
+const getReservationById = `
+    SELECT * FROM "reservation"
+    WHERE id = $1;
+`;
+
+export default queriesOne = {
     getProvinceAvailableById,
     getHotelById,
     getReceptionistById,
@@ -91,4 +101,6 @@ export default queries = {
     getAffilateById,
     getBuyById,
     getFeedbackById,
+    getPromotionById,
+    getReservationById,
 }
