@@ -44,7 +44,21 @@ import AverageResNumberDaysByHotelQ from "./3-hard/hard-line13.js";
 import provinceQ from "../allInsert/1-province.js";
 import hotelQ from "../allInsert/2-hotel.js";
 import seasonQ from "../allInsert/3-season.js";
-import promotionQ from "../allInsert/2-promotion.js";
+import promotionQ from "../allInsert/3-promotion.js";
+import priceQ from "../allInsert/5-price.js";
+import room_featuresQ from "../allInsert/6-room_features.js";
+import roomQ from "../allInsert/7-room.js";
+import affiliateQ from "../allInsert/8-affiliate.js";
+import receptionistQ from "../allInsert/9-receptionist.js";
+import customerQ from "../allInsert/10-customer.js";
+import feed_backQ from "../allInsert/11-feed_back.js";
+import reservationQ from "../allInsert/12-reservation.js";
+import serviceQ from "../allInsert/13-service.js";
+import buyQ from "../allInsert/14-buy.js";
+import customer_statusQ from "../allInsert/15-customer_status.js";
+import payment_methodQ from "../allInsert/16-payment_method.js";
+import paymentQ from "../allInsert/17-payment.js";
+
 
 let queries;
 
@@ -83,9 +97,23 @@ export default queries = {
   AnaliseBeneficPromotionQ,
   AverageResNumberMonthsByHotelAndYearQ,
   AverageResNumberDaysByHotelQ,
+  
   // INSERTS:
   provinceQ,
   hotelQ,
   seasonQ,
-  promotionQ
+  promotionQ, 
+  priceQ, 
+  room_featuresQ, 
+  roomQ, 
+  affiliateQ, 
+  receptionistQ, 
+  customerQ, 
+  feed_backQ, 
+  reservationQ, 
+  serviceQ, 
+  buyQ,
+  customer_statusQ, 
+  payment_methodQ,
+  paymentQ
 };
