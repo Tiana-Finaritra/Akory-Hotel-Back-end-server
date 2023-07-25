@@ -1,10 +1,11 @@
 import express, { Router } from "express";
 import getHotelFunction from "./get/get.hotel.js";
 import getElemtFunction from "./get/getById.js";
-import updateFunction from "./update/putbyId.js";
 import insertFunction from "./post/post.js";
-
+import updateFunction from "./update/putById.js";
 export const router = express.Router();
+
+
 // EASY-LINES:
 // -------------------------------------------------------------------------------------------------
 
@@ -155,11 +156,56 @@ router.get("/AverageResNumberDaysByHotel", getHotelFunction.getAverageResNumberD
 
 // POSTS===============================================================
 // Insertion for new province
-router.post("/province", (req, res) => {
-  // FOR TEST: http://localhost:8000/province
-  const data =  req.body;
-  handlePromiseInsertion(allInsert.addProvinceAvailable(data), res)
-});
+router.post("/province", insertFunction.newProvince);
+
+// Insertion for new hotel
+router.post("/hotel", insertFunction.newHotel);
+
+//Insertion for new promotion
+router.post("/promotion", insertFunction.newPromotion);
+
+// Insertion for new season
+router.post("/season", insertFunction.newSeason);
+
+//Insertion for new price
+router.post("/price", insertFunction.newPrice);
+
+//Insertion for new rooom_features
+router.post("/room_features", insertFunction.newRoom_features);
+
+//Insertion for new room
+router.post("/room", insertFunction.newRoom);
+
+//Insertion for new affiliate
+router.post("/affiliate", insertFunction.newAffiliate);
+
+//Insertion for new receptionist
+router.post("/receptionist", insertFunction.newReceptionist);
+
+//Insertion for new customer
+router.post("/customer", insertFunction.newCustomer);
+
+//Insertion for new feed_back
+router.post("/feed_back", insertFunction.newFeed_back);
+
+//Insertion for new reservation
+router.post("/reservation", insertFunction.newReservation);
+
+//Insertion for new service
+router.post("/service", insertFunction.newService);
+
+//Insertion for new buy
+router.post("/buy", insertFunction.newBuy);
+
+//Insertion for new customer_status
+router.post("/customer_status", insertFunction.newCustomer_status);
+
+//Insertion for new payment_method
+router.post("/payment_method", insertFunction.newPayment_method);
+
+//Insertion for new payment
+router.post("/payment", insertFunction.newPayment);
+
 
 // ----------------------------------------------------------------------------------------------------------
 // GET ELEMENT BY ID
@@ -234,11 +280,3 @@ router.put("/promotion/:id", updateFunction.updatePromotion);
 router.put("/reservation/:id", updateFunction.updateReservation);
 
 
-// Insertion for new hotel
-router.post("/hotel", insertFunction.newHotel);
-
-// Insertion for new season
-router.post("/season", insertFunction.newSeason);
-
-//Insertion for new promotion
-router.post("/promotion", insertFunction.newPromotion);
