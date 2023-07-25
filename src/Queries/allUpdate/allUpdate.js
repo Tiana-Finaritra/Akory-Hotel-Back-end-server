@@ -142,6 +142,26 @@ const updateFeedback = `
     WHERE id = $1;
 `;
 
+const updatePromotion = `
+    UPDATE "promotion"
+        SET name = $2,
+        begin = $3,
+        end = $4,
+        percent = $5
+    WHERE id = $1;
+`;
+
+const updateReservation = `
+    UPDATE "reservation"
+        SET date_arrived = $2,
+        leaving_date = $3,
+        number_of_person = $4,
+        is_cancelled = $5
+        id_customer = $6,
+        id_room = $7
+    WHERE id = $1;
+`;
+
 export default queries = {
     updateProvinceAvailable,
     updateHotel,
@@ -158,4 +178,6 @@ export default queries = {
     updateAffilate,
     updateBuy,
     updateFeedback,
+    updatePromotion,
+    updateReservation,
 }
