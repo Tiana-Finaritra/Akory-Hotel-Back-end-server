@@ -64,6 +64,14 @@ const getFeedbackById = (req, res) => {
     handlePromise(generalGetbyId(queries.getFeedbackById, req.params.id), res);
 }
 
+const getPromotionById = (req, res) => {
+    handlePromise(generalGetbyId(queries.getPromotionById, req.params.id), res);
+}
+
+const getReservationById = (req, res) => {
+    handlePromise(generalGetbyId(queries.getReservationById, req.params.id), res);
+}
+
 export default getElemtFunction = {
     getProvinceAvailableById,
     getHotelById,
@@ -80,4 +88,6 @@ export default getElemtFunction = {
     getAffilateById,
     getBuyById,
     getFeedbackById,
+    getPromotionById,
+    getReservationById,
 }
