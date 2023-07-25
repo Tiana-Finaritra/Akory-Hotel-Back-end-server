@@ -94,9 +94,9 @@ const paymentD = `
 `;
 
 
-let ExportDeleteQ;
+let Ex;
 
-export default ExportDeleteQ = {
+export default Ex = {
         province_availableD,
         hotelD,
         seasonD,

@@ -3,6 +3,7 @@ import getHotelFunction from "./get/get.hotel.js";
 import getElemtFunction from "./get/getById.js";
 import insertFunction from "./post/post.js";
 import updateFunction from "./update/putById.js";
+import E from "./delete/deletes.js";
 export const router = express.Router();
 
 
@@ -283,3 +284,36 @@ router.put("/reservation/:id", updateFunction.updateReservation);
 // ----------------------------------------------------------------------------------------------------------
 // DELETE:
 
+router.delete("/province/:id", E.delProvince_available);
+
+router.delete("/hotel/:id", E.delHotel);
+
+router.delete("/season/:id", E.delSeason);
+
+router.delete("/promotion/:id", E.delPromotion);
+
+router.delete("/price/:id", E.delPrice);
+
+router.delete("/room_features/:id", E.delRoomFeatures);
+
+router.delete("/room/:id", E.delRoom);
+
+router.delete("/affiliate/:id", E.delAffiliate);
+
+router.delete("/receptionist/:id", E.delReceptionist);
+
+router.delete("/customer/:id", E.delCustomer);
+
+router.delete("/feed_back/:id", E.delFeedBack);
+
+router.delete("/reservation/:id", E.delReservation);
+
+router.delete("/service/:id", E.delService);
+
+router.delete("/buy/:id", E.delBuy);
+
+router.delete("/customer_status/:id", E.delCustomerStatus);
+
+router.delete("/payment_method/:id", E.delPaymentMethod);
+
+router.delete("/payment/:id", E.delPayment);
