@@ -239,6 +239,10 @@ router.get("/buy/:id", getElemtFunction.getBuyById);
 
 router.get("/feedback/:id", getElemtFunction.getFeedbackById);
 
+router.get("/promotion/:id", getElemtFunction.getPromotionById);
+
+router.get("/reservation/:id", getElemtFunction.getReservationById);
+
 // ----------------------------------------------------------------------------------------------------------
 // UPDATE
 router.put("/province/:id", updateFunction.updateProvinceAvailable);
@@ -270,5 +274,9 @@ router.put("/affilate/:id", updateFunction.updateAffilate);
 router.put("/buy/:id", updateFunction.updateBuy);
 
 router.put("/feedback/:id", updateFunction.updateFeedBack);
+
+router.put("/promotion/:id", updateFunction.updatePromotion);
+
+router.put("/reservation/:id", updateFunction.updateReservation);
 
 
