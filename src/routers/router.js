@@ -280,3 +280,6 @@ router.put("/promotion/:id", updateFunction.updatePromotion);
 router.put("/reservation/:id", updateFunction.updateReservation);
 
 
+// ----------------------------------------------------------------------------------------------------------
+// DELETE:
+
