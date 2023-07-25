@@ -2,8 +2,8 @@ import { handlePromiseUpdate } from "../promiseHandler.js";
 import queriesUp from "../../Queries/allUpdate/allUpdate.js";
 import queriesOne from "../../Queries/OneSelect/allOneSelect.js";
 import { generalUpdate } from "../../DAO/update.js";
-import getElemtFunction from "../get/getById.js";
 import { pool } from "../../database.js";
+export let tes = 1;
 
 let updateFunction;
 
