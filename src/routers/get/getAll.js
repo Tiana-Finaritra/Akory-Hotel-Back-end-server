@@ -72,7 +72,7 @@ const getAllReservations = (req, res) => {
     handlePromise(generalDisplay(queries.getAllReservations), res);
 }
 
-export default getElemtFunction = {
+export default getAll = {
     getAllProvinceAvailables,
     getAllHotels,
     getAllReceptionists,
