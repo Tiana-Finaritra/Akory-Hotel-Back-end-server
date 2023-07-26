@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { router } from "./routers/router.js";
+import { AuthRouter } from "./security/autentificate.js";
 
 const app = express();
 
@@ -9,6 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // server authentification
+app.use(AuthRouter);
 app.use(router);
 
 // just for test
