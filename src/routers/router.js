@@ -1,6 +1,7 @@
 import express, { Router } from "express";
 import getHotelFunction from "./get/get.hotel.js";
 import getElemtFunction from "./get/getById.js";
+import getAll from "./get/getAll.js";
 import insertFunction from "./post/post.js";
 import updateFunction from "./update/putById.js";
 import E from "./delete/deletes.js";
@@ -207,6 +208,42 @@ router.post("/payment_method", insertFunction.newPayment_method);
 //Insertion for new payment
 router.post("/payment", insertFunction.newPayment);
 
+// ----------------------------------------------------------------------------------------------------------
+// GET ALL ELEMENT
+router.get("/provinces", getAll.getAllProvinceAvailables);
+
+router.get("/hotels", getAll.getAllHotels);
+
+router.get("/receptionists", getAll.getAllReceptionists);
+
+router.get("/customers", getAll.getAllCustomers);
+
+router.get("/customerstatus", getAll.getAllCustomerStatus);
+
+router.get("/services", getAll.getAllServices);
+
+router.get("/seasons", getAll.getAllSeasons);
+
+router.get("/prices", getAll.getAllPrices);
+
+router.get("/roomfeatures", getAll.getAllRoomFeatures);
+
+router.get("/rooms", getAll.getAllRooms);
+
+router.get("/paymentmethods", getAll.getAllPaymentMethods);
+
+router.get("/payments", getAll.getAllPayments);
+
+router.get("/affilates", getAll.getAllAffilates);
+
+router.get("/buys", getAll.getAllBuys);
+
+router.get("/feedbacks", getAll.getAllFeedbacks);
+
+router.get("/promotions", getAll.getAllPromotions);
+
+router.get("/reservations", getAll.getAllReservations);
+
 
 // ----------------------------------------------------------------------------------------------------------
 // GET ELEMENT BY ID
@@ -275,6 +312,10 @@ router.put("/affilate/:id", updateFunction.updateAffilate);
 router.put("/buy/:id", updateFunction.updateBuy);
 
 router.put("/feedback/:id", updateFunction.updateFeedBack);
+
+router.put("/promotion/:id", updateFunction.updatePromotion);
+
+router.put("/reservation/:id", updateFunction.updateReservation);
 
 router.put("/promotion/:id", updateFunction.updatePromotion);
 
