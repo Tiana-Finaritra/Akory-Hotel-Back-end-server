@@ -2,7 +2,7 @@ import { handlePromise } from "../promiseHandler.js";
 import queries from "../../Queries/OneSelect/allOneSelect.js";
 import { generalDisplay } from "../../DAO/displays.js";
 
-let getElemtFunction;
+let getAll;
 
 const getAllProvinceAvailables = (req, res) => {
     handlePromise(generalDisplay(queries.getAllProvinceAvailables), res);
