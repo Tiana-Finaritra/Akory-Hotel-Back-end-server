@@ -2,10 +2,7 @@ import { handlePromiseUpdate } from "../promiseHandler.js";
 import queriesUp from "../../Queries/allUpdate/allUpdate.js";
 import queriesOne from "../../Queries/OneSelect/allOneSelect.js";
 import { generalUpdate } from "../../DAO/update.js";
-<<<<<<< HEAD
 import getElemtFunction from "../get/getById.js";
-=======
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 import { db } from "../../database.js";
 
 let updateFunction;
@@ -20,17 +17,10 @@ const updateProvinceAvailable = (req, res) => {
     db.query(queriesOne.getProvinceAvailableById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Province not exist");
-            } else {
-                let {name, code} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("Province not exist");
             } else {
                 let { name, code } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_name ? name = new_name : null;
                 new_code ? code = new_code : null;
@@ -46,16 +36,6 @@ const updateHotel = (req, res) => {
     const new_name = req.body.name;
     const new_adress = req.body.address;
     const new_id_province = req.body.id_province;
-<<<<<<< HEAD
-    
-    db.query(queriesOne.getHotelById, [id])
-        .then((result) => {
-            const oldElem = result[0];
-            if(!oldElem){
-                res.status(400).send("Hotel not exist");
-            } else {
-                let {name, address, id_province} = oldElem;
-=======
 
     db.query(queriesOne.getHotelById, [id])
         .then((result) => {
@@ -64,7 +44,6 @@ const updateHotel = (req, res) => {
                 res.status(400).send("Hotel not exist");
             } else {
                 let { name, address, id_province } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_name ? name = new_name : null;
                 new_adress ? address = new_adress : null;
@@ -88,17 +67,10 @@ const updateReceptionist = (req, res) => {
     db.query(queriesOne.getReceptionistById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Receptionsit not exist");
-            } else {
-                let {first_name, last_name, password, email, work_contact, id_hotel} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("Receptionsit not exist");
             } else {
                 let { first_name, last_name, password, email, work_contact, id_hotel } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_first_name ? first_name = new_first_name : null;
                 new_last_name ? last_name = new_last_name : null;
@@ -137,17 +109,10 @@ const updateCustomer = (req, res) => {
     db.query(queriesOne.getCustomerById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Customer not exist");
-            } else {
-                let {name, last_name, principal_contact, address, emergency_number, gender, cin, email, password, id_receptionist} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("Customer not exist");
             } else {
                 let { name, last_name, principal_contact, address, emergency_number, gender, cin, email, password, id_receptionist } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_name ? name = new_name : null;
                 new_last_name ? last_name = new_last_name : null;
@@ -189,17 +154,10 @@ const updateCustomerStatus = (req, res) => {
     db.query(queriesOne.getCustomerStatusById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("CustomerStatus not exist");
-            } else {
-                let {status_arrived, status_missing, is_fidelity, is_blacklist, id_customer} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("CustomerStatus not exist");
             } else {
                 let { status_arrived, status_missing, is_fidelity, is_blacklist, id_customer } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_status_arrived ? status_arrived = new_status_arrived : null;
                 new_status_missing ? status_missing = new_status_arrived : null;
@@ -230,17 +188,10 @@ const updateService = (req, res) => {
     db.query(queriesOne.getServiceById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Service not exist");
-            } else {
-                let {service_name, description, price, reduction} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("Service not exist");
             } else {
                 let { service_name, description, price, reduction } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_service_name ? service_name = new_service_name : null;
                 new_description ? description = new_description : null;
@@ -268,17 +219,10 @@ const updateSeason = (req, res) => {
     db.query(queriesOne.getSeasonById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Season not exist");
-            } else {
-                let {items, start_date, end_date} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("Season not exist");
             } else {
                 let { items, start_date, end_date } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_items ? items = new_items : null;
                 new_start_date ? start_date = new_start_date : null;
@@ -303,17 +247,10 @@ const updatePrice = (req, res) => {
     db.query(queriesOne.getPriceById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Price not exist");
-            } else {
-                let {cost_per_night, id_season} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("Price not exist");
             } else {
                 let { cost_per_night, id_season } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_cost_per_night ? cost_per_night = new_cost_per_night : null;
                 new_id_season ? id_season = new_id_season : null;
@@ -337,17 +274,10 @@ const updateRoomFeatures = (req, res) => {
     db.query(queriesOne.getRoomFeaturesById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("RoomFeatures not exist");
-            } else {
-                const {sea_view, vip_category, hot_water, wifi_available, room_service, mini_bar, flat_screen} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("RoomFeatures not exist");
             } else {
                 const { sea_view, vip_category, hot_water, wifi_available, room_service, mini_bar, flat_screen } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_sea_view ? sea_view = new_sea_view : null;
                 new_vip_category ? vip_category = new_vip_category : null;
@@ -384,19 +314,11 @@ const updateRoom = (req, res) => {
     db.query(queriesOne.getRoomById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Room not exist");
-            } else {
-                const {number, room_type, capacity_room, id_hotel, id_price, id_room_features} = oldElem;
-                
-=======
             if (!oldElem) {
                 res.status(400).send("Room not exist");
             } else {
                 const { number, room_type, capacity_room, id_hotel, id_price, id_room_features } = oldElem;
 
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
                 new_number ? number = new_number : null;
                 new_room_type ? room_type = new_room_type : null;
                 new_capacity_room ? capacity_room = new_capacity_room : null;
@@ -427,17 +349,10 @@ const updatePaymentMethod = (req, res) => {
     db.query(queriesOne.getPaymentMethodById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("PaymentMethod not exist");
-            } else {
-                let {mobile_money, credit_card, cash} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("PaymentMethod not exist");
             } else {
                 let { mobile_money, credit_card, cash } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_mobile_money ? mobile_money = new_mobile_money : null;
                 new_credit_card ? credit_card = new_credit_card : null;
@@ -465,19 +380,11 @@ const updatePayment = (req, res) => {
     db.query(queriesOne.getPaymentById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Payment not exist");
-            } else {
-                let {payment_date, amount_paid, number_night, room_occuped, deadline_payment, lending_status, total_amount_status, id_customer, id_payment_method, id_receptionist} = oldElem;
-                
-=======
             if (!oldElem) {
                 res.status(400).send("Payment not exist");
             } else {
                 let { payment_date, amount_paid, number_night, room_occuped, deadline_payment, lending_status, total_amount_status, id_customer, id_payment_method, id_receptionist } = oldElem;
 
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
                 new_payment_date ? payment_date = new_payment_date : null;
                 new_amount_paid ? amount_paid = new_amount_paid : null;
                 new_number_night ? number_night = new_number_night : null;
@@ -515,17 +422,10 @@ const updateAffilate = (req, res) => {
     db.query(queriesOne.getAffilateById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Affilate not exist");
-            } else {
-                let {id_promotion, id_room} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("Affilate not exist");
             } else {
                 let { id_promotion, id_room } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_id_promotion ? id_promotion = new_id_promotion : null;
                 new_id_room ? id_room = new_id_room : null;
@@ -544,17 +444,10 @@ const updateBuy = (req, res) => {
     db.query(queriesOne.getBuyById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Buy not exist");
-            } else {
-                let {id_customer, id_service} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("Buy not exist");
             } else {
                 let { id_customer, id_service } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_id_customer ? id_customer = new_id_customer : null;
                 new_id_service ? id_service = new_id_service : null;
@@ -575,19 +468,11 @@ const updateFeedBack = (req, res) => {
     db.query(queriesOne.getFeedbackById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Feedback not exist");
-            } else {
-                let {comment, rating, id_customer, id_hotel} = oldElem;
-                
-=======
             if (!oldElem) {
                 res.status(400).send("Feedback not exist");
             } else {
                 let { comment, rating, id_customer, id_hotel } = oldElem;
 
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
                 new_comment ? comment = new_comment : null;
                 new_rating ? rating = new_rating : null;
                 new_id_customer ? id_customer = new_id_customer : null;
@@ -609,17 +494,10 @@ const updatePromotion = (req, res) => {
     db.query(queriesOne.getPromotionById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Promotion not exist");
-            } else {
-                let {name, begin, end, percent} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("Promotion not exist");
             } else {
                 let { name, begin, end, percent } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 new_name ? name = new_name : null;
                 new_begin ? begin = new_begin : null;
@@ -644,17 +522,10 @@ const updateReservation = (req, res) => {
     db.query(queriesOne.getReservationById, [id])
         .then((result) => {
             const oldElem = result[0];
-<<<<<<< HEAD
-            if(!oldElem){
-                res.status(400).send("Reservation not exist");
-            } else {
-                let {date_arrived, leaving_date, number_of_person, is_cancelled, id_customer, id_room} = oldElem;
-=======
             if (!oldElem) {
                 res.status(400).send("Reservation not exist");
             } else {
                 let { date_arrived, leaving_date, number_of_person, is_cancelled, id_customer, id_room } = oldElem;
->>>>>>> bd33b62f482934938656dd56c84e6b8e1dbb9d44
 
                 date_arrived ? date_arrived = date_arrived : null;
                 leaving_date ? leaving_date = leaving_date : null;
