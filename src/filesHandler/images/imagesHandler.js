@@ -25,7 +25,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-// Route pour l'upload d'image d'hôtel
+// Customer image upload route
 fileHandRouter.post("/customer/:id/upload", upload.single("image"), (req, res) => {
     const imagePath = req.file.path;
         const customerId = req.params.id;

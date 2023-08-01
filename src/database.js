@@ -35,7 +35,7 @@ export const db = pgp({
 db.connect()
     .then(obj => {
         console.log('Connecté à la base de données avec succès.');
-        obj.done(); // Libère le pool de clients si vous n'avez plus besoin de la connexion.
+        obj.done();// Releases the client pool if you no longer need the connection.
     })
     .catch(error => {
         console.error('Erreur de connexion à la base de données:', error);
