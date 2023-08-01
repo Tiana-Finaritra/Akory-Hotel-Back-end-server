@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { router } from "./routers/router.js";
 import { AuthRouter, verifyToken } from "./security/autentificate.js";
+import { fileHandRouter } from "./filesHandler/images/imagesHandler.js";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 // server authentification
 app.use(AuthRouter);
 app.use(router);
+app.use(fileHandRouter);
 
 // just for test
 app.get("/", (req, res) => {
