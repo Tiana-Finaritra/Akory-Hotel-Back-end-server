@@ -1,6 +1,5 @@
 import express, { Router } from "express";
 import multer from "multer";
-// import path from "paths.js";
 import { pubPath, imagesPath } from "../../paths.js";
 import { db } from "../../database.js";
 
@@ -26,16 +25,14 @@ const upload = multer({ storage: storage });
 
 
 // Customer image upload route
-fileHandRouter.post("/customer/:id/upload", upload.single("image"), (req, res) => {
-    const imagePath = req.file.path;
+fileHandRouter.post("/customer/:id/upload", upload.single("image"), async (req, res) => {
+    try {
+        const imagePath = req.file.path;
         const customerId = req.params.id;
-
-    db.none(`UPDATE customer SET images_paths = $1 WHERE id = $2`, [imagePath, customerId])
-        .then(() => {
-            res.json({ message: "Image mise à jour avec succès." });
-        })
-        .catch((error) => {
-            console.error('Erreur lors de la mise à jour de l\'image  :', error);
-            res.status(500).json({ error: "Erreur lors de la mise à jour de l'image de l'hôtel." });
-        });
+        await db.none(`UPDATE customer SET images_paths = $1 WHERE id = $2`, [imagePath, customerId])
+        res.json({ message: "Image mise à jour avec succès." });
+    } catch (error) {
+        console.error('Erreur lors de la mise à jour de l\'image  :', error);
+        res.status(500).json({ error: "Erreur lors de la mise à jour de l'image de l'hôtel." });
+    }
 });
