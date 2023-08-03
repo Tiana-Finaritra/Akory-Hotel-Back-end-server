@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { router } from "./routers/router.js";
+import routerSpecial from "./routers/get/getSpecial.js";
 import { AuthRouter, verifyToken } from "./security/autentificate.js";
 import { fileHandRouter } from "./filesHandler/images/imagesHandler.js";
 
@@ -13,6 +14,7 @@ app.use(express.json());
 // server authentification
 app.use(AuthRouter);
 app.use(router);
+app.use(routerSpecial);
 app.use(fileHandRouter);
 
 // just for test
