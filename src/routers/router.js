@@ -123,6 +123,11 @@ router.get("/CurrentPrommotionsList", getHotelFunction.getCurrentPrommotionsList
 // DISPLAY LIST OF PAYMENT WITH NAME AND FIRST-NAME WHO WAS RECEIVE IT:
 router.get("/PayementListAllInfo", getHotelFunction.getPayementListAllInfo);
 
+//Medium-line15:
+// DISPLAY THE LIST OF ROOMS, WITH THEIR GROSS PRICE, AND THEIR NET PRICE (I.E THEIR PRICE
+// BY APPLYING ALL THE REDUCTIONS THAT ARE APPLIED TODAY)
+router.get("/RoomsListNetAndGrosPrice", getHotelFunction.getRoomsListNetAndGrosPrice);
+
 
 // HARD-LINES:
 // --------------------------------------------------------------------------------------------------
@@ -153,6 +158,8 @@ router.get("/AverageResNumberMonthsByHotelAndYear", getHotelFunction.getAverageR
 // hard-line13:
 // DISPLAY AVERAGE NUMBER OF RESERVATIONS PER HOTEL, PER DAY, ALL PERIODS COMBINED
 router.get("/AverageResNumberDaysByHotel", getHotelFunction.getAverageResNumberDaysByHotel);
+
+
 
 
 
