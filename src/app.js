@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { router } from "./routers/router.js";
+import routerSpecial from "./routers/get/getSpecial.js";
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.json());
 
 // server authentification
 app.use(router);
+app.use(routerSpecial);
 
 // just for test
 app.get("/", (req, res) => {
