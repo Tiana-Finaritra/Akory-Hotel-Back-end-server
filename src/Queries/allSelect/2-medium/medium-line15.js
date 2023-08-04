@@ -7,7 +7,7 @@ const roomsListNetAndGrosPriceQ = `
     , p.cost_per_night AS Price
     , (p.cost_per_night - p.cost_per_night * pm.percent / 100) AS Promotions_day,
     rf.sea_view, rf.vip_category, rf.hot_water, rf.wifi_available, rf.room_service, 
-    rf.mini_bar, rf.flat_screen
+    rf.mini_bar, rf.flat_screen, r.images_paths
     FROM  room r
     INNER JOIN price p ON r.id_price = p.id
     INNER JOIN hotel h ON h.id = r.id_hotel
