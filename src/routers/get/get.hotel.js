@@ -11,15 +11,15 @@ const getReceptionistsListInWhichHotel = (req, res) => {
 
 const getReservationListDescByHotel = (req, res) => {
     // FOR TEST: http://localhost:8000/ReservationListDescByHotel
-    const hotel_name = "Grand Hotel";
+    const hotel_name = "Akory100";
     // const hotel_name = req.body;
     handlePromise(generalDisplay(queries.ReservationListDescByHotelQ, hotel_name), res);
 }
 
 const getAllRoomsByTypeAndHotelName = (req, res) => {
     // FOR TEST: http://localhost:8000/AllRoomsByTypeAndHotelName
-    const room_type = "double";
-    const hotel_id = 80;
+    const room_type = "twin";
+    const hotel_id = 8;
     // const {room_type, hotel_id} = req.body;
     handlePromise(generalDisplay(queries.AllRoomsByTypeAndHotelNameQ, [room_type, hotel_id]), res);
 }
@@ -32,7 +32,7 @@ const getOffersBySeasonAnDHotel = (req, res) => {
 const getReservationOfGivenCustomer = (req, res) => {
     // FOR TEST: http://localhost:8000/ReservationOfGivenCustomer
     // const customer_id = req.body;
-    const customer_id = 79;
+    const customer_id = 19;
     handlePromise(generalDisplay(queries.ReservationOfGivenCustomerQ, [customer_id]), res);
 }
 
@@ -48,7 +48,7 @@ const getTotalPayReceidByGivenMethod = (req, res) => {
 
 const getResNumberByCustomerAndPeriod = (req, res) => {
     // FOR TEST: http://localhost:8000/ResNumberByCustomerAndPeriod
-    const customer_name = "Mason";
+    const customer_name = "David";
     const period = "2023-07-15 10:00:00";
     // const {customer_name, period} = req.body;
     handlePromise(generalDisplay(queries.ResNumberByCustomerAndPeriodQ, [customer_name, period]), res);
@@ -64,8 +64,8 @@ const getHotelsListByProvince = (req, res) => {
 const getRoomsListByPriceInterval = (req, res) => {
     // FOR TEST: http://localhost:8000/RoomsListByPriceInterval
     // const {min_price, max_price} = req.body;
-    const min_price = 12100;
-    const max_price = 12200;
+    const min_price = 12000;
+    const max_price = 500000;
     handlePromise(generalDisplay(queries.RoomsListByPriceIntervalQ, [min_price, max_price]), res);
 }
 
@@ -128,10 +128,10 @@ const getRoomsByMultipleCriteria = (req, res) => {
       const sea_view = true;
       const vip_category = true;
       const hot_water = true;
-      const wifi_available = false;
+      const wifi_available = true;
       const room_service = true;
       const mini_bar = true;
-      const flat_screen = false;
+      const flat_screen = true;
     // const criteria = req.body;
     handlePromise(generalDisplay(queries.RoomsByMultipleCriteriaQ, [sea_view, vip_category, hot_water, wifi_available, room_service, mini_bar, flat_screen]), res);
 }
@@ -158,7 +158,7 @@ const getCurrentlyOccupiedRoomsList = (req, res) => {
 
 const getLeastMostReservedRoomByHotel = (req, res) => {
     // FOR TEST: http://localhost:8000/LeastMostReservedRoomByHotel
-    let hotel_name = "Tranquil Bay Resort";
+    let hotel_name = "Akory201";
     // const hotel_name = req.body;
     handlePromise(generalDisplay(queries.LeastMostReservedRoomByHotelQ, [hotel_name]), res);
 }
@@ -182,8 +182,8 @@ const getCollectedPayForAllHotelsByYear = (req, res) => {
 
 const getTotalPayForRoomsHotel = (req, res) => {
     // FOR TEST: http://localhost:8000/TotalPayForRoomsHotel
-    const start_period = "2000-08-01";
-    const end_period = "2025-12-30";
+    const start_period = "2023-08-01";
+    const end_period = "2024-12-30";
     // const { start_period, end_period } = req.params;
     handlePromise(generalDisplay(queries.TotalPayForRoomsHotelsQ, [start_period, end_period]), res);
 }
@@ -192,7 +192,7 @@ const getTotalConferencePaymentInIntervalDate = (req, res) => {
     // FOR TEST: http://localhost:8000/TotalConferencePaymentInIntervalDate
     const start_period = "2000-08-01";
     const end_period = "2025-12-30";
-    const room_type = "communicante";
+    const room_type = "solo";
     // const { start_period, end_period, room_type } = req.body;
     handlePromise(generalDisplay(queries.TotalConferencePaymentInIntervalDateQ, [start_period, end_period, room_type]), res);
 }
@@ -209,12 +209,19 @@ const getAverageResNumberMonthsByHotelAndYear = (req, res) => {
     handlePromise(generalDisplay(queries.AverageResNumberMonthsByHotelAndYearQ, [year]), res);
 }
 
+const getRoomsListNetAndGrosPrice = (req, res) => {
+    // FOR TEST: http://localhost:8000/roomsListNetAndGrosPrice
+    handlePromise(generalDisplay(queries.roomsListNetAndGrosPriceQ), res);
+}
+
+
 const getAverageResNumberDaysByHotel = (req, res) => {
-    // FOR TEST: http://localhost:8000/AverageResNumberDaysByHotel
+    // FOR TEST: http://localhost:8000/RoomsListNetAndGrosPrice
     handlePromise(generalDisplay(queries.AverageResNumberDaysByHotelQ), res);
 }
 
 export default getHotelFunction = {
+    getRoomsListNetAndGrosPrice,
     getAverageResNumberDaysByHotel,
     getAverageResNumberMonthsByHotelAndYear,
     getTotalConferencePaymentInIntervalDate,

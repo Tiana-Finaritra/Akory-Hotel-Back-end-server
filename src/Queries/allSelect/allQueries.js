@@ -58,6 +58,7 @@ import buyQ from "../allInsert/14-buy.js";
 import customer_statusQ from "../allInsert/15-customer_status.js";
 import payment_methodQ from "../allInsert/16-payment_method.js";
 import paymentQ from "../allInsert/17-payment.js";
+import roomsListNetAndGrosPriceQ from "./2-medium/medium-line15.js";
 
 
 let queries;
@@ -97,6 +98,8 @@ export default queries = {
   AnaliseBeneficPromotionQ,
   AverageResNumberMonthsByHotelAndYearQ,
   AverageResNumberDaysByHotelQ,
+  roomsListNetAndGrosPriceQ,
+  
   
   // INSERTS:
   provinceQ,
