@@ -1,7 +1,9 @@
 import express from "express";
 import cors from "cors";
 import { router } from "./routers/router.js";
+import routerSpecial from "./routers/get/getSpecial.js";
 import { AuthRouter, verifyToken } from "./security/autentificate.js";
+import { fileHandRouter } from "./filesHandler/images/imagesHandler.js";
 
 const app = express();
 
@@ -12,6 +14,8 @@ app.use(express.json());
 // server authentification
 app.use(AuthRouter);
 app.use(router);
+app.use(routerSpecial);
+app.use(fileHandRouter);
 
 // just for test
 app.get("/", (req, res) => {
@@ -21,10 +25,10 @@ app.get("/", (req, res) => {
 // acces on some ressources:
 app.get("/resource", verifyToken, (req, res) => {
   /**
-   * Ici, nous pouvons autoriser l'accès à la ressource car le token est valide.
-   *  L'utilisateur authentifié est disponible dans req.user 
-   * (par exemple, req.user.email).
-  */
+     * Here, we can authorize access to the resource because the token is valid.
+     * The authenticated user is available in req.user 
+     * (for example, req.user.email).
+    */
   res.json({ message: "Ressource protégée accessible" });
 });
 

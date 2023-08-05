@@ -1,9 +1,18 @@
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
-// Obtenir le chemin du module actuel (envPaths.js)
+// __dirname
 const currentModuleUrl = import.meta.url;
 const currentModulePath = dirname(fileURLToPath(currentModuleUrl));
 
-// Construction du chemin d'accès complet au fichier .env
+//  .ENV
 export const envPath = join(currentModulePath, "..", ".env");
+
+// FILES HANDLER 
+
+// public for static files configurations.
+export const pubPath = join(currentModulePath, "..", "public");
+
+// public/images
+export const imagesPath = join(currentModulePath, "..", "public","images");
+

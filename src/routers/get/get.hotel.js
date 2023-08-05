@@ -209,12 +209,19 @@ const getAverageResNumberMonthsByHotelAndYear = (req, res) => {
     handlePromise(generalDisplay(queries.AverageResNumberMonthsByHotelAndYearQ, [year]), res);
 }
 
+const getRoomsListNetAndGrosPrice = (req, res) => {
+    // FOR TEST: http://localhost:8000/roomsListNetAndGrosPrice
+    handlePromise(generalDisplay(queries.roomsListNetAndGrosPriceQ), res);
+}
+
+
 const getAverageResNumberDaysByHotel = (req, res) => {
-    // FOR TEST: http://localhost:8000/AverageResNumberDaysByHotel
+    // FOR TEST: http://localhost:8000/RoomsListNetAndGrosPrice
     handlePromise(generalDisplay(queries.AverageResNumberDaysByHotelQ), res);
 }
 
 export default getHotelFunction = {
+    getRoomsListNetAndGrosPrice,
     getAverageResNumberDaysByHotel,
     getAverageResNumberMonthsByHotelAndYear,
     getTotalConferencePaymentInIntervalDate,

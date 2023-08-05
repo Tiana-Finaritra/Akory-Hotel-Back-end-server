@@ -1,23 +1,22 @@
-/**
- * 
- * NOTE:
- * J'ai mis l' user et le mots de passe de
- * psql dans un variable d'environnement dondenv
- * cacher sous gitignire
- * donc, avant de tester la connection à la base de
- * donnée: crées d'abord un fichier app .env
- * dans le même chemin que src - package.js et READEME.md
- * et mettez-y les lignes suivants:
- * 
- * DB_USER=postgres <-- à changer
- * DB_PASSWORD=password <-- à changer
- * 
- * */
+// /**
+//  * 
+//  * NOTE:
+//  * J'ai mis l' user et le mots de passe de
+//  * psql dans un variable d'environnement dondenv
+//  * cacher sous gitignire
+//  * donc, avant de tester la connection à la base de
+//  * donnée: crées d'abord un fichier app .env
+//  * dans le même chemin que src - package.js et READEME.md
+//  * et mettez-y les lignes suivants:
+//  * 
+//  * DB_USER=postgres <-- à changer
+//  * DB_PASSWORD=password <-- à changer
+//  * 
+//  * */
 
 import pgPromise from "pg-promise";
 import dotenv from "dotenv";
 import { envPath } from "./paths.js";
-import pg from "pg";
 
 const pgp = pgPromise();
 
@@ -36,7 +35,7 @@ export const db = pgp({
 db.connect()
     .then(obj => {
         console.log('Connecté à la base de données avec succès.');
-        obj.done(); // Libère le pool de clients si vous n'avez plus besoin de la connexion.
+        obj.done();// Releases the client pool if you no longer need the connection.
     })
     .catch(error => {
         console.error('Erreur de connexion à la base de données:', error);
