@@ -16,3 +16,5 @@ routerSpecial.get("/RoomsAvailableForAHotel", (req, res) => {
 routerSpecial.get("/ReservationsWithCustomerInfo", (req, res) => {
     handlePromise(generalDisplay(queries.ResrvationsWithCustomerInfo), res);
 })
+
+// RoomsWithHotel
