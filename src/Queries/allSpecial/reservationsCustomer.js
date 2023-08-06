@@ -5,6 +5,7 @@ const ResrvationsWithCustomerInfo = `
         re.leaving_date,
         re.number_of_person,
         re.is_cancelled,
+        cu.id AS id_customer,
         cu.name AS customer_firstname,
         cu.last_name AS customer_lastname,
         cu.principal_contact,
@@ -17,6 +18,7 @@ const ResrvationsWithCustomerInfo = `
     FROM reservation re
         INNER JOIN customer cu ON re.id_customer = cu.id
         INNER JOIN room ro ON re.id_room = ro.id
+    ORDER BY re.id
     ;
 `;
 

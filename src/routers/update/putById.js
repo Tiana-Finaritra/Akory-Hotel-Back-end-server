@@ -9,8 +9,6 @@ let updateFunction;
 
 const updateProvinceAvailable = (req, res) => {
     const id = req.params.id;
-    // const new_name = req.query.province_name;
-    // const new_code = req.query.code_province;
     const new_name = req.body.province_name;
     const new_code = req.body.code_province;
 
@@ -20,12 +18,19 @@ const updateProvinceAvailable = (req, res) => {
             if (!oldElem) {
                 res.status(400).send("Province not exist");
             } else {
-                let { name, code } = oldElem;
+                console.log(oldElem);
+                let { province_name, code_province } = oldElem;
 
-                new_name ? name = new_name : null;
-                new_code ? code = new_code : null;
+                console.log(new_name);
+                console.log(new_code);
 
-                handlePromiseUpdate(generalUpdate(queriesUp.updateProvinceAvailable, [id, name, code]), res);
+                new_name ? province_name = new_name : null;
+                new_code ? code_province = new_code : null;
+
+                console.log(province_name);
+                console.log(code_province);
+
+                handlePromiseUpdate(generalUpdate(queriesUp.updateProvinceAvailable, [id, province_name, code_province]), res);
             }
         })
         .catch(e => console.log(e));
@@ -277,7 +282,7 @@ const updateRoomFeatures = (req, res) => {
             if (!oldElem) {
                 res.status(400).send("RoomFeatures not exist");
             } else {
-                const { sea_view, vip_category, hot_water, wifi_available, room_service, mini_bar, flat_screen } = oldElem;
+                let { sea_view, vip_category, hot_water, wifi_available, room_service, mini_bar, flat_screen } = oldElem;
 
                 new_sea_view ? sea_view = new_sea_view : null;
                 new_vip_category ? vip_category = new_vip_category : null;
@@ -317,7 +322,7 @@ const updateRoom = (req, res) => {
             if (!oldElem) {
                 res.status(400).send("Room not exist");
             } else {
-                const { number, room_type, capacity_room, id_hotel, id_price, id_room_features } = oldElem;
+                let { number, room_type, capacity_room, id_hotel, id_price, id_room_features } = oldElem;
 
                 new_number ? number = new_number : null;
                 new_room_type ? room_type = new_room_type : null;
@@ -342,9 +347,7 @@ const updateRoom = (req, res) => {
 
 const updatePaymentMethod = (req, res) => {
     const id = req.params.id;
-    const new_mobile_money = req.body.mobile_money;
-    const new_credit_card = req.body.credit_card;
-    const new_cash = req.body.cash;
+    const new_name = req.body.name;
 
     db.query(queriesOne.getPaymentMethodById, [id])
         .then((result) => {
@@ -352,13 +355,11 @@ const updatePaymentMethod = (req, res) => {
             if (!oldElem) {
                 res.status(400).send("PaymentMethod not exist");
             } else {
-                let { mobile_money, credit_card, cash } = oldElem;
+                let { name } = oldElem;
 
-                new_mobile_money ? mobile_money = new_mobile_money : null;
-                new_credit_card ? credit_card = new_credit_card : null;
-                new_cash ? cash = new_cash : null;
+                new_name ? name = new_name : null;
 
-                handlePromiseUpdate(generalUpdate(queriesUp.updatePaymentMethod, [id, mobile_money, credit_card, cash]), res);
+                handlePromiseUpdate(generalUpdate(queriesUp.updatePaymentMethod, [id, name]), res);
             }
         })
         .catch((e) => console.log(e));

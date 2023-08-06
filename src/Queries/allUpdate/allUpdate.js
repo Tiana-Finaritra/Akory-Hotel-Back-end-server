@@ -100,9 +100,7 @@ const updateRoom = `
 
 const updatePaymentMethod = `
     UPDATE "payment_method"
-        SET mobile_money = $2,
-        credit_card = $3,
-        cash = $4
+        SET name = $2
     WHERE id = $1;
 `;
 
