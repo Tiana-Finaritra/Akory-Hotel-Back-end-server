@@ -9,11 +9,14 @@ const roomsListNetAndGrosPriceQ = `
         r.capacity_room,
         h.name AS hotel,
         p.cost_per_night AS Price,
+        pm.percent,
         CASE
             WHEN pm.percent IS NOT NULL THEN (p.cost_per_night - p.cost_per_night * pm.percent / 100)
-            ELSE NULL
+            ELSE p.cost_per_night
         END AS Promotions_day,
         r.images_paths,
+        pa.province_name,
+        pa.code_province,
         rf.sea_view,
         rf.vip_category,
         rf.hot_water,
@@ -27,6 +30,7 @@ const roomsListNetAndGrosPriceQ = `
     INNER JOIN room_features rf ON rf.id = r.id_room_features
     LEFT JOIN affiliate af ON r.id = af.id_room
     LEFT JOIN promotion pm ON pm.id = af.id_promotion AND (pm.begin IS NULL OR pm.begin <= CURRENT_DATE) AND (pm."end" IS NULL OR pm."end" > CURRENT_DATE)
+    FULL OUTER JOIN province_available pa ON h.id_province =  pa.id
     ORDER BY p.cost_per_night DESC;
 `
 
