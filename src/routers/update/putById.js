@@ -9,8 +9,6 @@ let updateFunction;
 
 const updateProvinceAvailable = (req, res) => {
     const id = req.params.id;
-    // const new_name = req.query.province_name;
-    // const new_code = req.query.code_province;
     const new_name = req.body.province_name;
     const new_code = req.body.code_province;
 
@@ -284,7 +282,7 @@ const updateRoomFeatures = (req, res) => {
             if (!oldElem) {
                 res.status(400).send("RoomFeatures not exist");
             } else {
-                const { sea_view, vip_category, hot_water, wifi_available, room_service, mini_bar, flat_screen } = oldElem;
+                let { sea_view, vip_category, hot_water, wifi_available, room_service, mini_bar, flat_screen } = oldElem;
 
                 new_sea_view ? sea_view = new_sea_view : null;
                 new_vip_category ? vip_category = new_vip_category : null;
@@ -324,7 +322,7 @@ const updateRoom = (req, res) => {
             if (!oldElem) {
                 res.status(400).send("Room not exist");
             } else {
-                const { number, room_type, capacity_room, id_hotel, id_price, id_room_features } = oldElem;
+                let { number, room_type, capacity_room, id_hotel, id_price, id_room_features } = oldElem;
 
                 new_number ? number = new_number : null;
                 new_room_type ? room_type = new_room_type : null;
