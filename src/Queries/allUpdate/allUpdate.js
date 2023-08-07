@@ -21,8 +21,8 @@ const updateReceptionist = `
         last_name = $3,
         password = $4,
         email = $5,
-        work_conctact = $6,
-        id_hotel = $7,
+        work_contact = $6,
+        id_hotel = $7
     WHERE id = $1;
 `;
 
@@ -154,7 +154,7 @@ const updateReservation = `
         SET date_arrived = $2,
         leaving_date = $3,
         number_of_person = $4,
-        is_cancelled = $5
+        is_cancelled = $5,
         id_customer = $6,
         id_room = $7
     WHERE id = $1;

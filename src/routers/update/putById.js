@@ -520,8 +520,6 @@ const updateReservation = (req, res) => {
     const new_id_customer = req.body.id_customer;
     const new_id_room = req.body.id_room;
 
-    console.log(typeof(new_is_cancelled));
-
     db.query(queriesOne.getReservationById, [id])
         .then((result) => {
             const oldElem = result[0];
