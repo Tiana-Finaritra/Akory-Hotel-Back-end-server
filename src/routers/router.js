@@ -131,6 +131,10 @@ router.get("/RoomsListNetAndGrosPrice", getHotelFunction.getRoomsListNetAndGrosP
 
 // HARD-LINES:
 // --------------------------------------------------------------------------------------------------
+// harf-line2:
+// DISPLAY INVOICES WITH TOTAL AMOUNT PAYED
+router.get("/displayInvoicesTotalAmountPayed", getHotelFunction.getDisplayInvoicesTotalAmountPayed)
+
 // hard-line5:
 // TOTAL PAYMENTS COLLECTED IN A YE:AR FOR EACH HOTEL
 router.get("/CollectedPayForAllHotelsByYear", getHotelFunction.getCollectedPayForAllHotelsByYear);

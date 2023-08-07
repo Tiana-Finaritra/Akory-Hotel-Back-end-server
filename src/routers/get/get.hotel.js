@@ -220,6 +220,11 @@ const getAverageResNumberDaysByHotel = (req, res) => {
     handlePromise(generalDisplay(queries.AverageResNumberDaysByHotelQ), res);
 }
 
+const getDisplayInvoicesTotalAmountPayed = (req, res) => {
+    // FOR TEST: http://localhost:8000/displayInvoicesTotalAmountPayed
+    handlePromise(generalDisplay(queries.DisplayInvoicesTotalAmountPayed), res);
+}
+
 export default getHotelFunction = {
     getRoomsListNetAndGrosPrice,
     getAverageResNumberDaysByHotel,
@@ -255,4 +260,5 @@ export default getHotelFunction = {
     getHotelWithTheNumberRes,
     getCustomersNegCommentForHotel,
     getAnaliseBeneficPromotion,
+    getDisplayInvoicesTotalAmountPayed,
   }
