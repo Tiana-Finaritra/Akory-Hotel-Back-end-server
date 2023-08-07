@@ -5,7 +5,7 @@ const displayInvoicesTotalAmountPayed = `
         re.id,
         cu.name,
         cu.last_name,
-        ROUND((pr.cost_per_night * EXTRACT(day FROM (re.leaving_date - re.date_arrived)))::numeric, 2) as total_amount,
+        ROUND((pr.cost_per_night * EXTRACT(day FROM (re.leaving_date - re.date_arrived)))::numeric, 2)::double precision as total_amount,
         pay.amount_paid,
         re.date_arrived as debut_reservation,
         re.leaving_date as fin_reservation
