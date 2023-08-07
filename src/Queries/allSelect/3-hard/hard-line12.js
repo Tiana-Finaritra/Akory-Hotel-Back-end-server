@@ -2,18 +2,18 @@
 
 const AverageResNumberMonthsByHotelAndYearQ = `
     SELECT
-        round(avg(re.id)) as reservation,
-        ho.name as hotel
+        round(avg(re.id))::integer as reservation,
+        date_part('month', re.date_arrived) as month
     FROM "reservation" re
         INNER JOIN "room" ro ON re.id_room = ro.id
         INNER JOIN "hotel" ho ON ro.id_hotel = ho.id
-    WHERE date_part('month', re.date_arrived) IN (
+    WHERE date_part('day', re.date_arrived) IN (
             SELECT 
-                date_part('month', date_arrived) as month
+                date_part('day', re.date_arrived) as day
             FROM "reservation"
-            WHERE date_part('year', date_arrived) = $1
+            WHERE date_part('year', re.date_arrived) = $1
         )
-    GROUP BY ho.id;
+    GROUP BY month;
 `;
 
 export default AverageResNumberMonthsByHotelAndYearQ;

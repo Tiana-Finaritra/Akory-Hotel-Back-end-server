@@ -33,6 +33,7 @@ import CurrentlyOccupiedRoomsListQ from "./2-medium/medium-line9.js";
 import LeastMostReservedRoomByHotelQ from "./2-medium/medium-line10-11.js";
 import CurrentPrommotionsListQ from "./2-medium/medium-line12.js";
 import PayementListAllInfoQ from "./2-medium/medium-line14.js";
+import DisplayInvoicesTotalAmountPayed from "./3-hard/hard-line2.js";
 import CollectedPayForAllHotelsByYearQ from "./3-hard/hard-line5.js";
 import TotalPayForRoomsHotelsQ from "./3-hard/hard-line6.js";
 import TotalConferencePaymentInIntervalDateQ from "./3-hard/hard-line7.js";
@@ -99,6 +100,7 @@ export default queries = {
   AverageResNumberMonthsByHotelAndYearQ,
   AverageResNumberDaysByHotelQ,
   roomsListNetAndGrosPriceQ,
+  DisplayInvoicesTotalAmountPayed,
   
   
   // INSERTS:

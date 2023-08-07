@@ -513,12 +513,12 @@ const updatePromotion = (req, res) => {
 
 const updateReservation = (req, res) => {
     const id = req.params.id;
-    const date_arrived = req.body.date_arrived;
-    const leaving_date = req.body.leaving_date;
-    const number_of_person = req.body.number_of_person;
-    const is_cancelled = req.body.is_cancelled;
-    const id_customer = req.body.id_customer;
-    const id_room = req.body.id_room;
+    const new_date_arrived = req.body.date_arrived;
+    const new_leaving_date = req.body.leaving_date;
+    const new_number_of_person = req.body.number_of_person;
+    const new_is_cancelled = req.body.is_cancelled;
+    const new_id_customer = req.body.id_customer;
+    const new_id_room = req.body.id_room;
 
     db.query(queriesOne.getReservationById, [id])
         .then((result) => {
@@ -528,12 +528,12 @@ const updateReservation = (req, res) => {
             } else {
                 let { date_arrived, leaving_date, number_of_person, is_cancelled, id_customer, id_room } = oldElem;
 
-                date_arrived ? date_arrived = date_arrived : null;
-                leaving_date ? leaving_date = leaving_date : null;
-                number_of_person ? number_of_person = number_of_person : null;
-                is_cancelled ? is_cancelled = is_cancelled : null;
-                id_customer ? id_customer = id_customer : null;
-                id_room ? id_room = id_room : null;
+                new_date_arrived ? date_arrived = new_date_arrived : null;
+                new_leaving_date ? leaving_date = new_leaving_date : null;
+                new_number_of_person ? number_of_person = new_number_of_person : null;
+                is_cancelled = new_is_cancelled;
+                new_id_customer ? id_customer = new_id_customer : null;
+                new_id_room ? id_room = new_id_room : null;
 
                 handlePromiseUpdate(generalUpdate(queriesUp.updateReservation, [
                     id,

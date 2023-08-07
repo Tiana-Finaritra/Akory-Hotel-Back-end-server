@@ -15,6 +15,11 @@ routerSpecial.get("/RoomsAvailableForAHotel", (req, res) => {
 // ResrvationsWithCustomerInfo
 routerSpecial.get("/ReservationsWithCustomerInfo", (req, res) => {
     handlePromise(generalDisplay(queries.ResrvationsWithCustomerInfo), res);
-})
+});
+
+// AllPayments
+routerSpecial.get("/AllPayments", (req, res) => {
+    handlePromise(generalDisplay(queries.allPayments), res);
+});
 
 // RoomsWithHotel
