@@ -324,10 +324,6 @@ router.put("/promotion/:id", updateFunction.updatePromotion);
 
 router.put("/reservation/:id", updateFunction.updateReservation);
 
-router.put("/promotion/:id", updateFunction.updatePromotion);
-
-router.put("/reservation/:id", updateFunction.updateReservation);
-
 
 // ----------------------------------------------------------------------------------------------------------
 // DELETE:
