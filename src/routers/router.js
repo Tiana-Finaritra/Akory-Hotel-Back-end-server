@@ -1,9 +1,16 @@
-import express from "express";
+import express, { Router } from "express";
 import getHotelFunction from "./get/get.hotel.js";
+import getElemtFunction from "./get/getById.js";
+import getAll from "./get/getAll.js";
 import insertFunction from "./post/post.js";
+import updateFunction from "./update/putById.js";
+import E from "./delete/deletes.js";
 export const router = express.Router();
+
+
 // EASY-LINES:
 // -------------------------------------------------------------------------------------------------
+
 router.get("/ReceptionistsListInWhichHotel", getHotelFunction.getReceptionistsListInWhichHotel);
 
 // easy-line3:
@@ -116,9 +123,18 @@ router.get("/CurrentPrommotionsList", getHotelFunction.getCurrentPrommotionsList
 // DISPLAY LIST OF PAYMENT WITH NAME AND FIRST-NAME WHO WAS RECEIVE IT:
 router.get("/PayementListAllInfo", getHotelFunction.getPayementListAllInfo);
 
+//Medium-line15:
+// DISPLAY THE LIST OF ROOMS, WITH THEIR GROSS PRICE, AND THEIR NET PRICE (I.E THEIR PRICE
+// BY APPLYING ALL THE REDUCTIONS THAT ARE APPLIED TODAY)
+router.get("/RoomsListNetAndGrosPrice", getHotelFunction.getRoomsListNetAndGrosPrice);
+
 
 // HARD-LINES:
 // --------------------------------------------------------------------------------------------------
+// harf-line2:
+// DISPLAY INVOICES WITH TOTAL AMOUNT PAYED
+router.get("/displayInvoicesTotalAmountPayed", getHotelFunction.getDisplayInvoicesTotalAmountPayed)
+
 // hard-line5:
 // TOTAL PAYMENTS COLLECTED IN A YE:AR FOR EACH HOTEL
 router.get("/CollectedPayForAllHotelsByYear", getHotelFunction.getCollectedPayForAllHotelsByYear);
@@ -149,9 +165,203 @@ router.get("/AverageResNumberDaysByHotel", getHotelFunction.getAverageResNumberD
 
 
 
+
+
 // POSTS===============================================================
 // Insertion for new province
 router.post("/province", insertFunction.newProvince);
 
 // Insertion for new hotel
 router.post("/hotel", insertFunction.newHotel);
+
+//Insertion for new promotion
+router.post("/promotion", insertFunction.newPromotion);
+
+// Insertion for new season
+router.post("/season", insertFunction.newSeason);
+
+//Insertion for new price
+router.post("/price", insertFunction.newPrice);
+
+//Insertion for new rooom_features
+router.post("/room_features", insertFunction.newRoom_features);
+
+//Insertion for new room
+router.post("/room", insertFunction.newRoom);
+
+//Insertion for new affiliate
+router.post("/affiliate", insertFunction.newAffiliate);
+
+//Insertion for new receptionist
+router.post("/receptionist", insertFunction.newReceptionist);
+
+//Insertion for new customer
+router.post("/customer", insertFunction.newCustomer);
+
+//Insertion for new feed_back
+router.post("/feed_back", insertFunction.newFeed_back);
+
+//Insertion for new reservation
+router.post("/reservation", insertFunction.newReservation);
+
+//Insertion for new service
+router.post("/service", insertFunction.newService);
+
+//Insertion for new buy
+router.post("/buy", insertFunction.newBuy);
+
+//Insertion for new customer_status
+router.post("/customer_status", insertFunction.newCustomer_status);
+
+//Insertion for new payment_method
+router.post("/payment_method", insertFunction.newPayment_method);
+
+//Insertion for new payment
+router.post("/payment", insertFunction.newPayment);
+
+// ----------------------------------------------------------------------------------------------------------
+// GET ALL ELEMENT
+router.get("/provinces", getAll.getAllProvinceAvailables);
+
+router.get("/hotels", getAll.getAllHotels);
+
+router.get("/receptionists", getAll.getAllReceptionists);
+
+router.get("/customers", getAll.getAllCustomers);
+
+router.get("/customerstatus", getAll.getAllCustomerStatus);
+
+router.get("/services", getAll.getAllServices);
+
+router.get("/seasons", getAll.getAllSeasons);
+
+router.get("/prices", getAll.getAllPrices);
+
+router.get("/roomfeatures", getAll.getAllRoomFeatures);
+
+router.get("/rooms", getAll.getAllRooms);
+
+router.get("/paymentmethods", getAll.getAllPaymentMethods);
+
+router.get("/payments", getAll.getAllPayments);
+
+router.get("/affilates", getAll.getAllAffilates);
+
+router.get("/buys", getAll.getAllBuys);
+
+router.get("/feedbacks", getAll.getAllFeedbacks);
+
+router.get("/promotions", getAll.getAllPromotions);
+
+router.get("/reservations", getAll.getAllReservations);
+
+
+// ----------------------------------------------------------------------------------------------------------
+// GET ELEMENT BY ID
+router.get("/province/:id", getElemtFunction.getProvinceAvailableById);
+
+router.get("/hotel/:id", getElemtFunction.getHotelById);
+
+router.get("/receptionist/:id", getElemtFunction.getReceptionistById);
+
+router.get("/customer/:id", getElemtFunction.getCustomerById);
+
+router.get("/customerstatus/:id", getElemtFunction.getCustomerStatusById);
+
+router.get("/service/:id", getElemtFunction.getServiceById);
+
+router.get("/season/:id", getElemtFunction.getSeasonById);
+
+router.get("/price/:id", getElemtFunction.getPriceById);
+
+router.get("/roomfeatures/:id", getElemtFunction.getRoomFeaturesById);
+
+router.get("/room/:id", getElemtFunction.getRoomById);
+
+router.get("/paymentmethod/:id", getElemtFunction.getPaymentMethodById);
+
+router.get("/payment/:id", getElemtFunction.getPaymentById);
+
+router.get("/affilate/:id", getElemtFunction.getAffilateById);
+
+router.get("/buy/:id", getElemtFunction.getBuyById);
+
+router.get("/feedback/:id", getElemtFunction.getFeedbackById);
+
+router.get("/promotion/:id", getElemtFunction.getPromotionById);
+
+router.get("/reservation/:id", getElemtFunction.getReservationById);
+
+// ----------------------------------------------------------------------------------------------------------
+// UPDATE
+router.put("/province/:id", updateFunction.updateProvinceAvailable);
+
+router.put("/hotel/:id", updateFunction.updateHotel);
+
+router.put("/receptionist/:id", updateFunction.updateReceptionist);
+
+router.put("/customer/:id", updateFunction.updateCustomer);
+
+router.put("/customer/:id", updateFunction.updateCustomerStatus);
+
+router.put("/service/:id", updateFunction.updateService);
+
+router.put("/season/:id", updateFunction.updateSeason);
+
+router.put("/price/:id", updateFunction.updatePrice);
+
+router.put("/roomfeatures/:id", updateFunction.updateRoomFeatures);
+
+router.put("/room/:id", updateFunction.updateRoom);
+
+router.put("/paymentmethod/:id", updateFunction.updatePaymentMethod);
+
+router.put("/payment/:id", updateFunction.updatePayment);
+
+router.put("/affilate/:id", updateFunction.updateAffilate);
+
+router.put("/buy/:id", updateFunction.updateBuy);
+
+router.put("/feedback/:id", updateFunction.updateFeedBack);
+
+router.put("/promotion/:id", updateFunction.updatePromotion);
+
+router.put("/reservation/:id", updateFunction.updateReservation);
+
+
+// ----------------------------------------------------------------------------------------------------------
+// DELETE:
+
+router.delete("/province/:id", E.delProvince_available);
+
+router.delete("/hotel/:id", E.delHotel);
+
+router.delete("/season/:id", E.delSeason);
+
+router.delete("/promotion/:id", E.delPromotion);
+
+router.delete("/price/:id", E.delPrice);
+
+router.delete("/room_features/:id", E.delRoomFeatures);
+
+router.delete("/room/:id", E.delRoom);
+
+router.delete("/affiliate/:id", E.delAffiliate);
+
+router.delete("/receptionist/:id", E.delReceptionist);
+
+router.delete("/customer/:id", E.delCustomer);
+
+router.delete("/feed_back/:id", E.delFeedBack);
+
+router.delete("/reservation/:id", E.delReservation);
+
+router.delete("/service/:id", E.delService);
+
+router.delete("/buy/:id", E.delBuy);
+
+router.delete("/customer_status/:id", E.delCustomerStatus);
+
+router.delete("/payment_method/:id", E.delPaymentMethod);
+
+router.delete("/payment/:id", E.delPayment);
